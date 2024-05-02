@@ -30,9 +30,9 @@ public class HelloApplication extends Application {
         }catch (Exception e){
             System.out.println("Can not connect");
         }
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Bil-Event");
         stage.setScene(scene);
         stage.show();
     }
