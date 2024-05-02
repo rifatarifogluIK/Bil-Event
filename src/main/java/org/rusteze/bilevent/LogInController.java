@@ -49,7 +49,13 @@ public class LogInController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-
+    public void logIn(ActionEvent event) throws IOException {
+        //TODO authentication
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
 

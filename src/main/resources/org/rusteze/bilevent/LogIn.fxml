@@ -18,7 +18,7 @@
                <children>
                   <TextField layoutX="100.0" layoutY="222.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: royalblue; -fx-border-width: 0px 0px 2px 0px;" />
                   <PasswordField layoutX="100.0" layoutY="266.0" prefHeight="27.0" prefWidth="150.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: royalblue; -fx-border-width: 0px 0px 2px 0px;" />
-                  <Button layoutX="100.0" layoutY="322.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: royalblue; -fx-background-radius: 12px;" text="Log In" textFill="WHITE" />
+                  <Button layoutX="100.0" layoutY="322.0" mnemonicParsing="false" onAction="#logIn" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: royalblue; -fx-background-radius: 12px;" text="Log In" textFill="WHITE" />
                   <Hyperlink layoutX="81.0" layoutY="383.0" text="Forgot your password? Click here!" />
                   <ImageView fitHeight="123.0" fitWidth="110.0" layoutX="120.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>

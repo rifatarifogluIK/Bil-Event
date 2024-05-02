@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.DiscoverController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="384.0" prefWidth="146.0" spacing="5.0" style="-fx-border-color: gray; -fx-border-width: 0.5;" BorderPane.alignment="CENTER">
          <children>
@@ -30,7 +30,7 @@
                   <Font name="Trebuchet MS Bold" size="12.0" />
                </font>
             </Label>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickHomePage" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Home">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#homeBtn" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Home">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -42,7 +42,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCalendarPage" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Calendar">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#calendarBtn" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Calendar">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -54,7 +54,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickDiscoverCom" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Discover Communities">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#discoverBtn" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Discover Communities">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -69,7 +69,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickAdvancedSearch" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Advanced Search">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Advanced Search">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -89,7 +89,7 @@
                   <Insets right="30.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCommunity" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="CS-Department">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="CS-Department">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -101,7 +101,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCommunity" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="EEE-Department">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="EEE-Department">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -113,7 +113,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCommunity" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="ACM-Club">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="ACM-Club">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -125,7 +125,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCommunity" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="F1-Club">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="F1-Club">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -165,7 +165,7 @@
                   <Insets top="-60.0" />
                </BorderPane.margin>
                <children>
-                  <ImageView fitHeight="63.0" fitWidth="68.0" onMouseClicked="#clickProfilePhoto" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="63.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/ProfilePhoto.png" />
                      </image>
@@ -176,7 +176,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label alignment="TOP_CENTER" onMouseClicked="#handleProfilePhotoClicker" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
+                  <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
                      <font>
                         <Font size="9.0" />
                      </font>
@@ -189,7 +189,7 @@
                         <Font name="Segoe Print Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" onMouseClicked="#clickFriend" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
+                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
                      <font>
                         <Font name="Trebuchet MS" size="10.0" />
                      </font>
@@ -204,7 +204,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" onMouseClicked="#clickFriend" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
+                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
                      <font>
                         <Font name="Trebuchet MS" size="10.0" />
                      </font>
@@ -266,7 +266,7 @@
                         <Insets bottom="2.0" />
                      </GridPane.margin>
                   </Rectangle>
-                  <Rectangle arcHeight="10.0" arcWidth="10.0" height="21.0" onMouseClicked="#showMore" stroke="TRANSPARENT" strokeType="INSIDE" width="101.0" GridPane.rowIndex="4">
+                  <Rectangle arcHeight="10.0" arcWidth="10.0" height="21.0" stroke="TRANSPARENT" strokeType="INSIDE" width="101.0" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="140.0" />
                      </GridPane.margin>
@@ -287,7 +287,7 @@
                         </LinearGradient>
                      </fill>
                   </Rectangle>
-                  <Label onMouseClicked="#showMoreD" prefHeight="18.0" prefWidth="62.0" text="Show More" textFill="WHITE" GridPane.rowIndex="4">
+                  <Label prefHeight="18.0" prefWidth="62.0" text="Show More" textFill="WHITE" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets left="160.0" />
                      </GridPane.margin>
@@ -313,12 +313,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#details1" prefHeight="15.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="1">
+                  <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="330.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#join1" prefHeight="15.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="1">
+                  <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="270.0" />
                      </GridPane.margin>
@@ -331,12 +331,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#details2" prefHeight="16.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="2">
+                  <Button mnemonicParsing="false" prefHeight="16.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="330.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#join2" prefHeight="15.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="2">
+                  <Button mnemonicParsing="false" prefHeight="15.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="270.0" />
                      </GridPane.margin>
@@ -349,12 +349,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#details3" prefHeight="14.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="3">
+                  <Button mnemonicParsing="false" prefHeight="14.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="330.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#join3" prefHeight="13.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="3">
+                  <Button mnemonicParsing="false" prefHeight="13.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="270.0" />
                      </GridPane.margin>
@@ -367,12 +367,12 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#details4" prefHeight="0.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="6">
+                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets bottom="20.0" left="330.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#join4" prefHeight="17.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="6">
+                  <Button mnemonicParsing="false" prefHeight="17.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="6">
                      <GridPane.margin>
                         <Insets bottom="20.0" left="270.0" />
                      </GridPane.margin>
@@ -388,12 +388,12 @@
                         <Insets bottom="20.0" />
                      </padding>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#details5" prefHeight="0.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="7">
+                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="52.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Details" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets bottom="20.0" left="330.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#join5" prefHeight="11.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="7">
+                  <Button mnemonicParsing="false" prefHeight="11.0" prefWidth="47.0" style="-fx-background-color: FFFFFF; -fx-background-radius: 10;" text="Join" GridPane.rowIndex="7">
                      <GridPane.margin>
                         <Insets bottom="20.0" left="270.0" />
                      </GridPane.margin>
