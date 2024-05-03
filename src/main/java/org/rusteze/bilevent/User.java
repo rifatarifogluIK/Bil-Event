@@ -1,6 +1,7 @@
+package org.rusteze.bilevent;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import org.w3c.dom.events.Event;
 import java.awt.image.BufferedImage;
 
 public class User {
@@ -53,14 +54,14 @@ public class User {
     }
 
     public void createCommunity(String name) {
-        
+
         Community community = new Community(name);
         community.getAdmins().add(this);
         community.getMembers().add(this);
         communities.add(community);
     }
     /**
-     * 
+     *
      * @param event
      * @return the index of the event in the enrolled arraylist sorted by the days remaining.
      */
@@ -92,13 +93,18 @@ public class User {
     }
 
     public void handlePassedEvent() {
-
+        int counter = 0;
         for(Event e : enrolledEvents) {
-            if(hasEventPassed(event)) {
-                // TODO Check if any index shift occurs in for-each loop
-                enrolledEvents.remove(e);
-                attendedEvents.add(e);
+            if(hasEventPassed(e)) {
+                counter++;
+            } else {
+                break;
             }
+        }
+        for(int i = 0; i < counter; i++) {
+
+            attendedEvents.add(enrolledEvents.getFirst());
+            enrolledEvents.removeFirst();
         }
     }
 

@@ -240,9 +240,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label contentDisplay="TOP" text="Event1">
+                  <Label fx:id="eventName1" contentDisplay="TOP" text="Event1">
                      <graphic>
-                        <ImageView fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="eventImage1" fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/Logo.PNG" />
                            </image>
@@ -252,9 +252,9 @@
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label contentDisplay="TOP" text="Event2" GridPane.columnIndex="1">
+                  <Label fx:id="eventName2" contentDisplay="TOP" text="Event2" GridPane.columnIndex="1">
                      <graphic>
-                        <ImageView fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="eventImage2" fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/Logo.PNG" />
                            </image>
@@ -264,9 +264,9 @@
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label contentDisplay="TOP" text="Event3" GridPane.columnIndex="2">
+                  <Label fx:id="eventName3" contentDisplay="TOP" text="Event3" GridPane.columnIndex="2">
                      <graphic>
-                        <ImageView fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="eventImage3" fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/Logo.PNG" />
                            </image>
@@ -276,9 +276,9 @@
                         <Insets left="10.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label contentDisplay="TOP" text="Event4" GridPane.columnIndex="3">
+                  <Label fx:id="eventName4" contentDisplay="TOP" text="Event4" GridPane.columnIndex="3">
                      <graphic>
-                        <ImageView fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="eventImage4" fitHeight="90.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/Logo.PNG" />
                            </image>

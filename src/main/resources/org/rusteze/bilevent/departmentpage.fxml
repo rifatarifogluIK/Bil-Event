@@ -216,7 +216,7 @@
             </VBox>
          </right>
          <top>
-            <Label text="Department Name" BorderPane.alignment="TOP_LEFT">
+            <Label fx:id="departmentLabel" text="Department Name" BorderPane.alignment="TOP_LEFT">
                <BorderPane.margin>
                   <Insets left="20.0" top="30.0" />
                </BorderPane.margin>
