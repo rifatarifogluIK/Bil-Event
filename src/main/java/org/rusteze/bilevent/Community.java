@@ -7,7 +7,9 @@ public class Community {
     public Community(String name) {
         this.name = name;
     }
-
+    public boolean isAdmin(User user) {
+        return false;
+    }
     public String getName() {
         return name;
     }

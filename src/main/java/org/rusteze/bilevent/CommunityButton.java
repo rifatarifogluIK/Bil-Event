@@ -23,7 +23,7 @@ public class CommunityButton extends Button {
         setText(community.getName());
         setStyle("-fx-background-color: #B5DBFF; -fx-font-family: \"Trebuchet\"; -fx-font-size: 10px;");
         setPrefHeight(20.0);
-        setPrefWidth(132.0);
+        setPrefWidth(130.0);
         setAlignment(Pos.CENTER_LEFT);
         setOnAction(this::CommunityBtn);
     }

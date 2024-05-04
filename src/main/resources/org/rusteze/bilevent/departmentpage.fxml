@@ -26,7 +26,7 @@
                   <Font name="Trebuchet MS Bold" size="12.0" />
                </font>
             </Label>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Home">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#homeBtn" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Home">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -38,7 +38,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Calendar">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#calendarBtn" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Calendar">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -50,7 +50,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Discover Communities">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#discoverBtn" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Discover Communities">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -65,7 +65,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Advanced Search">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Advanced Search">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -211,6 +211,9 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </Button>
                </children>
             </VBox>
@@ -239,7 +242,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-radius: 10; -fx-background-color: deepskyblue;" text="Join" GridPane.columnIndex="2">
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-radius: 10; -fx-background-color: deepskyblue;" text="Join" textFill="WHITE" GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" top="-140.0" />
                      </GridPane.margin>
@@ -249,7 +252,7 @@
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" style="-fx-background-radius: 20; -fx-background-color: RED;" text="See Members" textFill="#fffefe">
                      <GridPane.margin>
-                        <Insets bottom="60.0" left="20.0" right="-10.0" />
+                        <Insets bottom="60.0" left="10.0" />
                      </GridPane.margin>
                      <font>
                         <Font name="System Bold" size="12.0" />
@@ -354,6 +357,22 @@
                      <font>
                         <Font name="Trebuchet MS" size="10.0" />
                      </font>
+                  </Button>
+                  <Button fx:id="editBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" style="-fx-background-radius: 20; -fx-background-color: RED;" text="Edit" textFill="#fffefe" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="60.0" left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="createBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" style="-fx-background-radius: 20; -fx-background-color: RED;" text="Create Event" textFill="#fffefe" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="60.0" left="10.0" />
+                     </GridPane.margin>
                   </Button>
                </children>
             </GridPane>

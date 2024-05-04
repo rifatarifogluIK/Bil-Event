@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -16,10 +17,19 @@ import javafx.scene.control.Label;
 public class CommunityPageController implements SceneHandler, Initializable {
     @FXML
     private Label departmentLabel;
+    @FXML
+    private Button editBtn;
+    @FXML
+    private Button createBtn;
     private static Community community;
 
     public void setPage() {
         departmentLabel.setText(community.getName());
+
+        if(!community.isAdmin(HelloApplication.sessionUser)) {
+            editBtn.setVisible(false);
+            createBtn.setVisible(false);
+        }
     }
     @Override
     public void createCommunityButtons() {

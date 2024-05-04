@@ -41,6 +41,9 @@ public class HelloApplication extends Application {
         sessionUser.createCommunity("F4");
         sessionUser.createCommunity("F5");
         sessionUser.createCommunity("F6");
+        sessionUser.createCommunity("F7");
+        sessionUser.createCommunity("F8");
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bil-Event");

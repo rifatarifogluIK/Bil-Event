@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
-
+import javafx.geometry.Insets;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -40,8 +41,6 @@ public class HomeController implements SceneHandler, Initializable {
     Label[] eventNames = {eventName1, eventName2, eventName3, eventName4};
     ImageView[] eventImages = {eventImage1, eventImage2, eventImage3, eventImage4};
     private static final int EVENT_COUNT = 4;
-    private static final int MAX_COMMUNITY_BUTTONS = 5;
-
 
     public void displayEvents() {
 
@@ -57,12 +56,12 @@ public class HomeController implements SceneHandler, Initializable {
     public void createCommunityButtons() {
         ArrayList<Community> communities= HelloApplication.sessionUser.getCommunities();
 
-        int buttonCount = communities.size() > MAX_COMMUNITY_BUTTONS ? MAX_COMMUNITY_BUTTONS : communities.size();
+        int buttonCount = communities.size();
 
         for(int i = 0; i < buttonCount; i++) {
-            //TODO implement a button type as CommunityButton
             CommunityButton comBtn = new CommunityButton(communities.get(i));
             buttonPanel.getChildren().add(comBtn);
+            VBox.setMargin(comBtn, new Insets(0, 15, 0, 0));
         }
     }
 
