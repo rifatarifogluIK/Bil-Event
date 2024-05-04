@@ -7,16 +7,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class HomeController implements SceneHandler, Initializable {
 
+    @FXML
+    VBox buttonPanel;
     @FXML
     Label eventName1;
     @FXML
@@ -33,14 +38,32 @@ public class HomeController implements SceneHandler, Initializable {
     Label eventName4;
     @FXML
     ImageView eventImage4;
+    Label[] eventNames = {eventName1, eventName2, eventName3, eventName4};
+    ImageView[] eventImages = {eventImage1, eventImage2, eventImage3, eventImage4};
+    private static final int EVENT_COUNT = 4;
+    private static final int MAX_COMMUNITY_BUTTONS = 5;
 
 
     public void displayEvents() {
 
+        ArrayList<Event> recommendations = HelloApplication.sessionUser.getRecommendations();
+
+        for(int i = 0; i < EVENT_COUNT; i++) {
+            eventNames[i].setText(recommendations.get(i).getName());
+            eventImages[i].setImage(recommendations.get(i).getPhoto());
+        }
+
     }
-
+    @Override
     public void createCommunityButtons() {
+        ArrayList<Community> communities= HelloApplication.sessionUser.getCommunities();
 
+        int buttonCount = communities.size() > MAX_COMMUNITY_BUTTONS ? MAX_COMMUNITY_BUTTONS : communities.size();
+
+        for(int i = 0; i < buttonCount; i++) {
+            //TODO implement a button type as CommunityButton
+            //buttonPanel.add(new CommunityButton(communities.get(i).getName());
+        }
     }
 
     @Override
@@ -94,5 +117,6 @@ public class HomeController implements SceneHandler, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayEvents();
+        createCommunityButtons();
     }
 }

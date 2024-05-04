@@ -1,6 +1,6 @@
 package org.rusteze.bilevent;
 
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -13,7 +13,7 @@ public abstract class Event {
     private ArrayList<User> attendees;
     private String location;
     private ArrayList<User> admins;
-    private BufferedImage photo;
+    private Image photo;
     private double rating;
     private int ratingCount;
     private ArrayList<String> attributes;
@@ -74,6 +74,14 @@ public abstract class Event {
 
         //rounds the rating to 1 decimal places
         return Math.round(RatingWithoutRounding * 10.0) / 10.0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Image getPhoto() {
+        return photo;
     }
 
     public ArrayList<String> getAttributes() {

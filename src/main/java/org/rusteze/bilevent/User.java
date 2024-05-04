@@ -1,15 +1,16 @@
 package org.rusteze.bilevent;
 
+import javafx.scene.image.Image;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.awt.image.BufferedImage;
 
 public class User {
 
     private String username;
     private String password;
     private String email;
-    private BufferedImage photo;
+    private Image photo;
     private ArrayList<User> friends;
     private Arraylist<Community> communities;
     private ArrayList<Event> enrolledEvents;
@@ -129,8 +130,8 @@ public class User {
     public Arraylist<Community> getCommunities() {
         return communities;
     }
-    public Recommendation getRecommendations() {
-        return recommendations;
+    public ArrayList<Event> getRecommendations() {
+        return recommendations.getRecommendations();
     }
     public double getRating() {
         return rating / ratingCount;

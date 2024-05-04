@@ -12,6 +12,10 @@ import org.bson.*;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+
+    // Added this to test UI before implementing user authentication
+    public static User sessionUser;
+
     @Override
     public void start(Stage stage) throws IOException {
         String uri = "mongodb://demo:123@139.179.217.206:27017/";
