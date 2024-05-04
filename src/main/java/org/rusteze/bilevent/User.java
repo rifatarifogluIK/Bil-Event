@@ -135,4 +135,8 @@ public class User {
     public double getRating() {
         return rating / ratingCount;
     }
+
+    public String getUsername() {
+        return username;
+    }
 }
