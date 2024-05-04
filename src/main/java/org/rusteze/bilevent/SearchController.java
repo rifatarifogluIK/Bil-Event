@@ -11,6 +11,11 @@ import java.io.IOException;
 
 public class SearchController implements SceneHandler{
 
+    @Override
+    public void createCommunityButtons() {
+
+    }
+
     public void homeBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
@@ -57,4 +62,6 @@ public class SearchController implements SceneHandler{
             throw new RuntimeException(e);
         }
     }
+
+
 }

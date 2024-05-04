@@ -39,6 +39,10 @@ public class HomeController implements SceneHandler, Initializable {
 
     }
 
+    public void createCommunityButtons() {
+
+    }
+
     @Override
     public void homeBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

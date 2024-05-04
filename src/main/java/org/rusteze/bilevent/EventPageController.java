@@ -11,7 +11,10 @@ import java.io.IOException;
 
 public class EventPageController implements SceneHandler{
 
-    
+    @Override
+    public void createCommunityButtons() {
+
+    }
 
     @Override
     public void homeBtn(ActionEvent event) {

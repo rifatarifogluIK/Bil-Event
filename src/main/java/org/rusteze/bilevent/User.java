@@ -40,14 +40,14 @@ public class User {
     public void enrollEvent(Event event) {
 
         enrolledEvents.add(binarySearch(event), event);
-        event.getAttendees().add(this);
+        event.addAttendee(this);
 
     }
 
     public void createEvent(String name, String description, LocalDate date) {
 
-        Event event = new PersonalEvent(name, description, date);
-        event.getAttendees().add(this);
+        Event event = new PersonalEvent(this, name, description, date);
+        event.addAttendee(this);
         event.getAdmins().add(this);
         enrolledEvents.add(event);
         createdEvents.add(event);

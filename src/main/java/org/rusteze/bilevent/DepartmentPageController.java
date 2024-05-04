@@ -13,6 +13,11 @@ public class DepartmentPageController implements SceneHandler{
 
 
     @Override
+    public void createCommunityButtons() {
+
+    }
+
+    @Override
     public void homeBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {

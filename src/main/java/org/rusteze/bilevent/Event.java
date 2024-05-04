@@ -18,6 +18,12 @@ public abstract class Event {
     private int ratingCount;
     private ArrayList<String> attributes;
 
+    public Event(String name, String description, LocalDate date) {
+        this.name = name;
+        this.description = description;
+        this.date = date;
+    }
+
     public void addAttendee(User user)
     {
         //in case user is already in the current attendees

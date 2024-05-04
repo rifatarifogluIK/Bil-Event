@@ -11,6 +11,11 @@ import java.io.IOException;
 
 public class CalendarController implements SceneHandler{
 
+    @Override
+    public void createCommunityButtons() {
+
+    }
+
     public void homeBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
