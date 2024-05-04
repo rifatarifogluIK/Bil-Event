@@ -85,62 +85,6 @@
                   <Insets right="30.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="CS-Department">
-               <font>
-                  <Font name="Trebuchet MS" size="10.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/OptionsorCommuntyLogo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="EEE-Department">
-               <font>
-                  <Font name="Trebuchet MS" size="10.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/OptionsorCommuntyLogo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="ACM-Club">
-               <font>
-                  <Font name="Trebuchet MS" size="10.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/OptionsorCommuntyLogo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="F1-Club">
-               <font>
-                  <Font name="Trebuchet MS" size="10.0" />
-               </font>
-               <graphic>
-                  <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/OptionsorCommuntyLogo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <ImageView fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-               <VBox.margin>
-                  <Insets top="60.0" />
-               </VBox.margin>
-               <image>
-                  <Image url="@Images/Logo.PNG" />
-               </image>
-            </ImageView>
          </children>
          <BorderPane.margin>
             <Insets />

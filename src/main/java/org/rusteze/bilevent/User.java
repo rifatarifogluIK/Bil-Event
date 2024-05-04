@@ -12,7 +12,7 @@ public class User {
     private String email;
     private Image photo;
     private ArrayList<User> friends;
-    private Arraylist<Community> communities;
+    private ArrayList<Community> communities;
     private ArrayList<Event> enrolledEvents;
     private ArrayList<Event> attendedEvents;
     private ArrayList<Event> createdEvents;
@@ -35,7 +35,7 @@ public class User {
     }
 
     public boolean authentication() {
-
+        return true;
     }
 
     public void enrollEvent(Event event) {
@@ -57,8 +57,8 @@ public class User {
     public void createCommunity(String name) {
 
         Community community = new Community(name);
-        community.getAdmins().add(this);
-        community.getMembers().add(this);
+        //community.getAdmins().add(this);
+        //community.getMembers().add(this);
         communities.add(community);
     }
     /**
@@ -127,7 +127,7 @@ public class User {
     public ArrayList<Event> getCreatedEvents() {
         return createdEvents;
     }
-    public Arraylist<Community> getCommunities() {
+    public ArrayList<Community> getCommunities() {
         return communities;
     }
     public ArrayList<Event> getRecommendations() {

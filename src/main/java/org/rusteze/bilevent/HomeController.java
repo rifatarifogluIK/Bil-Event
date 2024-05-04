@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -62,7 +61,8 @@ public class HomeController implements SceneHandler, Initializable {
 
         for(int i = 0; i < buttonCount; i++) {
             //TODO implement a button type as CommunityButton
-            //buttonPanel.add(new CommunityButton(communities.get(i).getName());
+            CommunityButton comBtn = new CommunityButton(communities.get(i));
+            buttonPanel.getChildren().add(comBtn);
         }
     }
 
@@ -116,7 +116,7 @@ public class HomeController implements SceneHandler, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        displayEvents();
+        //displayEvents();
         createCommunityButtons();
     }
 }

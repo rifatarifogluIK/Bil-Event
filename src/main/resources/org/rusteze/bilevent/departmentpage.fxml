@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.CommunityPageController">
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="384.0" prefWidth="146.0" spacing="5.0" style="-fx-border-color: gray; -fx-border-width: 0.5;" BorderPane.alignment="CENTER">
          <children>
@@ -26,7 +26,7 @@
                   <Font name="Trebuchet MS Bold" size="12.0" />
                </font>
             </Label>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickHomePage" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Home">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Home">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -38,7 +38,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCalendarPage" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Calendar">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Calendar">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -50,7 +50,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickDiscoverCom" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Discover Communities">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Discover Communities">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -65,14 +65,14 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickAdvancedSearch" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Advanced Search">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="Advanced Search">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@Images/Logo.PNG" />
+                        <Image url="@Images/SearchLogo.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -85,7 +85,7 @@
                   <Insets right="30.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCommunity" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="CS-Department">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="CS-Department">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -97,7 +97,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCommunity" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="EEE-Department">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="EEE-Department">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -109,7 +109,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCommunity" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="ACM-Club">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="ACM-Club">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -121,7 +121,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onMouseClicked="#clickCommunity" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="F1-Club">
+            <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="132.0" style="-fx-background-color: B5DBFF;" text="F1-Club">
                <font>
                   <Font name="Trebuchet MS" size="10.0" />
                </font>
@@ -161,7 +161,7 @@
                   <Insets top="-60.0" />
                </BorderPane.margin>
                <children>
-                  <ImageView fitHeight="63.0" fitWidth="68.0" onMouseClicked="#clickProfilePhoto" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="63.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/ProfilePhoto.png" />
                      </image>
@@ -172,7 +172,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label alignment="TOP_CENTER" onMouseClicked="#handleProfilePhotoClicker" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
+                  <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
                      <font>
                         <Font size="9.0" />
                      </font>
@@ -185,7 +185,7 @@
                         <Font name="Segoe Print Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" onMouseClicked="#clickFriend" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
+                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
                      <font>
                         <Font name="Trebuchet MS" size="10.0" />
                      </font>
@@ -200,7 +200,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" onMouseClicked="#clickFriend" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
+                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
                      <font>
                         <Font name="Trebuchet MS" size="10.0" />
                      </font>
@@ -239,7 +239,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#join" prefHeight="26.0" prefWidth="70.0" style="-fx-background-radius: 10; -fx-background-color: deepskyblue;" text="Join" GridPane.columnIndex="2">
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-radius: 10; -fx-background-color: deepskyblue;" text="Join" GridPane.columnIndex="2">
                      <GridPane.margin>
                         <Insets left="20.0" top="-140.0" />
                      </GridPane.margin>
@@ -247,7 +247,7 @@
                         <Font name="Trebuchet MS Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#seeMembers" prefHeight="26.0" prefWidth="94.0" style="-fx-background-radius: 20; -fx-background-color: RED;" text="See Members" textFill="#fffefe">
+                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" style="-fx-background-radius: 20; -fx-background-color: RED;" text="See Members" textFill="#fffefe">
                      <GridPane.margin>
                         <Insets bottom="60.0" left="20.0" right="-10.0" />
                      </GridPane.margin>
@@ -257,7 +257,7 @@
                   </Button>
                   <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Event1" GridPane.rowIndex="1">
                      <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#eventPage1" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/Logo.PNG" />
                            </image>
@@ -269,7 +269,7 @@
                   </Label>
                   <Label alignment="TOP_CENTER" contentDisplay="TOP" text="Event2" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#eventPage2" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/Logo.PNG" />
                            </image>
@@ -281,7 +281,7 @@
                   </Label>
                   <Label contentDisplay="TOP" text="Event3" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#eventPage3" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/Logo.PNG" />
                            </image>
@@ -299,7 +299,7 @@
                         <Font name="Trebuchet MS Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onMouseClicked="#showMore" style="-fx-background-radius: 10; -fx-background-color: deepskyblue;" text="Show More" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <Button mnemonicParsing="false" style="-fx-background-radius: 10; -fx-background-color: deepskyblue;" text="Show More" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="40.0" left="15.0" />
                      </GridPane.margin>
@@ -339,7 +339,7 @@
                         <Insets left="-10.0" />
                      </GridPane.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" onMouseClicked="#content1" prefHeight="25.0" prefWidth="129.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-color: black;" text="See coding competitions" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-color: black;" text="See coding competitions" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="-40.0" />
                      </GridPane.margin>
@@ -347,7 +347,7 @@
                         <Font name="Trebuchet MS" size="10.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#content2" prefHeight="20.0" prefWidth="162.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-width: 2; -fx-border-color: black; -fx-border-radius: 10;" text="Start-up - entrepreneurship" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="162.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-width: 2; -fx-border-color: black; -fx-border-radius: 10;" text="Start-up - entrepreneurship" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="40.0" right="-80.0" />
                      </GridPane.margin>

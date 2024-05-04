@@ -9,7 +9,7 @@ public abstract class Event {
     private String name;
     private String description;
     private LocalDate date;
-    private ChatSpace chatSpace;
+    //private ChatSpace chatSpace;
     private ArrayList<User> attendees;
     private String location;
     private ArrayList<User> admins;
@@ -96,4 +96,7 @@ public abstract class Event {
         return attendees;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
 }

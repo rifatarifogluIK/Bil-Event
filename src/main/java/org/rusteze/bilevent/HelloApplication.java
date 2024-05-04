@@ -34,6 +34,13 @@ public class HelloApplication extends Application {
         }catch (Exception e){
             System.out.println("Can not connect");
         }
+        sessionUser = new User("Selim", "pass", "email");
+        sessionUser.createCommunity("F1");
+        sessionUser.createCommunity("F2");
+        sessionUser.createCommunity("F3");
+        sessionUser.createCommunity("F4");
+        sessionUser.createCommunity("F5");
+        sessionUser.createCommunity("F6");
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bil-Event");
