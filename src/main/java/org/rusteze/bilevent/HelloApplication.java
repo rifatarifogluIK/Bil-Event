@@ -10,11 +10,13 @@ import com.mongodb.client.*;
 import org.bson.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
 
     // Added this to test UI before implementing user authentication
     public static User sessionUser;
+    public static ArrayList<Community> popularCommunities = new ArrayList<Community>();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -32,14 +34,13 @@ public class HelloApplication extends Application {
             System.out.println("Can not connect");
         }
         sessionUser = new User("Selim", "pass", "email");
-        sessionUser.createCommunity("F1", null);
-        sessionUser.createCommunity("F2", null);
-        sessionUser.createCommunity("F3", null);
-        sessionUser.createCommunity("F4", null);
-        sessionUser.createCommunity("F5", null);
-        sessionUser.createCommunity("F6", null);
-        sessionUser.createCommunity("F7", null);
-        sessionUser.createCommunity("F8", null);
+        popularCommunities.add(new Community("CS Department", null));
+        popularCommunities.add(new Community("EEE Department", null));
+        popularCommunities.add(new Community("IE Department", null));
+        popularCommunities.add(new Community("F1 Club", null));
+        popularCommunities.add(new Community("ME Department", null));
+        popularCommunities.add(new Community("ME Department", null));
+        popularCommunities.add(new Community("ME Department", null));
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
