@@ -20,6 +20,19 @@ public class DiscoverController implements SceneHandler, Initializable {
 
     @FXML
     private VBox buttonPanel;
+    @FXML
+    private VBox popCommunities;
+    @FXML
+    private VBox communityRec;
+
+    public void setPage() {
+
+        for (Community community : HelloApplication.popularCommunities) {
+            CommunityPane communityPane = new CommunityPane(community);
+            popCommunities.getChildren().add(communityPane);
+            VBox.setMargin(communityPane, new Insets(0, 0, 40, 0));
+        }
+    }
 
     @Override
     public void createCommunityButtons() {
@@ -84,5 +97,6 @@ public class DiscoverController implements SceneHandler, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createCommunityButtons();
+        setPage();
     }
 }
