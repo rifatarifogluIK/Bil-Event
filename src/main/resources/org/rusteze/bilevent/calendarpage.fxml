@@ -386,10 +386,10 @@
                   </Label>
                   <ImageView blendMode="MULTIPLY" fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <image>
-                        <Image url="@UI/Picture9.png" />
+                        <Image url="@Images/BiggerThanLogo.png" />
                      </image>
                      <GridPane.margin>
-                        <Insets bottom="-50.0" left="50.0" right="-100.0" top="-487.0" />
+                        <Insets bottom="-50.0" left="40.0" right="-100.0" top="-487.0" />
                      </GridPane.margin>
                   </ImageView>
                </children>
@@ -406,7 +406,7 @@
                <graphic>
                   <ImageView blendMode="MULTIPLY" fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@UI/Picture8.png" />
+                        <Image url="@Images/SmallerThanLogo.png" />
                      </image>
                   </ImageView>
                </graphic>
