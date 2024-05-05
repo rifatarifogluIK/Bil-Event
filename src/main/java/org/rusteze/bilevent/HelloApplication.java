@@ -18,7 +18,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        String uri = "mongodb://demo:123@139.179.217.206:27017/";
+        String uri = "mongodb://bil:event@139.179.217.206:27017/";
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
                 .build();
@@ -27,10 +27,7 @@ public class HelloApplication extends Application {
                 .serverApi(serverApi)
                 .build();
         try (MongoClient client = MongoClients.create(settings)){
-            MongoDatabase db = client.getDatabase("demo");
-            MongoCollection collectionTest = db.getCollection("test");
-            Document doc = (Document)collectionTest.find().first();
-            System.out.println(doc.toJson());
+            MongoDatabase db = client.getDatabase("bil_event");
         }catch (Exception e){
             System.out.println("Can not connect");
         }
