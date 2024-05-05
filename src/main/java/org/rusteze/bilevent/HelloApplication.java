@@ -35,14 +35,14 @@ public class HelloApplication extends Application {
             System.out.println("Can not connect");
         }
         sessionUser = new User("Selim", "pass", "email");
-        sessionUser.createCommunity("F1");
-        sessionUser.createCommunity("F2");
-        sessionUser.createCommunity("F3");
-        sessionUser.createCommunity("F4");
-        sessionUser.createCommunity("F5");
-        sessionUser.createCommunity("F6");
-        sessionUser.createCommunity("F7");
-        sessionUser.createCommunity("F8");
+        sessionUser.createCommunity("F1", null);
+        sessionUser.createCommunity("F2", null);
+        sessionUser.createCommunity("F3", null);
+        sessionUser.createCommunity("F4", null);
+        sessionUser.createCommunity("F5", null);
+        sessionUser.createCommunity("F6", null);
+        sessionUser.createCommunity("F7", null);
+        sessionUser.createCommunity("F8", null);
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

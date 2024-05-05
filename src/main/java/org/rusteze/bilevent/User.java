@@ -54,9 +54,9 @@ public class User {
         createdEvents.add(event);
     }
 
-    public void createCommunity(String name) {
+    public void createCommunity(String name, Image photo) {
 
-        Community community = new Community(name);
+        Community community = new Community(name, photo);
         //community.getAdmins().add(this);
         //community.getMembers().add(this);
         communities.add(community);
