@@ -44,7 +44,7 @@ public class HomeController implements SceneHandler, Initializable {
 
     public void displayEvents() {
 
-        ArrayList<Event> recommendations = HelloApplication.sessionUser.getRecommendations();
+        ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
 
         for(int i = 0; i < EVENT_COUNT; i++) {
             eventNames[i].setText(recommendations.get(i).getName());

@@ -1,19 +1,37 @@
 package org.rusteze.bilevent;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class CalendarController implements SceneHandler{
+public class CalendarController implements SceneHandler, Initializable {
+
+    @FXML
+    private VBox buttonPanel;
 
     @Override
     public void createCommunityButtons() {
+        ArrayList<Community> communities= HelloApplication.sessionUser.getCommunities();
 
+        int buttonCount = communities.size();
+
+        for(int i = 0; i < buttonCount; i++) {
+            CommunityButton comBtn = new CommunityButton(communities.get(i));
+            buttonPanel.getChildren().add(comBtn);
+            VBox.setMargin(comBtn, new Insets(0, 15, 0, 0));
+        }
     }
 
     public void homeBtn(ActionEvent event) {
@@ -61,5 +79,10 @@ public class CalendarController implements SceneHandler{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        createCommunityButtons();
     }
 }

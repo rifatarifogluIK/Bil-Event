@@ -7,20 +7,24 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 
-public class CommunityPageController implements SceneHandler, Initializable {
+public class CommunityPageController implements Initializable {
     @FXML
     private Label departmentLabel;
     @FXML
     private Button editBtn;
     @FXML
     private Button createBtn;
+    @FXML
+    private Button joinBtn;
     private static Community community;
 
     public void setPage() {
@@ -30,53 +34,31 @@ public class CommunityPageController implements SceneHandler, Initializable {
             editBtn.setVisible(false);
             createBtn.setVisible(false);
         }
+        if(community.getMembers().contains(HelloApplication.sessionUser)) {
+            joinBtn.setText("Leave");
+        } else {
+            joinBtn.setText("Join");
+        }
     }
-    @Override
-    public void createCommunityButtons() {
+    public void joinBtn(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Confirmation Dialog");
+        confirmation.setHeaderText("Are you sure you want to " + joinBtn.getText().toLowerCase() + " this community?");
 
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK && joinBtn.getText().equals("Join")) {
+                HelloApplication.sessionUser.joinCommunity(community);
+                setPage();
+            } else if(response == ButtonType.OK && joinBtn.getText().equals("Leave")) {
+                HelloApplication.sessionUser.removeCommunity(community);
+                setPage();
+            }
+        });
     }
-
-    @Override
-    public void homeBtn(ActionEvent event) {
+    public void backBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void calendarBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("calendarpage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void discoverBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("discovercommunity.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void searchBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("advancedSearch.fxml"));
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

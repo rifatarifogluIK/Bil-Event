@@ -53,12 +53,21 @@ public class User {
         enrolledEvents.add(event);
         createdEvents.add(event);
     }
+    public void joinCommunity(Community community) {
+        community.addMember(this);
+        this.communities.add(community);
+    }
+    public void removeCommunity(Community community) {
+        communities.remove(community);
+        community.getMembers().remove(this);
+        community.getAdminList().remove(this);
+    }
 
     public void createCommunity(String name, Image photo) {
 
         Community community = new Community(name, photo);
-        //community.getAdmins().add(this);
-        //community.getMembers().add(this);
+        community.getAdminList().add(this);
+        community.getMembers().add(this);
         communities.add(community);
     }
     /**
@@ -130,8 +139,11 @@ public class User {
     public ArrayList<Community> getCommunities() {
         return communities;
     }
-    public ArrayList<Event> getRecommendations() {
-        return recommendations.getRecommendations();
+    public ArrayList<Event> getEventRec() {
+        return recommendations.getEventRec();
+    }
+    public ArrayList<Community> getCommunityRec() {
+        return recommendations.getCommunityRec();
     }
     public double getRating() {
         return rating / ratingCount;
