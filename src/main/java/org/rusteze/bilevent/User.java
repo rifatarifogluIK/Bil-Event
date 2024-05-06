@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Searchable{
 
     private String username;
     private String password;
@@ -133,6 +133,11 @@ public class User {
 
         this.rating += rating;
         ratingCount++;
+    }
+
+    @Override
+    public boolean find(String key) {
+        return this.username.equals(key);
     }
 
     public void addFriend(User user) {

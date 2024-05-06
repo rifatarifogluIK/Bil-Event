@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Community {
+public class Community implements Searchable{
 
     private String name;
     private ArrayList<User> members;
@@ -60,6 +60,11 @@ public class Community {
 
     public void addNewRating(int rating){
         this.rating = ((this.rating * ratingCount++) + rating) / ratingCount;
+    }
+
+    @Override
+    public boolean find(String key) {
+        return this.name.equals(key);
     }
 
     public boolean isAdmin(User user) {
