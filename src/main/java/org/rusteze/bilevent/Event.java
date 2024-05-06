@@ -1,6 +1,8 @@
 package org.rusteze.bilevent;
 
 import javafx.scene.image.Image;
+
+import java.io.File;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -22,6 +24,10 @@ public abstract class Event {
         this.name = name;
         this.description = description;
         this.date = date;
+        File file = new File("src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg");
+        Image image = new Image(file.toURI().toString());
+        this.photo = image;
+        chatSpace = new ChatSpace();
     }
 
     public void addAttendee(User user)
@@ -94,6 +100,10 @@ public abstract class Event {
 
     public ArrayList<User> getAttendees() {
         return attendees;
+    }
+
+    public ChatSpace getChatSpace() {
+        return chatSpace;
     }
 
     public LocalDate getDate() {

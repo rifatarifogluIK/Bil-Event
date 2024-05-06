@@ -63,7 +63,7 @@ public class Community {
     }
 
     public boolean isAdmin(User user) {
-        return false;
+        return adminList.contains(user);
     }
     public String getName() {
         return name;

@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
@@ -23,32 +24,24 @@ public class HomeController implements SceneHandler, Initializable {
     @FXML
     VBox buttonPanel;
     @FXML
-    Label eventName1;
-    @FXML
-    ImageView eventImage1;
-    @FXML
-    Label eventName2;
-    @FXML
-    ImageView eventImage2;
-    @FXML
-    Label eventName3;
-    @FXML
-    ImageView eventImage3;
-    @FXML
-    Label eventName4;
-    @FXML
-    ImageView eventImage4;
-    Label[] eventNames = {eventName1, eventName2, eventName3, eventName4};
-    ImageView[] eventImages = {eventImage1, eventImage2, eventImage3, eventImage4};
-    private static final int EVENT_COUNT = 4;
+    HBox eventPanel;
 
     public void displayEvents() {
-
-        ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
-
-        for(int i = 0; i < EVENT_COUNT; i++) {
-            eventNames[i].setText(recommendations.get(i).getName());
-            eventImages[i].setImage(recommendations.get(i).getPhoto());
+    //TODO
+        ArrayList<Event> recommendations = new ArrayList<Event>();
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa", null));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa", null));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1 Race", "aaa", null));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
+        for(Event e : recommendations) {
+            EventPane eventPane = new EventPane(e);
+            eventPanel.getChildren().add(eventPane);
+            HBox.setMargin(eventPane, new Insets(0, 100, 0, 0));
+            eventPanel.setAlignment(Pos.CENTER_LEFT);
         }
 
     }
@@ -115,7 +108,7 @@ public class HomeController implements SceneHandler, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //displayEvents();
+        displayEvents();
         createCommunityButtons();
     }
 }

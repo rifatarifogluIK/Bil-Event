@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.EventPageController{">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.EventPageController">
    <center>
       <BorderPane opacity="0.9" prefHeight="300.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <right>
@@ -25,7 +25,7 @@
                   <Insets top="-60.0" />
                </BorderPane.margin>
                <children>
-                  <ImageView fitHeight="63.0" fitWidth="68.0" onMouseClicked="#clickProfilePhoto" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="63.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/ProfilePhoto.png" />
                      </image>
@@ -36,7 +36,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label alignment="TOP_CENTER" onMouseClicked="#handleProfilePhotoClicker" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
+                  <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
                      <font>
                         <Font size="9.0" />
                      </font>
@@ -49,7 +49,7 @@
                         <Font name="Segoe Print Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" onMouseClicked="#clickFriend" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
+                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
                      <font>
                         <Font name="Trebuchet MS" size="10.0" />
                      </font>
@@ -64,7 +64,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" onMouseClicked="#clickFriend" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
+                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
                      <font>
                         <Font name="Trebuchet MS" size="10.0" />
                      </font>
@@ -80,7 +80,7 @@
             </VBox>
          </right>
          <top>
-            <Label text="Event One" BorderPane.alignment="TOP_LEFT">
+            <Label fx:id="eventName" text="Event One" BorderPane.alignment="TOP_LEFT">
                <BorderPane.margin>
                   <Insets left="20.0" top="30.0" />
                </BorderPane.margin>
@@ -113,7 +113,7 @@
                         <Font name="Trebuchet MS Bold" size="19.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="messageListView" onMouseClicked="#writeMessage" prefHeight="194.0" prefWidth="376.0" style="-fx-background-radius: 10;" GridPane.rowIndex="2">
+                  <ListView prefHeight="194.0" prefWidth="376.0" style="-fx-background-radius: 10;" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="-80.0" />
                      </GridPane.margin>
@@ -141,7 +141,7 @@
                         <Insets left="160.0" />
                      </padding>
                   </Label>
-                  <Button graphicTextGap="1.0" mnemonicParsing="false" onMouseClicked="#enroll" prefHeight="34.0" prefWidth="72.0" style="-fx-background-radius: 20; -fx-background-color: white;" text="Enroll">
+                  <Button graphicTextGap="1.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" style="-fx-background-radius: 20; -fx-background-color: white;" text="Enroll">
                      <GridPane.margin>
                         <Insets left="310.0" />
                      </GridPane.margin>
@@ -154,14 +154,14 @@
                         <Insets left="300.0" top="60.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="messageInputField1" prefHeight="26.0" prefWidth="335.0" promptText="Enter a Message" GridPane.rowIndex="2">
+                  <TextField prefHeight="26.0" prefWidth="335.0" promptText="Enter a Message" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="40.0" right="40.0" top="40.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Button onAction="#sendMessage" prefHeight="26.0" prefWidth="46.0" text="Send" GridPane.rowIndex="2">
+                  <Button prefHeight="26.0" prefWidth="46.0" text="Send" GridPane.rowIndex="2">
                      <GridPane.margin>
-                        <Insets left="340.0" top="42.0" /> <!-- Ensure alignment with the TextField -->
+                        <Insets left="340.0" top="40.0" /> <!-- Ensure alignment with the TextField -->
                      </GridPane.margin>
                   </Button>
                </children>

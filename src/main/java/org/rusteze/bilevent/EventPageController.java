@@ -1,21 +1,28 @@
 package org.rusteze.bilevent;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class EventPageController{
+public class EventPageController implements Initializable {
+
+
+    @FXML
+    private Label eventName;
+
     private ListView<Message> messageListView;
-    private ChatSpace chatSpace;
     private TextField messageInputField1;
-
     private static Event event;
 
 
@@ -29,18 +36,21 @@ public class EventPageController{
             throw new RuntimeException(e);
         }
     }
-    public void initialize() {
-        chatSpace = new ChatSpace();
-        messageListView.setItems(chatSpace.getMessages());
 
+    public static void setEvent(Event event) {
+        EventPageController.event = event;
+    }
+    public void setPage() {
+        eventName.setText(event.getName());
+    }
+    public void setChatSpace() {
+        ChatSpace chatSpace = event.getChatSpace();
+        messageListView.setItems(chatSpace.getMessages());
         chatSpace.addMessage("Welcome to the " + event.getName() + " Chat!", "System" );
     }
-    private void SendMessage() {
-        String text = messageInputField1.getText();
-        String username = "You";
-        if(!text.isEmpty()) {
-            chatSpace.addMessage(text, username);
-            messageInputField1.clear();
-        }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setPage();
     }
 }
