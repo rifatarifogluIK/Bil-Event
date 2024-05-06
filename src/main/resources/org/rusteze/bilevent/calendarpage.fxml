@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.CalendarController">
@@ -89,8 +89,8 @@
                </font>
             </Label>
          </top>
-         <left>
-            <GridPane prefHeight="310.0" prefWidth="391.0" BorderPane.alignment="CENTER">
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -99,321 +99,164 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="275.6000152587891" minHeight="10.0" prefHeight="106.53333435058593" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="227.33334655761715" minHeight="10.0" prefHeight="194.26666564941402" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="110.0" opacity="0.98" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: DF8142;" width="77.0" GridPane.columnIndex="3" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="110.0" opacity="0.9" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: DF8142;" width="76.0" GridPane.columnIndex="2" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="110.0" opacity="0.86" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: DF8142;" width="77.0" GridPane.columnIndex="1" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="110.0" opacity="0.82" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: DF8142;" width="77.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="110.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: DF8142;" width="77.0" GridPane.columnIndex="4" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="110.0" opacity="0.82" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: DF8142;" width="77.0" GridPane.rowIndex="1">
+                  <Pane prefHeight="112.0" prefWidth="74.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets top="-75.0" />
+                        <Insets bottom="2.0" left="2.0" right="2.0" />
                      </GridPane.margin>
-                  </Rectangle>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="110.0" opacity="0.86" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-fill: DF8142;" width="77.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <VBox fx:id="monday" layoutX="-1.0" prefHeight="112.0" prefWidth="76.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Monday">
+                                 <font>
+                                    <Font name="Trebuchet MS Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="112.0" prefWidth="76.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets top="-75.0" />
+                        <Insets bottom="2.0" left="2.0" right="2.0" />
                      </GridPane.margin>
-                  </Rectangle>
-                  <Label text="Event 1">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <children>
+                        <VBox fx:id="tuesday" prefHeight="112.0" prefWidth="76.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Tuesday">
+                                 <font>
+                                    <Font name="Trebuchet MS Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="112.0" prefWidth="76.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" />
+                     </GridPane.margin>
+                     <children>
+                        <VBox fx:id="wednesday" prefHeight="112.0" prefWidth="76.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Wednesday">
+                                 <font>
+                                    <Font name="Trebuchet MS Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="112.0" prefWidth="76.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" />
+                     </GridPane.margin>
+                     <children>
+                        <VBox fx:id="thursday" prefHeight="112.0" prefWidth="76.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Thursday">
+                                 <font>
+                                    <Font name="Trebuchet MS Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="112.0" prefWidth="76.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" />
+                     </GridPane.margin>
+                     <children>
+                        <VBox fx:id="friday" prefHeight="112.0" prefWidth="76.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Friday">
+                                 <font>
+                                    <Font name="Trebuchet MS Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="112.0" prefWidth="76.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </GridPane.margin>
+                     <children>
+                        <VBox fx:id="sunday" layoutY="-1.0" prefHeight="112.0" prefWidth="76.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Sunday">
+                                 <font>
+                                    <Font name="Trebuchet MS Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="112.0" prefWidth="76.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </GridPane.margin>
+                     <children>
+                        <VBox fx:id="saturday" layoutX="-1.0" layoutY="-1.0" prefHeight="112.0" prefWidth="76.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="16.0" prefWidth="74.0" text="Saturday">
+                                 <font>
+                                    <Font name="Trebuchet MS Bold" size="13.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2">
+                     <children>
+                        <ImageView fx:id="prevWeekBtn" fitHeight="20.0" fitWidth="20.0" layoutX="44.0" layoutY="87.0" onMouseClicked="#prevWeek" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/ProfilePhoto.png" />
+                              <Image url="@Images/SmallerThanLogo.png" />
                            </image>
                         </ImageView>
-                     </graphic>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-30.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                  </Label>
-                  <Label graphicTextGap="1.0" text="Monday">
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-85.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <Label text="Event 2">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="nextWeekBtn" fitHeight="20.0" fitWidth="20.0" layoutX="134.0" layoutY="87.0" onMouseClicked="#nextWeek" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/ProfilePhoto.png" />
+                              <Image url="@Images/BiggerThanLogo.png" />
                            </image>
                         </ImageView>
-                     </graphic>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="30.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                  </Label>
-                  <Label text="Event 2" GridPane.columnIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label graphicTextGap="1.0" text="Tuesday" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="13.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-85.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 1" GridPane.columnIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 2" GridPane.columnIndex="2">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label graphicTextGap="1.0" text="Wednesday" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="13.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-85.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 1" GridPane.columnIndex="2">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 1" GridPane.columnIndex="3">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label graphicTextGap="1.0" text="Thursday" GridPane.columnIndex="3">
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="13.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-85.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 2" GridPane.columnIndex="3">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 2" GridPane.columnIndex="4">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label graphicTextGap="1.0" text="Friday" GridPane.columnIndex="4">
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="13.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-85.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 1" GridPane.columnIndex="4">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-30.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 2" GridPane.rowIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-40.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label graphicTextGap="1.0" text="Saturday" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="13.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-160.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 1" GridPane.rowIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-100.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 2" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-40.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label graphicTextGap="1.0" text="Sunday" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="13.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-160.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label text="Event 1" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="19.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="5.0" top="-100.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <ImageView blendMode="MULTIPLY" fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@Images/BiggerThanLogo.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets bottom="-50.0" left="40.0" right="-100.0" top="-487.0" />
-                     </GridPane.margin>
-                  </ImageView>
+                        <Label fx:id="weekLabel" alignment="CENTER" layoutX="57.0" layoutY="89.0" prefHeight="17.0" prefWidth="84.0" text="6-12 May" />
+                     </children>
+                  </Pane>
                </children>
                <BorderPane.margin>
-                  <Insets bottom="20.0" left="20.0" top="20.0" />
+                  <Insets bottom="100.0" left="10.0" right="10.0" top="-100.0" />
                </BorderPane.margin>
             </GridPane>
-         </left>
-         <center>
-            <Label prefHeight="27.0" prefWidth="91.0" text="6-12 May" BorderPane.alignment="TOP_CENTER">
-               <BorderPane.margin>
-                  <Insets left="-150.0" top="-10.0" />
-               </BorderPane.margin>
-               <graphic>
-                  <ImageView blendMode="MULTIPLY" fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/SmallerThanLogo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
          </center>
       </BorderPane>
    </center>

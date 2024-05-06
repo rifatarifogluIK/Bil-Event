@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.geometry.Insets;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -29,14 +30,14 @@ public class HomeController implements SceneHandler, Initializable {
     public void displayEvents() {
     //TODO
         ArrayList<Event> recommendations = new ArrayList<Event>();
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa", null));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa", null));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1 Race", "aaa", null));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", null));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa", LocalDate.of(2024, 5, 6)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa", LocalDate.of(2024, 5, 7)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1 Race", "aaa", LocalDate.of(2024, 5, 8)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 9)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 10)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 11)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 12)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 7)));
         for(Event e : recommendations) {
             EventPane eventPane = new EventPane(e);
             eventPanel.getChildren().add(eventPane);

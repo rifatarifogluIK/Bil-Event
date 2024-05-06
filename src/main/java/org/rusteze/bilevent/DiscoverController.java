@@ -1,6 +1,7 @@
 package org.rusteze.bilevent;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,9 +28,16 @@ public class DiscoverController implements SceneHandler, Initializable {
 
     public void setPage() {
 
+        ArrayList<Community> communityRec = HelloApplication.sessionUser.getCommunityRec();
+
         for (Community community : HelloApplication.popularCommunities) {
             CommunityPane communityPane = new CommunityPane(community);
             popCommunities.getChildren().add(communityPane);
+            VBox.setMargin(communityPane, new Insets(0, 0, 40, 0));
+        }
+        for(Community community : communityRec) {
+            CommunityPane communityPane = new CommunityPane(community);
+            this.communityRec.getChildren().add(communityPane);
             VBox.setMargin(communityPane, new Insets(0, 0, 40, 0));
         }
     }

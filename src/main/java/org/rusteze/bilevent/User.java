@@ -44,6 +44,17 @@ public class User {
         event.addAttendee(this);
 
     }
+    public ArrayList<Event> getThisWeekEvents() {
+        ArrayList<Event> result = new ArrayList<Event>();
+        for(int i = 0; i < enrolledEvents.size(); i++) {
+            if(enrolledEvents.get(i).isThisWeek()) {
+                result.add(enrolledEvents.get(i));
+            } else {
+                return result;
+            }
+        }
+        return result;
+    }
 
     public void createEvent(String name, String description, LocalDate date) {
 

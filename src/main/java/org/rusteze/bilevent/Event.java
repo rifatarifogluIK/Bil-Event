@@ -3,6 +3,7 @@ package org.rusteze.bilevent;
 import javafx.scene.image.Image;
 
 import java.io.File;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -68,6 +69,13 @@ public abstract class Event {
         LocalDate currentDate = LocalDate.now();
         return (int)ChronoUnit.DAYS.between(currentDate, plannedDate);
     }
+    public boolean isThisWeek() {
+        LocalDate currentDate = date;
+        LocalDate mostRecentMonday = currentDate.with(DayOfWeek.MONDAY);
+        int dateOfMonday = mostRecentMonday.getDayOfMonth();
+        int today = currentDate.getDayOfMonth();
+        return (today >= dateOfMonday && today < dateOfMonday + 7);
+    }
 
     public void addNewRating(int rate)
     {
@@ -105,7 +113,6 @@ public abstract class Event {
     public ChatSpace getChatSpace() {
         return chatSpace;
     }
-
     public LocalDate getDate() {
         return date;
     }

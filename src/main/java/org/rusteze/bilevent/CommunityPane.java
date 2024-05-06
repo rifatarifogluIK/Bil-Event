@@ -28,7 +28,7 @@ public class CommunityPane extends Pane {
         this.community = community;
         Pane innerPane = new Pane();
         innerPane.setPrefHeight(35);
-        innerPane.setPrefWidth(395);
+        innerPane.setPrefWidth(380);
         innerPane.setLayoutX(10);
         setPrefHeight(35);
         setPrefWidth(395);
@@ -39,7 +39,7 @@ public class CommunityPane extends Pane {
         label.setFont(Font.font("Trebuchet MS", 15));
         BorderPane.setMargin(label, new Insets(0,0,0,10));
         label.setTextFill(Color.WHITE);
-        label.setPrefWidth(260);
+        label.setPrefWidth(250);
         label.setAlignment(Pos.CENTER_LEFT);
         BorderPane.setAlignment(label, Pos.CENTER);
         borderPane.setLeft(label);
