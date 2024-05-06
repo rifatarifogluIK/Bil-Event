@@ -1,11 +1,17 @@
 package org.rusteze.bilevent;
 
 import javafx.scene.image.Image;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class User implements Searchable{
+
+    public static Dictionary<ObjectId, User> allUsers = new Hashtable<>();
 
     private String username;
     private String password;
@@ -19,6 +25,7 @@ public class User implements Searchable{
     private Recommendation recommendations;
     private double rating;
     private int ratingCount;
+    private ObjectId id;
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -32,6 +39,26 @@ public class User implements Searchable{
         recommendations = new Recommendation(this);
         rating = 0;
         ratingCount = 0;
+        id = ObjectId.get();
+    }
+
+    public User(Document doc){
+        this.username = (String)doc.get("username");
+        this.password = (String)doc.get("password");
+        this.email = (String)doc.get("email");
+        communities = new ArrayList<Community>();
+        enrolledEvents = new ArrayList<Event>();
+        attendedEvents = new ArrayList<Event>();
+        createdEvents = new ArrayList<Event>();
+        recommendations = new Recommendation(this);
+        rating = (double)doc.get("rating");
+        ratingCount = (int)doc.get("ratingCount");
+        id = ObjectId.get();
+
+        ((Document)doc.get("communities")).values().forEach(e -> communities.add(Community.allCommunities.get(e.toString())));
+        ((Document)doc.get("enrolledEvents")).values().forEach(e -> enrolledEvents.add(Event.allEvents.get(e.toString())));
+        ((Document)doc.get("attendedEvents")).values().forEach(e -> attendedEvents.add(Event.allEvents.get(e.toString())));
+        ((Document)doc.get("createdEvents")).values().forEach(e -> createdEvents.add(Event.allEvents.get(e.toString())));
     }
 
     public boolean authentication() {

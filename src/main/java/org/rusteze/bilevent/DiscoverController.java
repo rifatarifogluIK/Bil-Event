@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 public class DiscoverController implements SceneHandler, Initializable {
@@ -30,7 +31,9 @@ public class DiscoverController implements SceneHandler, Initializable {
 
         ArrayList<Community> communityRec = HelloApplication.sessionUser.getCommunityRec();
 
-        for (Community community : Community.popularCommunities) {
+        Enumeration<Community> popular = Community.popularCommunities.elements();
+        while (popular.hasMoreElements()) {
+            Community community = popular.nextElement();
             CommunityPane communityPane = new CommunityPane(community);
             popCommunities.getChildren().add(communityPane);
             VBox.setMargin(communityPane, new Insets(0, 0, 40, 0));

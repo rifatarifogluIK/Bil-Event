@@ -1,14 +1,20 @@
 package org.rusteze.bilevent;
 
 import javafx.scene.image.Image;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class Community implements Searchable{
 
-    public static ArrayList<Community> allCommunities = new ArrayList<>();
-    public static ArrayList<Community> popularCommunities = new ArrayList<Community>();
+    public static Dictionary<ObjectId, Community> allCommunities = new Hashtable<>();
+    public static Dictionary<ObjectId, Community> popularCommunities = new Hashtable<>();
 
     private String name;
     private ArrayList<User> members;
@@ -18,6 +24,7 @@ public class Community implements Searchable{
     private Image photo;
     private double rating;
     private int ratingCount;
+    private ObjectId id;
 
     public Community(String name, Image photo) {
         this.name = name;
@@ -28,6 +35,24 @@ public class Community implements Searchable{
         this.photo = photo;
         this.rating = 0.0;
         this.ratingCount = 0;
+        this.id = ObjectId.get();
+    }
+
+    public Community(Document doc) throws FileNotFoundException {
+        this.name = (String)doc.get("name");
+        this.members = new ArrayList<>();
+        this.adminList = new ArrayList<>();
+        this.currentEvents = new ArrayList<>();
+        this.pastEvents = new ArrayList<>();
+        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.rating = (double)doc.get("rating");
+        this.ratingCount = (int)doc.get("ratingCount");
+        this.id = (ObjectId)doc.get("_id");
+
+        ((Document)doc.get("members")).values().forEach(e -> members.add(User.allUsers.get(e.toString())));
+        ((Document)doc.get("adminList")).values().forEach(e -> adminList.add(User.allUsers.get(e.toString())));
+        ((Document)doc.get("currentEvents")).values().forEach(e -> currentEvents.add(Event.allEvents.get(e.toString())));
+        ((Document)doc.get("pastEvents")).values().forEach(e -> pastEvents.add(Event.allEvents.get(e.toString())));
     }
 
     public void addMember(User user){
@@ -103,6 +128,10 @@ public class Community implements Searchable{
 
     public int getRatingCount() {
         return ratingCount;
+    }
+
+    public ObjectId getId() {
+        return id;
     }
 
     public void setName(String name) {

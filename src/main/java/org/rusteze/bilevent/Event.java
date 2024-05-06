@@ -1,14 +1,21 @@
 package org.rusteze.bilevent;
 
 import javafx.scene.image.Image;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public abstract class Event {
+
+    public static Dictionary<ObjectId, Event> allEvents = new Hashtable<>();
+
     private String name;
     private String description;
     private LocalDate date;
@@ -20,6 +27,7 @@ public abstract class Event {
     private double rating;
     private int ratingCount;
     private ArrayList<String> attributes;
+    private ObjectId id;
 
     public Event(String name, String description, LocalDate date) {
         this.name = name;
@@ -29,6 +37,26 @@ public abstract class Event {
         Image image = new Image(file.toURI().toString());
         this.photo = image;
         chatSpace = new ChatSpace();
+        this.id = ObjectId.get();
+    }
+
+    public Event(Document doc) throws FileNotFoundException {
+        this.name = (String)doc.get("name");
+        this.description = (String)doc.get("description");
+        this.date = LocalDate.parse((String)doc.get("date"));
+        this.chatSpace = new ChatSpace(doc);
+        this.attendees = new ArrayList<>();
+        this.admins = new ArrayList<>();
+        this.attributes = new ArrayList<>();
+        this.location = (String)doc.get("location");
+        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.rating = (double)doc.get("rating");
+        this.ratingCount = (int)doc.get("ratingCount");
+        this.id = (ObjectId)doc.get("_id");
+
+        ((Document)doc.get("attendees")).values().forEach(e -> attendees.add(User.allUsers.get(e.toString())));
+        ((Document)doc.get("admins")).values().forEach(e -> admins.add(User.allUsers.get(e.toString())));
+        ((Document)doc.get("attributes")).values().forEach(e -> attributes.add((String)e));
     }
 
     public void addAttendee(User user)
@@ -115,5 +143,8 @@ public abstract class Event {
     }
     public LocalDate getDate() {
         return date;
+    }
+    public ObjectId getId() {
+        return id;
     }
 }
