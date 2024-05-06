@@ -30,7 +30,7 @@ public class DiscoverController implements SceneHandler, Initializable {
 
         ArrayList<Community> communityRec = HelloApplication.sessionUser.getCommunityRec();
 
-        for (Community community : HelloApplication.popularCommunities) {
+        for (Community community : Community.popularCommunities) {
             CommunityPane communityPane = new CommunityPane(community);
             popCommunities.getChildren().add(communityPane);
             VBox.setMargin(communityPane, new Insets(0, 0, 40, 0));

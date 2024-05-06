@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 public class Community implements Searchable{
 
+    public static ArrayList<Community> allCommunities = new ArrayList<>();
+    public static ArrayList<Community> popularCommunities = new ArrayList<Community>();
+
     private String name;
     private ArrayList<User> members;
     private ArrayList<User> adminList;
