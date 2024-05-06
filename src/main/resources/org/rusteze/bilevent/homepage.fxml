@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.HomeController">
    <left>
       <BorderPane prefHeight="400.0" prefWidth="160.0" style="-fx-border-width: 0.5; -fx-border-color: gray;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -103,6 +103,21 @@
                               <Insets right="30.0" top="10.0" />
                            </VBox.margin>
                         </Label>
+                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#createBtn" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: B5DBFF;" text="Create a Community">
+                           <font>
+                              <Font name="Trebuchet MS" size="10.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Images/Plus.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets right="15.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                      <padding>
                         <Insets top="5.0" />
@@ -205,6 +220,9 @@
                      <content>
                         <HBox fx:id="eventPanel" prefHeight="136.0" prefWidth="371.0" />
                      </content>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </VBox.margin>
                   </ScrollPane>
                   <Label text="Coming Events">
                      <font>

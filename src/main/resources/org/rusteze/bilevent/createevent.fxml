@@ -5,7 +5,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -18,66 +17,6 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane opacity="0.9" prefHeight="300.0" prefWidth="500.0" BorderPane.alignment="CENTER">
-         <right>
-            <VBox alignment="TOP_CENTER" prefHeight="383.0" prefWidth="126.0" style="-fx-background-color: B5DBFF;" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets top="-60.0" />
-               </BorderPane.margin>
-               <children>
-                  <ImageView fitHeight="63.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/ProfilePhoto.png" />
-                     </image>
-                     <effect>
-                        <Blend />
-                     </effect>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </ImageView>
-                  <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
-                     <font>
-                        <Font size="9.0" />
-                     </font>
-                  </Label>
-                  <Label text="Friends">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="-45.0" top="5.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Segoe Print Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </VBox>
-         </right>
          <top>
             <Label text="Create Your Event" BorderPane.alignment="TOP_LEFT">
                <BorderPane.margin>
@@ -113,45 +52,45 @@
                         <Insets bottom="50.0" left="20.0" right="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="Event Title">
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="540.0" text="Event Title">
                      <GridPane.margin>
-                        <Insets bottom="40.0" left="180.0" top="5.0" />
+                        <Insets bottom="30.0" top="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Event Description" GridPane.rowIndex="2">
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="539.0" text="Event Description" GridPane.rowIndex="2">
                      <GridPane.margin>
-                        <Insets bottom="40.0" left="165.0" top="5.0" />
+                        <Insets bottom="40.0" top="5.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Event Date" GridPane.rowIndex="3">
+                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="205.0" text="Event Date" GridPane.rowIndex="3">
                      <GridPane.margin>
-                        <Insets bottom="-10.0" left="75.0" top="5.0" />
+                        <Insets bottom="-10.0" left="20.0" top="5.0" />
                      </GridPane.margin>
                   </Label>
                   <Button alignment="TOP_CENTER" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" style="-fx-background-radius: 10; -fx-background-color: FF0000;" text="Create" textFill="WHITE" GridPane.rowIndex="6">
                      <GridPane.margin>
-                        <Insets left="150.0" top="5.0" />
+                        <Insets left="190.0" top="5.0" />
                      </GridPane.margin>
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <DatePicker promptText="Enter The Date" GridPane.rowIndex="4">
+                  <DatePicker prefHeight="25.0" prefWidth="205.0" promptText="Enter The Date" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets bottom="-10.0" left="20.0" />
                      </GridPane.margin>
                   </DatePicker>
-                  <Button mnemonicParsing="false" style="-fx-background-color: B5DBFF; -fx-background-radius: 10px;" text="Upload a photo" GridPane.rowIndex="5">
+                  <Button mnemonicParsing="false" style="-fx-background-color: B5DBFF; -fx-background-radius: 10px;" text="Upload a photo" GridPane.rowIndex="4">
                      <GridPane.margin>
-                        <Insets bottom="-10.0" left="250.0" />
+                        <Insets left="250.0" />
                      </GridPane.margin>
                   </Button>
-                  <ImageView fitHeight="80.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                  <ImageView fitHeight="119.0" fitWidth="148.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
                      <image>
                         <Image url="@Images/emptyEvent.jpg" />
                      </image>
                      <GridPane.margin>
-                        <Insets bottom="20.0" left="250.0" />
+                        <Insets bottom="-30.0" left="370.0" />
                      </GridPane.margin>
                   </ImageView>
                </children>
@@ -163,7 +102,7 @@
       </BorderPane>
    </center>
    <left>
-      <BorderPane BorderPane.alignment="CENTER">
+      <BorderPane style="-fx-border-color: gray; -fx-border-width: 0.5;" BorderPane.alignment="CENTER">
          <top>
             <VBox alignment="TOP_CENTER" prefHeight="315.0" prefWidth="159.0" BorderPane.alignment="CENTER">
                <children>

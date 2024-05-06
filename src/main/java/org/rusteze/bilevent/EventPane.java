@@ -1,6 +1,7 @@
 package org.rusteze.bilevent;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,6 +31,7 @@ public class EventPane extends Pane {
         imageView.setFitHeight(90);
         Label eventName = new Label(event.getName());
         eventName.setFont(Font.font("Trebuchet MS", 12));
+        innerBox.setAlignment(Pos.CENTER);
         innerBox.getChildren().add(imageView);
         innerBox.getChildren().add(eventName);
         getChildren().add(innerBox);

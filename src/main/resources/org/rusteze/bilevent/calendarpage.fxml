@@ -503,6 +503,21 @@
                               <Insets right="30.0" top="10.0" />
                            </VBox.margin>
                         </Label>
+                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#createBtn" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: B5DBFF;" text="Create a Community">
+                           <font>
+                              <Font name="Trebuchet MS" size="10.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Images/Plus.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets right="15.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                      <padding>
                         <Insets top="5.0" />

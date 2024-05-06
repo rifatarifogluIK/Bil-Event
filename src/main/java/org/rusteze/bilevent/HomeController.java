@@ -59,6 +59,18 @@ public class HomeController implements SceneHandler, Initializable {
     }
 
     @Override
+    public void createBtn(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("CreateCommunity.fxml"));
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void homeBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {

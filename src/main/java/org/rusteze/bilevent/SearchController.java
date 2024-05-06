@@ -33,6 +33,17 @@ public class SearchController implements SceneHandler, Initializable {
             VBox.setMargin(comBtn, new Insets(0, 15, 0, 0));
         }
     }
+    @Override
+    public void createBtn(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("CreateCommunity.fxml"));
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void homeBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

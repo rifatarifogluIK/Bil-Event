@@ -5,10 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import com.mongodb.client.*;
 import org.bson.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
