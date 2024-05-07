@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.HBox;
@@ -47,17 +48,19 @@ public class CommunityPane extends Pane {
 
         HBox buttonPanel = new HBox();
         Button joinBtn = new Button("Join");
+        joinBtn.setFont(new Font(15));
 
         if(community.getMembers().contains(HelloApplication.sessionUser)) {
             joinBtn.setText("Leave");
         }
         Button detailsBtn = new Button("Details");
+        detailsBtn.setFont(new Font(15));
         joinBtn.setAlignment(Pos.BASELINE_CENTER);
         detailsBtn.setAlignment(Pos.BASELINE_CENTER);
-        joinBtn.setOnMouseEntered(e -> joinBtn.setCursor(Cursor.HAND));
-        joinBtn.setOnMouseExited(e -> joinBtn.setCursor(Cursor.DEFAULT));
-        detailsBtn.setOnMouseEntered(e -> detailsBtn.setCursor(Cursor.HAND));
-        detailsBtn.setOnMouseExited(e -> detailsBtn.setCursor(Cursor.DEFAULT));
+        joinBtn.setOnMouseEntered(this::onHoverWhite);
+        joinBtn.setOnMouseExited(this::exitHoverWhite);
+        detailsBtn.setOnMouseEntered(this::onHoverWhite);
+        detailsBtn.setOnMouseExited(this::exitHoverWhite);
 
         joinBtn.setOnAction(this::joinBtn);
         detailsBtn.setOnAction(this::detailsBtn);
@@ -77,6 +80,14 @@ public class CommunityPane extends Pane {
         borderPane.setRight(buttonPanel);
         innerPane.getChildren().add(borderPane);
         getChildren().add(innerPane);
+    }
+    public void onHoverWhite(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #d1d0d0; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.HAND);
+    }
+    public void exitHoverWhite(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
     }
 
     private void joinBtn(ActionEvent event) {

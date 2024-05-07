@@ -19,7 +19,7 @@
          <top>
             <Label text="Popular Communities" BorderPane.alignment="TOP_LEFT">
                <BorderPane.margin>
-                  <Insets left="20.0" top="30.0" />
+                  <Insets bottom="20.0" left="20.0" top="30.0" />
                </BorderPane.margin>
                <font>
                   <Font name="Trebuchet MS Bold" size="25.0" />
@@ -31,9 +31,9 @@
                <children>
                   <BorderPane>
                      <top>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="350.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="330.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
                            <content>
-                              <VBox fx:id="popCommunities" prefHeight="350.0" prefWidth="1036.0">
+                              <VBox fx:id="popCommunities" prefHeight="330.0" prefWidth="1036.0">
                                  <padding>
                                     <Insets top="20.0" />
                                  </padding></VBox>
@@ -46,14 +46,14 @@
                               <Font name="Trebuchet MS Bold" size="25.0" />
                            </font>
                            <BorderPane.margin>
-                              <Insets left="20.0" />
+                              <Insets bottom="20.0" left="20.0" />
                            </BorderPane.margin>
                         </Label>
                      </center>
                   </BorderPane>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="350.0" prefWidth="1036.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="330.0" prefWidth="1036.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
                      <content>
-                        <VBox fx:id="communityRec" prefHeight="350.0" prefWidth="1036.0" />
+                        <VBox fx:id="communityRec" prefHeight="330.0" prefWidth="1036.0" />
                      </content>
                   </ScrollPane>
                </children>
@@ -235,7 +235,7 @@
                   <Insets />
                </VBox.margin>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Create an Event">
+            <Button mnemonicParsing="false" onMouseEntered="#onHoverWhite" onMouseExited="#exitHoverWhite" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Create an Event">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
@@ -246,7 +246,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Log Out" textFill="RED">
+            <Button mnemonicParsing="false" onMouseEntered="#onHoverWhite" onMouseExited="#exitHoverWhite" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Log Out" textFill="RED">
                <font>
                   <Font size="15.0" />
                </font>

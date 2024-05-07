@@ -4,6 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -12,9 +14,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 
@@ -27,7 +31,20 @@ public class CommunityPageController implements Initializable {
     private Button createBtn;
     @FXML
     private Button joinBtn;
+    @FXML
+    private HBox eventPanel;
+
     private static Community community;
+
+    public void displayEvents() {
+        ArrayList<Event> currentEvents = community.getCurrentEvents();
+        for(Event e : currentEvents) {
+            EventPane eventPane = new EventPane(e);
+            eventPanel.getChildren().add(eventPane);
+            HBox.setMargin(eventPane, new Insets(100, 220, 0, 0));
+            eventPanel.setAlignment(Pos.BASELINE_LEFT);
+        }
+    }
 
     public void setPage() {
         departmentLabel.setText(community.getName());
@@ -41,6 +58,7 @@ public class CommunityPageController implements Initializable {
         } else {
             joinBtn.setText("Join");
         }
+        displayEvents();
     }
     public void joinBtn(ActionEvent event) {
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
@@ -73,6 +91,14 @@ public class CommunityPageController implements Initializable {
     }
     public void exitHover(MouseEvent mouseEvent) {
         ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #B5DBFF; -fx-font-family: \"Trebuchet\"; -fx-font-size: 15px; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+    public void onHoverWhite(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #dfdfdf; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.HAND);
+    }
+    public void exitHoverWhite(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
         ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
     }
 

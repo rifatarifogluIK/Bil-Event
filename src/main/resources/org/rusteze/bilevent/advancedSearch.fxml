@@ -264,7 +264,7 @@
                   <Insets />
                </VBox.margin>
             </VBox>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Create an Event">
+            <Button mnemonicParsing="false" onMouseEntered="#onHoverWhite" onMouseExited="#exitHoverWhite" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Create an Event">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />
                </VBox.margin>
@@ -275,7 +275,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Log Out" textFill="RED">
+            <Button mnemonicParsing="false" onMouseEntered="#onHoverWhite" onMouseExited="#exitHoverWhite" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Log Out" textFill="RED">
                <font>
                   <Font size="15.0" />
                </font>

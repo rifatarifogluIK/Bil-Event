@@ -166,6 +166,14 @@ public class CalendarController implements SceneHandler, Initializable {
         ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #B5DBFF; -fx-font-family: \"Trebuchet\"; -fx-font-size: 15px; -fx-background-radius: 12px");
         ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
     }
+    public void onHoverWhite(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #dfdfdf; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.HAND);
+    }
+    public void exitHoverWhite(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
 
     @Override
     public void createCommunityButtons() {

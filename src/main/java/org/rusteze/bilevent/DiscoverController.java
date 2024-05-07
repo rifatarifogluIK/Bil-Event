@@ -39,12 +39,12 @@ public class DiscoverController implements SceneHandler, Initializable {
             Community community = popular.nextElement();
             CommunityPane communityPane = new CommunityPane(community);
             popCommunities.getChildren().add(communityPane);
-            VBox.setMargin(communityPane, new Insets(0, 0, 80, 0));
+            VBox.setMargin(communityPane, new Insets(0, 0, 70, 0));
         }
         for(Community community : communityRec) {
             CommunityPane communityPane = new CommunityPane(community);
             this.communityRec.getChildren().add(communityPane);
-            VBox.setMargin(communityPane, new Insets(0, 0, 80, 0));
+            VBox.setMargin(communityPane, new Insets(0, 0, 70, 0));
         }
     }
 
@@ -54,6 +54,14 @@ public class DiscoverController implements SceneHandler, Initializable {
     }
     public void exitHover(MouseEvent mouseEvent) {
         ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #B5DBFF; -fx-font-family: \"Trebuchet\"; -fx-font-size: 15px; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+    public void onHoverWhite(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #dfdfdf; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.HAND);
+    }
+    public void exitHoverWhite(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
         ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
     }
 
