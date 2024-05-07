@@ -41,10 +41,9 @@ public class HomeController implements SceneHandler, Initializable {
         for(Event e : recommendations) {
             EventPane eventPane = new EventPane(e);
             eventPanel.getChildren().add(eventPane);
-            HBox.setMargin(eventPane, new Insets(0, 100, 0, 0));
-            eventPanel.setAlignment(Pos.CENTER_LEFT);
+            HBox.setMargin(eventPane, new Insets(100, 220, 0, 0));
+            eventPanel.setAlignment(Pos.BASELINE_LEFT);
         }
-
     }
     @Override
     public void createCommunityButtons() {

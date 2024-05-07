@@ -13,31 +13,31 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.HomeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.HomeController">
    <left>
-      <BorderPane prefHeight="400.0" prefWidth="160.0" style="-fx-border-width: 0.5; -fx-border-color: gray;" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="400.0" prefWidth="250.0" style="-fx-border-width: 0.5; -fx-border-color: gray;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
          <top>
             <ScrollPane hbarPolicy="NEVER" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
                <content>
-                  <VBox fx:id="buttonPanel" alignment="TOP_CENTER" prefHeight="321.0" prefWidth="159.0" spacing="5.0" style="-fx-border-width: 0.5;">
+                  <VBox fx:id="buttonPanel" alignment="TOP_CENTER" prefHeight="685.0" prefWidth="250.0" spacing="5.0" style="-fx-border-width: 0.5;">
                      <children>
                         <Label alignment="BOTTOM_CENTER" prefHeight="18.0" prefWidth="244.0" text="Bil-Event">
                            <VBox.margin>
                               <Insets bottom="5.0" right="80.0" top="10.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="Trebuchet MS Bold" size="12.0" />
+                              <Font name="Trebuchet MS Bold" size="25.0" />
                            </font>
                         </Label>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#homeBtn" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: B5DBFF;" text="Home">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#homeBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text=" Home">
                            <font>
-                              <Font name="Trebuchet MS" size="10.0" />
+                              <Font name="Trebuchet MS" size="15.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/HomeLogo.png" />
                                  </image>
@@ -47,12 +47,12 @@
                               <Insets right="15.0" />
                            </VBox.margin>
                         </Button>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#calendarBtn" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: B5DBFF;" text="Calendar">
+                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#calendarBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Calendar">
                            <font>
-                              <Font name="Trebuchet MS" size="10.0" />
+                              <Font name="Trebuchet MS" size="15.0" />
                            </font>
                            <graphic>
-                              <ImageView blendMode="MULTIPLY" fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView blendMode="MULTIPLY" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/CalendarLogo.png" />
                                  </image>
@@ -62,12 +62,12 @@
                               <Insets right="15.0" />
                            </VBox.margin>
                         </Button>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#discoverBtn" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: B5DBFF;" text="Discover Communities">
+                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#discoverBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Discover Communities">
                            <font>
-                              <Font name="Trebuchet MS" size="10.0" />
+                              <Font name="Trebuchet MS" size="15.0" />
                            </font>
                            <graphic>
-                              <ImageView blendMode="MULTIPLY" fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView blendMode="MULTIPLY" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/DiscoveryLogo.png" />
                                  </image>
@@ -80,12 +80,12 @@
                               <Insets right="15.0" />
                            </VBox.margin>
                         </Button>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: B5DBFF;" text="Advanced Search">
+                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Advanced Search">
                            <font>
-                              <Font name="Trebuchet MS" size="10.0" />
+                              <Font name="Trebuchet MS" size="15.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/SearchLogo.png" />
                                  </image>
@@ -97,18 +97,18 @@
                         </Button>
                         <Label text="Community Groups">
                            <font>
-                              <Font name="Trebuchet MS Bold" size="11.0" />
+                              <Font name="Trebuchet MS Bold" size="20.0" />
                            </font>
                            <VBox.margin>
                               <Insets right="30.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#createBtn" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: B5DBFF;" text="Create a Community">
+                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#createBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Create a Community">
                            <font>
-                              <Font name="Trebuchet MS" size="10.0" />
+                              <Font name="Trebuchet MS" size="15.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Images/Plus.png" />
                                  </image>
@@ -130,7 +130,7 @@
             </ScrollPane>
          </top>
          <bottom>
-            <ImageView fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@Images/Logo.PNG" />
                </image>
@@ -144,12 +144,12 @@
    <center>
       <BorderPane opacity="0.9" prefHeight="300.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <right>
-            <VBox alignment="TOP_CENTER" prefHeight="383.0" prefWidth="126.0" style="-fx-background-color: B5DBFF;" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefWidth="250.0" style="-fx-background-color: B5DBFF;" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets top="-60.0" />
                </BorderPane.margin>
                <children>
-                  <ImageView fitHeight="63.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/ProfilePhoto.png" />
                      </image>
@@ -157,48 +157,39 @@
                         <Blend />
                      </effect>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="50.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
+                  <Label fx:id="profileName" alignment="TOP_CENTER" prefHeight="29.0" prefWidth="250.0" text="Profile Name">
                      <font>
-                        <Font size="9.0" />
+                        <Font size="15.0" />
                      </font>
                   </Label>
                   <Label text="Friends">
                      <VBox.margin>
-                        <Insets bottom="10.0" left="-45.0" top="5.0" />
+                        <Insets bottom="10.0" top="5.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="Segoe Print Bold" size="18.0" />
+                        <Font name="Segoe Print Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
+                  <VBox fx:id="friendPanel" prefHeight="428.0" prefWidth="250.0">
                      <VBox.margin>
-                        <Insets bottom="5.0" />
+                        <Insets />
                      </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
+                  </VBox>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Create an Event">
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="40.0" />
+                     </VBox.margin>
                      <font>
-                        <Font name="Trebuchet MS" size="10.0" />
+                        <Font size="15.0" />
                      </font>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Log Out" textFill="RED">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </Button>
                </children>
             </VBox>
@@ -216,7 +207,7 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <ScrollPane hbarPolicy="ALWAYS" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                  <ScrollPane hbarPolicy="ALWAYS" prefHeight="400.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
                      <content>
                         <HBox fx:id="eventPanel" prefHeight="136.0" prefWidth="371.0" />
                      </content>
@@ -232,7 +223,7 @@
                         <Insets left="20.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <HBox prefHeight="153.0" prefWidth="374.0" />
+                  <HBox prefHeight="360.0" prefWidth="1036.0" />
                </children>
             </VBox>
          </center>

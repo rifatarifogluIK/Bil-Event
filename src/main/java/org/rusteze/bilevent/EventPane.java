@@ -27,17 +27,17 @@ public class EventPane extends Pane {
         VBox innerBox = new VBox();
         Image photo = event.getPhoto();
         ImageView imageView = new ImageView(photo);
-        imageView.setFitWidth(90);
-        imageView.setFitHeight(90);
+        imageView.setFitWidth(200);
+        imageView.setFitHeight(180);
         Label eventName = new Label(event.getName());
-        eventName.setFont(Font.font("Trebuchet MS", 12));
+        eventName.setFont(Font.font("Trebuchet MS", 20));
         innerBox.setAlignment(Pos.CENTER);
         innerBox.getChildren().add(imageView);
         innerBox.getChildren().add(eventName);
         getChildren().add(innerBox);
         setOnMouseClicked(this::eventClicked);
-        setPrefHeight(100);
-        setPrefWidth(90);
+        setPrefHeight(400);
+        setPrefWidth(400);
     }
 
     private void eventClicked(MouseEvent mouseEvent) {

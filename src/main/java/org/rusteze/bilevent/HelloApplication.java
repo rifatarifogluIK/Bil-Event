@@ -4,6 +4,7 @@ import com.mongodb.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import com.mongodb.client.*;
 import org.bson.*;
@@ -39,7 +40,7 @@ public class HelloApplication extends Application {
         popularCommunities.add(new Community("ME Department", null));
         popularCommunities.add(new Community("ME Department", null));
         popularCommunities.add(new Community("ME Department", null));
-
+        
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bil-Event");
