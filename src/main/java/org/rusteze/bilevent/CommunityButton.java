@@ -25,8 +25,17 @@ public class CommunityButton extends Button {
         setPrefWidth(200);
         setAlignment(Pos.BASELINE_LEFT);
         setOnAction(this::CommunityBtn);
-        setOnMouseEntered(e -> this.setCursor(Cursor.HAND));
-        setOnMouseExited(e -> this.setCursor(Cursor.DEFAULT));
+        setOnMouseEntered(e -> onHover());
+        setOnMouseExited(e -> exitHover());
+    }
+
+    public void onHover() {
+        this.setStyle("-fx-background-color: #61aef7; -fx-font-family: \"Trebuchet\"; -fx-font-size: 15px; -fx-background-radius: 18px");
+        this.setCursor(Cursor.HAND);
+    }
+    public void exitHover() {
+        this.setStyle("-fx-background-color: #B5DBFF; -fx-font-family: \"Trebuchet\"; -fx-font-size: 15px; -fx-background-radius: 12px");
+        this.setCursor(Cursor.DEFAULT);
     }
 
     public  void CommunityBtn(ActionEvent event) {

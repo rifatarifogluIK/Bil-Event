@@ -3,6 +3,7 @@ package org.rusteze.bilevent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -53,6 +54,10 @@ public class CommunityPane extends Pane {
         Button detailsBtn = new Button("Details");
         joinBtn.setAlignment(Pos.BASELINE_CENTER);
         detailsBtn.setAlignment(Pos.BASELINE_CENTER);
+        joinBtn.setOnMouseEntered(e -> joinBtn.setCursor(Cursor.HAND));
+        joinBtn.setOnMouseExited(e -> joinBtn.setCursor(Cursor.DEFAULT));
+        detailsBtn.setOnMouseEntered(e -> detailsBtn.setCursor(Cursor.HAND));
+        detailsBtn.setOnMouseExited(e -> detailsBtn.setCursor(Cursor.DEFAULT));
 
         joinBtn.setOnAction(this::joinBtn);
         detailsBtn.setOnAction(this::detailsBtn);

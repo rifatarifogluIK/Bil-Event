@@ -29,7 +29,7 @@
                               <Insets left="20.0" top="30.0" />
                            </HBox.margin>
                         </Label>
-                        <Button fx:id="joinBtn" mnemonicParsing="false" onAction="#joinBtn" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10; -fx-background-color: B5DBFF;" text="Join">
+                        <Button fx:id="joinBtn" mnemonicParsing="false" onAction="#joinBtn" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10; -fx-background-color: B5DBFF;" text="Join">
                            <font>
                               <Font name="Trebuchet MS Bold" size="15.0" />
                            </font>
@@ -106,7 +106,7 @@
                         <Insets bottom="5.0" right="80.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text=" Back">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#backBtn" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text=" Back">
                      <font>
                         <Font name="Trebuchet MS" size="15.0" />
                      </font>
