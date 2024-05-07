@@ -1,11 +1,17 @@
 package org.rusteze.bilevent;
 
 import javafx.scene.image.Image;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
-public class User {
+public class User implements Searchable{
+
+    public static Dictionary<ObjectId, User> allUsers = new Hashtable<>();
 
     private String username;
     private String password;
@@ -19,6 +25,7 @@ public class User {
     private Recommendation recommendations;
     private double rating;
     private int ratingCount;
+    private ObjectId id;
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -32,6 +39,21 @@ public class User {
         recommendations = new Recommendation(this);
         rating = 0;
         ratingCount = 0;
+        id = ObjectId.get();
+    }
+
+    public User(Document doc){
+        this.username = (String)doc.get("username");
+        this.password = (String)doc.get("password");
+        this.email = (String)doc.get("email");
+        communities = new ArrayList<Community>();
+        enrolledEvents = new ArrayList<Event>();
+        attendedEvents = new ArrayList<Event>();
+        createdEvents = new ArrayList<Event>();
+        recommendations = new Recommendation(this);
+        rating = (double)doc.get("rating");
+        ratingCount = (int)doc.get("ratingCount");
+        id = ObjectId.get();
     }
 
     public boolean authentication() {
@@ -133,6 +155,11 @@ public class User {
 
         this.rating += rating;
         ratingCount++;
+    }
+
+    @Override
+    public boolean find(String key) {
+        return this.username.equals(key);
     }
 
     public void addFriend(User user) {

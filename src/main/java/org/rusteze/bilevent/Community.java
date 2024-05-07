@@ -1,11 +1,20 @@
 package org.rusteze.bilevent;
 
 import javafx.scene.image.Image;
+import org.bson.Document;
+import org.bson.types.ObjectId;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
-public class Community {
+public class Community implements Searchable{
+
+    public static Dictionary<ObjectId, Community> allCommunities = new Hashtable<>();
+    public static Dictionary<ObjectId, Community> popularCommunities = new Hashtable<>();
 
     private String name;
     private ArrayList<User> members;
@@ -15,6 +24,7 @@ public class Community {
     private Image photo;
     private double rating;
     private int ratingCount;
+    private ObjectId id;
 
     public Community(String name, Image photo) {
         this.name = name;
@@ -25,6 +35,19 @@ public class Community {
         this.photo = photo;
         this.rating = 0.0;
         this.ratingCount = 0;
+        this.id = ObjectId.get();
+    }
+
+    public Community(Document doc) throws FileNotFoundException {
+        this.name = (String)doc.get("name");
+        this.members = new ArrayList<>();
+        this.adminList = new ArrayList<>();
+        this.currentEvents = new ArrayList<>();
+        this.pastEvents = new ArrayList<>();
+        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.rating = (double)doc.get("rating");
+        this.ratingCount = (int)doc.get("ratingCount");
+        this.id = (ObjectId)doc.get("_id");
     }
 
     public void addMember(User user){
@@ -62,6 +85,11 @@ public class Community {
         this.rating = ((this.rating * ratingCount++) + rating) / ratingCount;
     }
 
+    @Override
+    public boolean find(String key) {
+        return this.name.equals(key);
+    }
+
     public boolean isAdmin(User user) {
         return adminList.contains(user);
     }
@@ -95,6 +123,10 @@ public class Community {
 
     public int getRatingCount() {
         return ratingCount;
+    }
+
+    public ObjectId getId() {
+        return id;
     }
 
     public void setName(String name) {
