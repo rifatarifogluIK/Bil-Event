@@ -10,8 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
-import java.awt.*;
+import javafx.scene.Cursor;
 import java.io.IOException;
 
 public class CommunityButton extends Button {
@@ -21,11 +20,13 @@ public class CommunityButton extends Button {
     CommunityButton(Community community) {
         this.community = community;
         setText(community.getName());
-        setStyle("-fx-background-color: #B5DBFF; -fx-font-family: \"Trebuchet\"; -fx-font-size: 10px; -fx-background-radius: 12px");
+        setStyle("-fx-background-color: #B5DBFF; -fx-font-family: \"Trebuchet\"; -fx-font-size: 15px; -fx-background-radius: 12px");
         setPrefHeight(40);
         setPrefWidth(200);
-        setAlignment(Pos.CENTER_LEFT);
+        setAlignment(Pos.BASELINE_LEFT);
         setOnAction(this::CommunityBtn);
+        setOnMouseEntered(e -> this.setCursor(Cursor.HAND));
+        setOnMouseExited(e -> this.setCursor(Cursor.DEFAULT));
     }
 
     public  void CommunityBtn(ActionEvent event) {

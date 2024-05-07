@@ -27,20 +27,20 @@ public class CommunityPane extends Pane {
     public CommunityPane(Community community) {
         this.community = community;
         Pane innerPane = new Pane();
-        innerPane.setPrefHeight(35);
-        innerPane.setPrefWidth(380);
-        innerPane.setLayoutX(10);
+        innerPane.setPrefHeight(60);
+        innerPane.setPrefWidth(950);
+        innerPane.setLayoutX(43);
+        setPrefWidth(1036);
         setPrefHeight(35);
-        setPrefWidth(395);
         innerPane.setStyle("-fx-background-color: #FF7F7F; -fx-background-radius: 8px");
 
         BorderPane borderPane = new BorderPane();
         Label label = new Label(community.getName());
-        label.setFont(Font.font("Trebuchet MS", 15));
-        BorderPane.setMargin(label, new Insets(0,0,0,10));
+        label.setFont(Font.font("Trebuchet MS", 20));
+        BorderPane.setMargin(label, new Insets(10,0,0,40));
         label.setTextFill(Color.WHITE);
-        label.setPrefWidth(250);
-        label.setAlignment(Pos.CENTER_LEFT);
+        label.setPrefWidth(700);
+        label.setAlignment(Pos.BASELINE_LEFT);
         BorderPane.setAlignment(label, Pos.CENTER);
         borderPane.setLeft(label);
 
@@ -51,27 +51,25 @@ public class CommunityPane extends Pane {
             joinBtn.setText("Leave");
         }
         Button detailsBtn = new Button("Details");
-        joinBtn.setAlignment(Pos.CENTER);
-        detailsBtn.setAlignment(Pos.CENTER);
+        joinBtn.setAlignment(Pos.BASELINE_CENTER);
+        detailsBtn.setAlignment(Pos.BASELINE_CENTER);
 
         joinBtn.setOnAction(this::joinBtn);
         detailsBtn.setOnAction(this::detailsBtn);
-        joinBtn.setPrefWidth(50);
+        joinBtn.setPrefHeight(40);
+        joinBtn.setPrefWidth(80);
+        detailsBtn.setPrefHeight(40);
+        detailsBtn.setPrefWidth(80);
+        HBox.setMargin(joinBtn, new Insets(10, 0, 0, 20));
+        HBox.setMargin(detailsBtn, new Insets(10, 0, 0, 20));
 
-        HBox.setMargin(joinBtn, new Insets(5, 10, 0, 0));
-        HBox.setMargin(detailsBtn, new Insets(5, 10, 0, 0));
-        buttonPanel.setAlignment(Pos.CENTER_RIGHT);
-        detailsBtn.setAlignment(Pos.CENTER_RIGHT);
-        joinBtn.setAlignment(Pos.CENTER_RIGHT);
-
-        joinBtn.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 10px");
-        detailsBtn.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 10px");
+        joinBtn.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
+        detailsBtn.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
 
         buttonPanel.getChildren().add(joinBtn);
         buttonPanel.getChildren().add(detailsBtn);
 
         borderPane.setRight(buttonPanel);
-        BorderPane.setAlignment(buttonPanel, Pos.CENTER_RIGHT);
         innerPane.getChildren().add(borderPane);
         getChildren().add(innerPane);
     }

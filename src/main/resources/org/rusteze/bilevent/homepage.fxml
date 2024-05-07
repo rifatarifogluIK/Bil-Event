@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -46,8 +47,11 @@
                            <VBox.margin>
                               <Insets right="15.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#calendarBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Calendar">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#calendarBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Calendar">
                            <font>
                               <Font name="Trebuchet MS" size="15.0" />
                            </font>
@@ -61,8 +65,11 @@
                            <VBox.margin>
                               <Insets right="15.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#discoverBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Discover Communities">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#discoverBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Discover Communities">
                            <font>
                               <Font name="Trebuchet MS" size="15.0" />
                            </font>
@@ -79,8 +86,11 @@
                            <VBox.margin>
                               <Insets right="15.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Advanced Search">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Advanced Search">
                            <font>
                               <Font name="Trebuchet MS" size="15.0" />
                            </font>
@@ -94,6 +104,9 @@
                            <VBox.margin>
                               <Insets right="15.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Label text="Community Groups">
                            <font>
@@ -103,7 +116,7 @@
                               <Insets right="30.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#createBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Create a Community">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#createBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Create a Community">
                            <font>
                               <Font name="Trebuchet MS" size="15.0" />
                            </font>
@@ -117,6 +130,9 @@
                            <VBox.margin>
                               <Insets right="15.0" />
                            </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                      <padding>
@@ -159,8 +175,11 @@
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-                  <Label fx:id="profileName" alignment="TOP_CENTER" prefHeight="29.0" prefWidth="250.0" text="Profile Name">
+                  <Label fx:id="profileName" alignment="TOP_CENTER" prefHeight="29.0" prefWidth="133.0" text="Profile Name">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -173,23 +192,29 @@
                         <Font name="Segoe Print Bold" size="25.0" />
                      </font>
                   </Label>
-                  <VBox fx:id="friendPanel" prefHeight="428.0" prefWidth="250.0">
+                  <VBox fx:id="friendPanel" minHeight="450.0" prefHeight="450.0" prefWidth="250.0">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </VBox>
                   <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Create an Event">
                      <VBox.margin>
-                        <Insets bottom="10.0" top="40.0" />
+                        <Insets bottom="10.0" top="20.0" />
                      </VBox.margin>
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                   <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Log Out" textFill="RED">
                      <font>
                         <Font size="15.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </VBox>
@@ -200,7 +225,7 @@
                   <Insets left="20.0" top="30.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="Trebuchet MS Bold" size="24.0" />
+                  <Font name="Trebuchet MS Bold" size="25.0" />
                </font>
             </Label>
          </top>
@@ -209,15 +234,15 @@
                <children>
                   <ScrollPane hbarPolicy="ALWAYS" prefHeight="400.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
                      <content>
-                        <HBox fx:id="eventPanel" prefHeight="136.0" prefWidth="371.0" />
+                        <HBox fx:id="eventPanel" prefHeight="400.0" prefWidth="996.0" />
                      </content>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets left="20.0" right="20.0" />
                      </VBox.margin>
                   </ScrollPane>
                   <Label text="Coming Events">
                      <font>
-                        <Font name="Trebuchet MS Bold" size="19.0" />
+                        <Font name="Trebuchet MS Bold" size="25.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="20.0" top="10.0" />

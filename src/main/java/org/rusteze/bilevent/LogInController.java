@@ -55,7 +55,6 @@ public class LogInController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
-        stage.setFullScreen(true);
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

@@ -2,6 +2,7 @@ package org.rusteze.bilevent;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -38,6 +39,8 @@ public class EventPane extends Pane {
         setOnMouseClicked(this::eventClicked);
         setPrefHeight(400);
         setPrefWidth(400);
+        setOnMouseEntered(e -> this.setCursor(Cursor.HAND));
+        setOnMouseExited(e -> this.setCursor(Cursor.DEFAULT));
     }
 
     private void eventClicked(MouseEvent mouseEvent) {

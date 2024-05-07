@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -60,15 +61,17 @@ public class CalendarController implements SceneHandler, Initializable {
             this.setOnMouseClicked(this::onClick);
             HBox innerContainer = new HBox();
             ImageView image = new ImageView(event.getPhoto());
-            image.setFitWidth(12);
-            image.setFitHeight(12);
+            image.setFitWidth(20);
+            image.setFitHeight(20);
             Label eventName = new Label(event.getName());
-            eventName.setFont(Font.font("Trebuchet MS", 10));
+            eventName.setFont(Font.font("Trebuchet MS", 20));
             eventName.setStyle("-fx-font-weight: bold;");
             innerContainer.getChildren().add(image);
             innerContainer.getChildren().add(eventName);
             getChildren().add(innerContainer);
-            innerContainer.setLayoutX(10);
+            innerContainer.setLayoutX(20);
+            setOnMouseEntered(e -> this.setCursor(Cursor.HAND));
+            setOnMouseExited(e -> this.setCursor(Cursor.DEFAULT));
         }
 
         public void onClick(MouseEvent mouseEvent) {

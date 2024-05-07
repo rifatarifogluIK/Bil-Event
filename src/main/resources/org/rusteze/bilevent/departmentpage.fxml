@@ -1,249 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.CommunityPageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.CommunityPageController">
    <center>
       <BorderPane opacity="0.9" prefHeight="300.0" prefWidth="500.0" BorderPane.alignment="CENTER">
-         <right>
-            <VBox alignment="TOP_CENTER" prefHeight="383.0" prefWidth="126.0" style="-fx-background-color: B5DBFF;" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets top="-60.0" />
-               </BorderPane.margin>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="63.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Images/ProfilePhoto.png" />
-                     </image>
-                     <effect>
-                        <Blend />
-                     </effect>
+                  <HBox prefHeight="85.0" prefWidth="1036.0">
+                     <children>
+                        <Label fx:id="departmentLabel" text="Community Name">
+                           <font>
+                              <Font name="Trebuchet MS Bold" size="35.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" top="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button fx:id="joinBtn" mnemonicParsing="false" onAction="#joinBtn" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10; -fx-background-color: B5DBFF;" text="Join">
+                           <font>
+                              <Font name="Trebuchet MS Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="40.0" />
                      </VBox.margin>
-                  </ImageView>
-                  <Label alignment="TOP_CENTER" prefHeight="18.0" prefWidth="71.0" text="Profile Name">
+                  </HBox>
+                  <HBox prefHeight="48.0" prefWidth="1036.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10; -fx-background-color: red;" text="Members" textFill="WHITE">
+                           <font>
+                              <Font name="Trebuchet MS" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="editBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10; -fx-background-color: red;" text="Edit" textFill="WHITE">
+                           <font>
+                              <Font name="Trebuchet MS" size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="createBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10; -fx-background-color: red;" text="Create Event" textFill="WHITE">
+                           <font>
+                              <Font name="Trebuchet MS" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label fx:id="departmentLabel1" text="Current Events of Community Name">
                      <font>
-                        <Font size="9.0" />
+                        <Font name="Trebuchet MS Bold" size="35.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
                   </Label>
-                  <Label text="Friends">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="-45.0" top="5.0" />
-                     </VBox.margin>
+                  <ScrollPane hbarPolicy="ALWAYS" prefHeight="400.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                     <content>
+                        <HBox fx:id="eventPanel" prefHeight="400.0" prefWidth="996.0" />
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="departmentLabel11" text="Related Content">
                      <font>
-                        <Font name="Segoe Print Bold" size="18.0" />
+                        <Font name="Trebuchet MS Bold" size="35.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
                   </Label>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 1">
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button alignment="TOP_LEFT" graphicTextGap="5.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="113.0" style="-fx-background-color: deepskyblue; -fx-background-radius: 10;" text="Friend 2">
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/ProfilePhoto.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
                </children>
             </VBox>
-         </right>
-         <top>
-            <Label fx:id="departmentLabel" text="Department Name" BorderPane.alignment="TOP_LEFT">
-               <BorderPane.margin>
-                  <Insets left="20.0" top="30.0" />
-               </BorderPane.margin>
-               <font>
-                  <Font name="Trebuchet MS Bold" size="24.0" />
-               </font>
-            </Label>
-         </top>
-         <left>
-            <GridPane prefHeight="340.0" prefWidth="424.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="joinBtn" mnemonicParsing="false" onAction="#joinBtn" prefHeight="26.0" prefWidth="70.0" style="-fx-background-radius: 10; -fx-background-color: deepskyblue;" text="Join" textFill="WHITE" GridPane.columnIndex="2">
-                     <GridPane.margin>
-                        <Insets left="20.0" top="-140.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" style="-fx-background-radius: 20; -fx-background-color: RED;" text="See Members" textFill="#fffefe">
-                     <GridPane.margin>
-                        <Insets bottom="60.0" left="10.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Event1" GridPane.rowIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Logo.PNG" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <GridPane.margin>
-                        <Insets bottom="30.0" left="20.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label alignment="TOP_CENTER" contentDisplay="TOP" text="Event2" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Logo.PNG" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <GridPane.margin>
-                        <Insets bottom="30.0" left="20.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label contentDisplay="TOP" text="Event3" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@Images/Logo.PNG" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <GridPane.margin>
-                        <Insets bottom="30.0" left="20.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <Label prefHeight="19.0" prefWidth="238.0" text="Current Events of CS department">
-                     <GridPane.margin>
-                        <Insets left="20.0" right="-200.0" top="30.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Button mnemonicParsing="false" style="-fx-background-radius: 10; -fx-background-color: deepskyblue;" text="Show More" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets bottom="40.0" left="15.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Label prefHeight="19.0" prefWidth="158.0" text="Related Content" GridPane.rowIndex="2">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <GridPane.margin>
-                        <Insets bottom="90.0" left="20.0" right="-40.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="-90.0" />
-                     </GridPane.margin>
-                  </Label>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <image>
-                        <Image url="@Images/Logo.PNG" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets left="-90.0" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <image>
-                        <Image url="@Images/Logo.PNG" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets left="-10.0" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="129.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-radius: 10; -fx-border-width: 2; -fx-border-color: black;" text="See coding competitions" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="-40.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="162.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-width: 2; -fx-border-color: black; -fx-border-radius: 10;" text="Start-up - entrepreneurship" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets left="40.0" right="-80.0" />
-                     </GridPane.margin>
-                     <font>
-                        <Font name="Trebuchet MS" size="10.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="editBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" style="-fx-background-radius: 20; -fx-background-color: RED;" text="Edit" textFill="#fffefe" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets bottom="60.0" left="10.0" />
-                     </GridPane.margin>
-                  </Button>
-                  <Button fx:id="createBtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" style="-fx-background-radius: 20; -fx-background-color: RED;" text="Create Event" textFill="#fffefe" GridPane.columnIndex="2">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets bottom="60.0" left="10.0" />
-                     </GridPane.margin>
-                  </Button>
-               </children>
-            </GridPane>
-         </left>
+         </center>
       </BorderPane>
    </center>
    <left>
-      <BorderPane BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="816.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <top>
-            <VBox alignment="TOP_CENTER" prefHeight="315.0" prefWidth="159.0" BorderPane.alignment="CENTER">
+            <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="BOTTOM_CENTER" prefHeight="18.0" prefWidth="244.0" text="Bil-Event">
                      <font>
@@ -253,23 +106,26 @@
                         <Insets bottom="5.0" right="80.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button alignment="TOP_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="20.0" prefWidth="130.0" style="-fx-background-color: B5DBFF;" text="Back">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text=" Back">
                      <font>
-                        <Font name="Trebuchet MS" size="10.0" />
+                        <Font name="Trebuchet MS" size="15.0" />
                      </font>
                      <graphic>
-                        <ImageView fitHeight="12.0" fitWidth="12.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/BackArrow.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Button>
                </children>
             </VBox>
          </top>
          <bottom>
-            <ImageView fitHeight="60.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <image>
                   <Image url="@Images/Logo.PNG" />
                </image>
@@ -280,4 +136,61 @@
          </bottom>
       </BorderPane>
    </left>
+   <right>
+      <VBox alignment="TOP_CENTER" prefWidth="250.0" style="-fx-background-color: B5DBFF;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/ProfilePhoto.png" />
+               </image>
+               <effect>
+                  <Blend />
+               </effect>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label fx:id="profileName" alignment="TOP_CENTER" prefHeight="29.0" prefWidth="133.0" text="Profile Name">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="Friends">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Segoe Print Bold" size="25.0" />
+               </font>
+            </Label>
+            <VBox fx:id="friendPanel" minHeight="450.0" prefHeight="450.0" prefWidth="250.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Create an Event">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Log Out" textFill="RED">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
