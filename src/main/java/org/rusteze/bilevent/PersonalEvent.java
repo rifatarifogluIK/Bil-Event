@@ -16,6 +16,13 @@ public class PersonalEvent extends Event{
 
     public PersonalEvent(Document doc) throws FileNotFoundException {
         super(doc);
-        this.organizer = User.allUsers.get((String)doc.get("organizer"));
+    }
+
+    public User getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(User organizer) {
+        this.organizer = organizer;
     }
 }

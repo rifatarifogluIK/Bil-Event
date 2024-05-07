@@ -54,11 +54,6 @@ public class User implements Searchable{
         rating = (double)doc.get("rating");
         ratingCount = (int)doc.get("ratingCount");
         id = ObjectId.get();
-
-        ((Document)doc.get("communities")).values().forEach(e -> communities.add(Community.allCommunities.get(e.toString())));
-        ((Document)doc.get("enrolledEvents")).values().forEach(e -> enrolledEvents.add(Event.allEvents.get(e.toString())));
-        ((Document)doc.get("attendedEvents")).values().forEach(e -> attendedEvents.add(Event.allEvents.get(e.toString())));
-        ((Document)doc.get("createdEvents")).values().forEach(e -> createdEvents.add(Event.allEvents.get(e.toString())));
     }
 
     public boolean authentication() {

@@ -48,11 +48,6 @@ public class Community implements Searchable{
         this.rating = (double)doc.get("rating");
         this.ratingCount = (int)doc.get("ratingCount");
         this.id = (ObjectId)doc.get("_id");
-
-        ((Document)doc.get("members")).values().forEach(e -> members.add(User.allUsers.get(e.toString())));
-        ((Document)doc.get("adminList")).values().forEach(e -> adminList.add(User.allUsers.get(e.toString())));
-        ((Document)doc.get("currentEvents")).values().forEach(e -> currentEvents.add(Event.allEvents.get(e.toString())));
-        ((Document)doc.get("pastEvents")).values().forEach(e -> pastEvents.add(Event.allEvents.get(e.toString())));
     }
 
     public void addMember(User user){

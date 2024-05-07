@@ -53,10 +53,6 @@ public abstract class Event {
         this.rating = (double)doc.get("rating");
         this.ratingCount = (int)doc.get("ratingCount");
         this.id = (ObjectId)doc.get("_id");
-
-        ((Document)doc.get("attendees")).values().forEach(e -> attendees.add(User.allUsers.get(e.toString())));
-        ((Document)doc.get("admins")).values().forEach(e -> admins.add(User.allUsers.get(e.toString())));
-        ((Document)doc.get("attributes")).values().forEach(e -> attributes.add((String)e));
     }
 
     public void addAttendee(User user)

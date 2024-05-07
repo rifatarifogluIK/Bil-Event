@@ -16,6 +16,13 @@ public class CommunityEvent extends Event{
 
     public CommunityEvent(Document doc) throws FileNotFoundException {
         super(doc);
-        this.community = Community.allCommunities.get((String)doc.get("community"));
+    }
+
+    public Community getCommunity() {
+        return community;
+    }
+
+    public void setCommunity(Community community) {
+        this.community = community;
     }
 }
