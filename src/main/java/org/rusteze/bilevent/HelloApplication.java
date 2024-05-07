@@ -3,7 +3,6 @@ package org.rusteze.bilevent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import com.mongodb.*;
 import com.mongodb.client.*;
