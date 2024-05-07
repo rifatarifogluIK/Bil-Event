@@ -33,6 +33,9 @@ public abstract class Event {
         this.name = name;
         this.description = description;
         this.date = date;
+        attendees = new ArrayList<>();
+        attributes = new ArrayList<>();
+        admins = new ArrayList<>();
         File file = new File("src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg");
         Image image = new Image(file.toURI().toString());
         this.photo = image;

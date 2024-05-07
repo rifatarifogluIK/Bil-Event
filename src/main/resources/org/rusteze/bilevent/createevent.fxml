@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.CreateEventController">
    <center>
       <BorderPane opacity="0.9" prefHeight="300.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField layoutX="450.0" layoutY="269.0" prefHeight="40.0" prefWidth="647.0" promptText="Enter the Name of the Event" />
-                  <TextField layoutX="450.0" layoutY="408.0" prefHeight="40.0" prefWidth="647.0" promptText="Description of Your Event" />
+                  <TextField fx:id="eventName" layoutX="450.0" layoutY="269.0" prefHeight="40.0" prefWidth="647.0" promptText="Enter the Name of the Event" />
+                  <TextField fx:id="eventDesc" layoutX="450.0" layoutY="408.0" prefHeight="40.0" prefWidth="647.0" promptText="Description of Your Event" />
                   <ImageView fitHeight="360.0" fitWidth="360.0" layoutX="30.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/emptyEvent.jpg" />
@@ -46,7 +46,7 @@
                         <Font name="Trebuchet MS Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" layoutX="110.0" layoutY="569.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Upload a Photo">
+                  <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" layoutX="110.0" layoutY="569.0" mnemonicParsing="false" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text="Upload a Photo">
                      <font>
                         <Font name="Trebuchet MS" size="15.0" />
                      </font>
@@ -54,7 +54,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" layoutX="629.0" layoutY="609.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="258.0" style="-fx-background-color: red; -fx-background-radius: 12;" text="Create" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" layoutX="629.0" layoutY="609.0" mnemonicParsing="false" onAction="#initializeEvent" prefHeight="40.0" prefWidth="258.0" style="-fx-background-color: red; -fx-background-radius: 12;" text="Create" textFill="WHITE">
                      <font>
                         <Font name="Trebuchet MS" size="15.0" />
                      </font>
@@ -62,7 +62,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <DatePicker layoutX="448.0" layoutY="511.0" prefHeight="30.0" prefWidth="180.0" />
+                  <DatePicker fx:id="eventDate" layoutX="448.0" layoutY="511.0" prefHeight="30.0" prefWidth="180.0" />
                   <Label layoutX="450.0" layoutY="466.0" text="Date of Your Event">
                      <font>
                         <Font name="Trebuchet MS Bold" size="20.0" />
@@ -86,7 +86,7 @@
                         <Insets bottom="5.0" right="80.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text=" Back">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#backBtn" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text=" Back">
                      <font>
                         <Font name="Trebuchet MS" size="15.0" />
                      </font>

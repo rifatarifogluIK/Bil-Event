@@ -17,4 +17,6 @@ public interface SceneHandler {
     public void searchBtn(ActionEvent event);
     public void createCommunityButtons();
     public void createBtn(ActionEvent event);
+    public void createEventBtn(ActionEvent event);
+    public void logOutBtn(ActionEvent event);
 }

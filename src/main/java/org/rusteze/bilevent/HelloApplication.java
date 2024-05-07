@@ -126,7 +126,6 @@ public class HelloApplication extends Application {
             ((Document)doc.get("createdEvents")).values().forEach(e -> user.getCreatedEvents().add(Event.allEvents.get(e.toString())));
         }
 
-
         Enumeration<Community> allCommunities = Community.allCommunities.elements();
         while(allCommunities.hasMoreElements()){
             Community temp = allCommunities.nextElement();

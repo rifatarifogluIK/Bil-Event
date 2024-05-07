@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -15,18 +16,21 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class CreateCommunityController {
+public class CreateEventController {
 
     @FXML
-    TextField communityName;
+    TextField eventName;
     @FXML
-    TextField communityDesc;
+    TextField eventDesc;
+    @FXML
+    DatePicker eventDate;
 
-    public void initializeCommunity(ActionEvent event) {
-        String name = communityName.getText();
-        String description = communityDesc.getText();
+    public void initializeEvent(ActionEvent event) {
+        String name = eventName.getText();
+        String description = eventDesc.getText();
+        LocalDate date = eventDate.getValue();
 
-        HelloApplication.sessionUser.createCommunity(name, null);
+        HelloApplication.sessionUser.createEvent(name, description, date);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
@@ -36,7 +40,6 @@ public class CreateCommunityController {
             throw new RuntimeException(e);
         }
     }
-
     public void backBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
