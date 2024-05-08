@@ -60,8 +60,8 @@ public class Community implements Searchable{
         }
     }
 
-    public void createEvent(String name, String description, LocalDate date){
-        Event event = new CommunityEvent(this, name, description, date);
+    public void createEvent(String name, String description, String location, LocalDate date){
+        Event event = new CommunityEvent(this, name, description, location, date);
         adminList.forEach(admin -> event.getAdmins().add(admin));
         currentEvents.add(event);
     }
@@ -135,5 +135,10 @@ public class Community implements Searchable{
 
     public void setPhoto(Image photo) {
         this.photo = photo;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -159,7 +159,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <Pane prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.rowIndex="2">
+                  <Pane onMouseEntered="#onVBoxHover" onMouseExited="#exitVBoxHover" prefHeight="250.0" prefWidth="200.0" style="-fx-background-color: DF8142; -fx-background-radius: 8;" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                      </GridPane.margin>

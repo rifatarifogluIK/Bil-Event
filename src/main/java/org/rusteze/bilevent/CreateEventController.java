@@ -24,13 +24,16 @@ public class CreateEventController {
     TextField eventDesc;
     @FXML
     DatePicker eventDate;
+    @FXML
+    TextField eventLocation;
 
     public void initializeEvent(ActionEvent event) {
         String name = eventName.getText();
         String description = eventDesc.getText();
+        String location = eventLocation.getText();
         LocalDate date = eventDate.getValue();
 
-        HelloApplication.sessionUser.createEvent(name, description, date);
+        HelloApplication.sessionUser.createEvent(name, description, location, date);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));

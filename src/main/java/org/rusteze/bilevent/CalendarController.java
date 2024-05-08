@@ -91,14 +91,14 @@ public class CalendarController implements SceneHandler, Initializable {
         weekLabel.setText(dateOfMonday + " - " + weekStart.plusDays(6).getDayOfMonth() + " " + month);
 
         ArrayList<Event> recommendations = new ArrayList<Event>();
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1 Race", "aaa", LocalDate.of(2024, 5, 7)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 9)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 10)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 11)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 12)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " deneme4", "aaa", LocalDate.of(2024, 5, 15)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1", "aaa","V1", LocalDate.of(2024, 5, 6)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1", "aaa","V1", LocalDate.of(2024, 5, 6)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa","Odeon", LocalDate.of(2024, 5, 6)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa","Odeon", LocalDate.of(2024, 5, 6)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
 
         for (Event e : recommendations) { //TODO HelloApplication.sessionUser.getEnrolledEvents()
 

@@ -9,8 +9,8 @@ public class CommunityEvent extends Event{
 
     private Community community;
 
-    public CommunityEvent(Community community, String name, String description, LocalDate date) {
-        super(name, description, date);
+    public CommunityEvent(Community community, String name, String description, String location, LocalDate date) {
+        super(name, description, location, date);
         this.community = community;
     }
 

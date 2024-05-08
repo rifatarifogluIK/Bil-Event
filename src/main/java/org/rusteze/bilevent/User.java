@@ -80,9 +80,9 @@ public class User implements Searchable{
         return result;
     }
 
-    public void createEvent(String name, String description, LocalDate date) {
+    public void createEvent(String name, String description, String location, LocalDate date) {
 
-        Event event = new PersonalEvent(this, name, description, date);
+        Event event = new PersonalEvent(this, name, description, location, date);
         event.addAttendee(this);
         event.getAdmins().add(this);
         enrolledEvents.add(event);
@@ -127,6 +127,10 @@ public class User implements Searchable{
 
         }
         return left;
+    }
+    public void leaveEvent(Event event) {
+        enrolledEvents.remove(event);
+        event.getAttendees().remove(this);
     }
 
     public boolean hasEventPassed(Event event) {
@@ -191,6 +195,11 @@ public class User implements Searchable{
 
     public ArrayList<User> getFriends() {
         return friends;
+    }
+
+    @Override
+    public String toString() {
+        return username;
     }
 
     public String getUsername() {
