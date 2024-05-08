@@ -18,11 +18,16 @@ public class CommunityEvent extends Event{
         super(doc);
     }
 
-    public Community getCommunity() {
+    public Community getOrganizer() {
         return community;
     }
 
     public void setCommunity(Community community) {
         this.community = community;
+    }
+
+    @Override
+    public boolean find(String key) {
+        return false;
     }
 }

@@ -25,4 +25,9 @@ public class PersonalEvent extends Event{
     public void setOrganizer(User organizer) {
         this.organizer = organizer;
     }
+
+    @Override
+    public boolean find(String key) {
+        return false;
+    }
 }

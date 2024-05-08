@@ -2,6 +2,7 @@ package org.rusteze.bilevent;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
@@ -22,72 +23,31 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CommunityPane extends Pane {
+public class CommunityPane extends SearchContainer {
 
     private Community community;
-
+    private Button button1;
     public CommunityPane(Community community) {
         this.community = community;
-        Pane innerPane = new Pane();
-        innerPane.setPrefHeight(60);
-        innerPane.setPrefWidth(950);
-        innerPane.setLayoutX(43);
-        setPrefWidth(1036);
-        setPrefHeight(35);
-        innerPane.setStyle("-fx-background-color: #FF7F7F; -fx-background-radius: 8px");
-
-        BorderPane borderPane = new BorderPane();
-        Label label = new Label(community.getName());
-        label.setFont(Font.font("Trebuchet MS", 20));
-        BorderPane.setMargin(label, new Insets(10,0,0,40));
-        label.setTextFill(Color.WHITE);
-        label.setPrefWidth(700);
-        label.setAlignment(Pos.BASELINE_LEFT);
-        BorderPane.setAlignment(label, Pos.CENTER);
-        borderPane.setLeft(label);
-
-        HBox buttonPanel = new HBox();
-        Button joinBtn = new Button("Join");
-        joinBtn.setFont(new Font(15));
-
+        button1 = new Button();
+        button1.setFont(new Font(15));
+        button1.setAlignment(Pos.BASELINE_CENTER);
+        button1.setOnMouseEntered(this::onHoverWhite);
+        button1.setOnMouseExited(this::exitHoverWhite);
+        button1.setPrefHeight(40);
+        button1.setPrefWidth(80);
+        HBox.setMargin(button1, new Insets(10, 0, 0, 20));
+        buttonPanel.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+        button1.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
+        nameLabel.setText(community.getName());
+        button1.setText("Join");
+        button2.setText("Details");
+        buttonPanel.getChildren().add(button1);
         if(community.getMembers().contains(HelloApplication.sessionUser)) {
-            joinBtn.setText("Leave");
+            button1.setText("Leave");
         }
-        Button detailsBtn = new Button("Details");
-        detailsBtn.setFont(new Font(15));
-        joinBtn.setAlignment(Pos.BASELINE_CENTER);
-        detailsBtn.setAlignment(Pos.BASELINE_CENTER);
-        joinBtn.setOnMouseEntered(this::onHoverWhite);
-        joinBtn.setOnMouseExited(this::exitHoverWhite);
-        detailsBtn.setOnMouseEntered(this::onHoverWhite);
-        detailsBtn.setOnMouseExited(this::exitHoverWhite);
-
-        joinBtn.setOnAction(this::joinBtn);
-        detailsBtn.setOnAction(this::detailsBtn);
-        joinBtn.setPrefHeight(40);
-        joinBtn.setPrefWidth(80);
-        detailsBtn.setPrefHeight(40);
-        detailsBtn.setPrefWidth(80);
-        HBox.setMargin(joinBtn, new Insets(10, 0, 0, 20));
-        HBox.setMargin(detailsBtn, new Insets(10, 0, 0, 20));
-
-        joinBtn.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
-        detailsBtn.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
-
-        buttonPanel.getChildren().add(joinBtn);
-        buttonPanel.getChildren().add(detailsBtn);
-
-        borderPane.setRight(buttonPanel);
-        innerPane.getChildren().add(borderPane);
-        getChildren().add(innerPane);
-    }
-    public void onHoverWhite(MouseEvent mouseEvent) {
-        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #d1d0d0; -fx-background-radius: 12px");
-        ((Button)mouseEvent.getSource()).setCursor(Cursor.HAND);
-    }
-    public void exitHoverWhite(MouseEvent mouseEvent) {
-        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
-        ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+        button1.setOnAction(this::joinBtn);
+        button2.setOnAction(this::detailsBtn);
     }
 
     private void joinBtn(ActionEvent event) {
@@ -102,16 +62,15 @@ public class CommunityPane extends Pane {
             } else if(response == ButtonType.OK && ((Button)event.getSource()).getText().equals("Leave")) {
                 HelloApplication.sessionUser.removeCommunity(community);
             }
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("discovercommunity.fxml"));
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
-
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("discovercommunity.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public void detailsBtn(ActionEvent event) {

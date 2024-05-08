@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public abstract class Event {
+public abstract class Event implements Searchable{
 
     public static Dictionary<ObjectId, Event> allEvents = new Hashtable<>();
 
@@ -132,7 +132,7 @@ public abstract class Event {
     public ArrayList<User> getAdmins() {
         return admins;
     }
-
+    public abstract Searchable getOrganizer();
     public ArrayList<User> getAttendees() {
         return attendees;
     }

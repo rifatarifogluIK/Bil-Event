@@ -36,6 +36,7 @@ public class User implements Searchable{
         enrolledEvents = new ArrayList<Event>();
         attendedEvents = new ArrayList<Event>();
         createdEvents = new ArrayList<Event>();
+        friends = new ArrayList<User>();
         recommendations = new Recommendation(this);
         rating = 0;
         ratingCount = 0;
@@ -50,6 +51,7 @@ public class User implements Searchable{
         enrolledEvents = new ArrayList<Event>();
         attendedEvents = new ArrayList<Event>();
         createdEvents = new ArrayList<Event>();
+        friends = new ArrayList<User>();
         recommendations = new Recommendation(this);
         rating = (double)doc.get("rating");
         ratingCount = (int)doc.get("ratingCount");
@@ -185,6 +187,10 @@ public class User implements Searchable{
     }
     public double getRating() {
         return rating / ratingCount;
+    }
+
+    public ArrayList<User> getFriends() {
+        return friends;
     }
 
     public String getUsername() {

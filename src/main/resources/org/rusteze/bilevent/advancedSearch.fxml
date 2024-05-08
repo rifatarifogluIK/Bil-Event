@@ -31,62 +31,62 @@
             </Label>
          </top>
          <center>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="757.0" prefWidth="1036.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
-               <content>
-                  <VBox prefHeight="757.0" prefWidth="1036.0">
+            <VBox prefHeight="757.0" prefWidth="1036.0">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <TextField layoutX="14.0" layoutY="47.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter the Name of the Event">
-                                 <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
-                                 </cursor>
-                              </TextField>
-                              <TextField layoutX="14.0" layoutY="100.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter the Name of the Organizer">
-                                 <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
-                                 </cursor>
-                              </TextField>
-                              <ComboBox layoutX="758.0" layoutY="50.0" prefHeight="25.0" prefWidth="150.0">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ComboBox>
-                              <Label layoutX="591.0" layoutY="53.0" text="Location of the Event :">
-                                 <font>
-                                    <Font name="Trebuchet MS" size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="590.0" layoutY="106.0" prefHeight="19.0" prefWidth="156.0" text="Date of the Event:">
-                                 <font>
-                                    <Font name="Trebuchet MS" size="15.0" />
-                                 </font>
-                              </Label>
-                              <DatePicker layoutX="758.0" layoutY="103.0" prefWidth="150.0">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </DatePicker>
-                              <Button alignment="BASELINE_CENTER" contentDisplay="CENTER" layoutX="616.0" layoutY="148.0" mnemonicParsing="false" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="40.0" prefWidth="115.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 20;" text="Search">
-                                 <font>
-                                    <Font name="Trebuchet MS" size="15.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="626.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/SearchLogo.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </Pane>
-                        <VBox fx:id="searchResults" prefHeight="557.0" prefWidth="1036.0" />
+                        <TextField fx:id="nameSearch" layoutX="14.0" layoutY="47.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter the Name of the Event">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </TextField>
+                        <TextField fx:id="organizerSearch" layoutX="14.0" layoutY="100.0" prefHeight="30.0" prefWidth="500.0" promptText="Enter the Name of the Organizer">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </TextField>
+                        <ComboBox layoutX="758.0" layoutY="50.0" prefHeight="25.0" prefWidth="150.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ComboBox>
+                        <Label layoutX="591.0" layoutY="53.0" text="Location of the Event :">
+                           <font>
+                              <Font name="Trebuchet MS" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="590.0" layoutY="106.0" prefHeight="19.0" prefWidth="156.0" text="Date of the Event:">
+                           <font>
+                              <Font name="Trebuchet MS" size="15.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="dateSearch" layoutX="758.0" layoutY="103.0" prefWidth="150.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </DatePicker>
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="616.0" layoutY="148.0" mnemonicParsing="false" onAction="#showResults" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="40.0" prefWidth="115.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 20;" text="Search">
+                           <font>
+                              <Font name="Trebuchet MS" size="15.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="626.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/SearchLogo.png" />
+                           </image>
+                        </ImageView>
                      </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
+                  </Pane>
+                  <ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS">
+                     <content>
+                        <VBox fx:id="searchResults" prefHeight="557.0" prefWidth="1036.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
          </center>
       </BorderPane>
    </center>
