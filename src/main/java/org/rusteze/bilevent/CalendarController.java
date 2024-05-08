@@ -11,9 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
@@ -54,39 +56,6 @@ public class CalendarController implements SceneHandler, Initializable {
     VBox sunday;
     LocalDate weekStart;
 
-    private class EventDisplay extends Pane {
-        private Event event;
-
-        public EventDisplay(Event event) {
-            this.event = event;
-            this.setOnMouseClicked(this::onClick);
-            HBox innerContainer = new HBox();
-            ImageView image = new ImageView(event.getPhoto());
-            image.setFitWidth(20);
-            image.setFitHeight(20);
-            Label eventName = new Label(event.getName());
-            eventName.setFont(Font.font("Trebuchet MS", 20));
-            eventName.setStyle("-fx-font-weight: bold;");
-            innerContainer.getChildren().add(image);
-            innerContainer.getChildren().add(eventName);
-            getChildren().add(innerContainer);
-            innerContainer.setLayoutX(20);
-            setOnMouseEntered(e -> this.setCursor(Cursor.HAND));
-            setOnMouseExited(e -> this.setCursor(Cursor.DEFAULT));
-        }
-
-        public void onClick(MouseEvent mouseEvent) {
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            try {
-                EventPageController.setEvent(this.event);
-                Parent root = FXMLLoader.load(getClass().getResource("eventPage.fxml"));
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 
     public void nextWeek(MouseEvent mouseEvent) {
         weekStart = weekStart.plusDays(7);
@@ -156,6 +125,23 @@ public class CalendarController implements SceneHandler, Initializable {
                 VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
             }
         }
+    }
+    public void onVBoxHover(MouseEvent mouseEvent) {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20);
+        dropShadow.setOffsetX(0);
+        dropShadow.setOffsetY(0);
+        dropShadow.setColor(Color.rgb(0, 0, 0, 1));
+        ((Node)mouseEvent.getSource()).setEffect(dropShadow);
+    }
+    public void exitVBoxHover(MouseEvent mouseEvent) {
+
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20);
+        dropShadow.setOffsetX(0);
+        dropShadow.setOffsetY(0);
+        dropShadow.setColor(Color.rgb(0, 0, 0, 0));
+        ((Node)mouseEvent.getSource()).setEffect(dropShadow);
     }
 
     public void onHover(MouseEvent mouseEvent) {

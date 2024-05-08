@@ -11,16 +11,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Insets;
 import java.io.IOException;
 import java.net.URL;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class HomeController implements SceneHandler, Initializable {
@@ -29,6 +37,16 @@ public class HomeController implements SceneHandler, Initializable {
     VBox buttonPanel;
     @FXML
     HBox eventPanel;
+    @FXML
+    VBox day1;
+    @FXML
+    VBox day2;
+    @FXML
+    VBox day3;
+    @FXML
+    VBox day4;
+    @FXML
+    VBox day5;
 
     public void displayEvents() {
     //TODO
@@ -47,6 +65,80 @@ public class HomeController implements SceneHandler, Initializable {
             HBox.setMargin(eventPane, new Insets(100, 220, 0, 0));
             eventPanel.setAlignment(Pos.BASELINE_LEFT);
         }
+        weeklyView();
+    }
+    public void weeklyView() {
+        LocalDate today = LocalDate.now();
+        day1.setAlignment(Pos.TOP_CENTER);
+        day2.setAlignment(Pos.TOP_CENTER);
+        day3.setAlignment(Pos.TOP_CENTER);
+        day4.setAlignment(Pos.TOP_CENTER);
+        day5.setAlignment(Pos.TOP_CENTER);
+        Label dayLabel1 = new Label(today.plusDays(0).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault()));
+        dayLabel1.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 24));
+        dayLabel1.setPadding(new Insets(10,0,0,0));
+        day1.getChildren().add(dayLabel1);
+        Label dayLabel2 = new Label(today.plusDays(1).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault()));
+        dayLabel2.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 24));
+        dayLabel2.setPadding(new Insets(10,0,0,0));
+        day2.getChildren().add(dayLabel2);
+        Label dayLabel3 = new Label(today.plusDays(2).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault()));
+        dayLabel3.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 24));
+        dayLabel3.setPadding(new Insets(10,0,0,0));
+        day3.getChildren().add(dayLabel3);
+        Label dayLabel4 = new Label(today.plusDays(3).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault()));
+        dayLabel4.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 24));
+        dayLabel4.setPadding(new Insets(10,0,0,0));
+        day4.getChildren().add(dayLabel4);
+        Label dayLabel5 = new Label(today.plusDays(4).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault()));
+        dayLabel5.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 24));
+        dayLabel5.setPadding(new Insets(10,0,0,0));
+        day5.getChildren().add(dayLabel5);
+
+
+        for(Event event: HelloApplication.sessionUser.getThisWeekEvents()) {
+            if(event.getDate().isEqual(today)) {
+                EventDisplay eventDisplay = new EventDisplay(event);
+                day1.getChildren().add(eventDisplay);
+                VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
+            } else if (event.getDate().isEqual(today.plusDays(1))) {
+                EventDisplay eventDisplay = new EventDisplay(event);
+                day2.getChildren().add(eventDisplay);
+                VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
+            }
+            else if (event.getDate().isEqual(today.plusDays(2))) {
+                EventDisplay eventDisplay = new EventDisplay(event);
+                day3.getChildren().add(eventDisplay);
+                VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
+            }else if (event.getDate().isEqual(today.plusDays(3))) {
+                EventDisplay eventDisplay = new EventDisplay(event);
+                day4.getChildren().add(eventDisplay);
+                VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
+            }
+            else if (event.getDate().isEqual(today.plusDays(4))) {
+                EventDisplay eventDisplay = new EventDisplay(event);
+                day5.getChildren().add(eventDisplay);
+                VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
+            }
+
+        }
+    }
+    public void onVBoxHover(MouseEvent mouseEvent) {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20);
+        dropShadow.setOffsetX(0);
+        dropShadow.setOffsetY(0);
+        dropShadow.setColor(Color.rgb(0, 0, 0, 0.5));
+        ((VBox)mouseEvent.getSource()).setEffect(dropShadow);
+    }
+    public void exitVBoxHover(MouseEvent mouseEvent) {
+
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20);
+        dropShadow.setOffsetX(0);
+        dropShadow.setOffsetY(0);
+        dropShadow.setColor(Color.rgb(0, 0, 0, 0));
+        ((VBox)mouseEvent.getSource()).setEffect(dropShadow);
     }
     @Override
     public void createCommunityButtons() {
