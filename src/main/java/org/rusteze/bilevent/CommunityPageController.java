@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -25,6 +26,10 @@ import javafx.scene.control.Label;
 public class CommunityPageController implements Initializable {
     @FXML
     private Label departmentLabel;
+    @FXML
+    private Label departmentLabel1;
+    @FXML
+    private ImageView photo;
     @FXML
     private Button editBtn;
     @FXML
@@ -69,7 +74,9 @@ public class CommunityPageController implements Initializable {
     }
 
     public void setPage() {
+        departmentLabel1.setText("Current Events Of " + community.getName());
         departmentLabel.setText(community.getName());
+        photo.setImage(community.getPhoto());
 
         if(!community.isAdmin(HelloApplication.sessionUser)) {
             editBtn.setVisible(false);

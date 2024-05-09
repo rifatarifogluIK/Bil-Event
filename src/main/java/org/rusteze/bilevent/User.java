@@ -80,9 +80,9 @@ public class User implements Searchable{
         return result;
     }
 
-    public void createEvent(String name, String description, String location, LocalDate date) {
+    public void createEvent(String name, String description, String location, LocalDate date, Image image) {
 
-        Event event = new PersonalEvent(this, name, description, location, date);
+        Event event = new PersonalEvent(this, name, description, location, date, image);
         event.addAttendee(this);
         event.getAdmins().add(this);
         enrolledEvents.add(event);
