@@ -1,7 +1,6 @@
 package org.rusteze.bilevent;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -12,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import java.io.File;
 
 public class UserPane extends Pane {
 
@@ -30,10 +28,14 @@ public class UserPane extends Pane {
         innerPane.setStyle("-fx-background-color: #7d87ff; -fx-background-radius: 18px;");
         innerPane.setOnMouseEntered(this::onHover);
         innerPane.setOnMouseExited(this::exitHover);
+        innerPane.setOnMouseClicked(this::onClick);
         HBox contentBox = new HBox();
-        ImageView profilePicture = new ImageView(user.getPhoto());
+
+        Image image = user.getPhoto();
+        ImageView profilePicture = new ImageView(image);
         profilePicture.setFitHeight(30);
         profilePicture.setFitWidth(30);
+
         Label userName = new Label(user.getUsername());
         userName.setFont(Font.font("Trebuchet MS", FontWeight.BOLD,20));
         contentBox.getChildren().add(profilePicture);
@@ -43,6 +45,9 @@ public class UserPane extends Pane {
 
         innerPane.getChildren().add(contentBox);
         getChildren().add(innerPane);
+    }
+    public void onClick(MouseEvent event) {
+
     }
     public void onHover(MouseEvent event) {
         ((Node) event.getSource()).setCursor(Cursor.HAND);

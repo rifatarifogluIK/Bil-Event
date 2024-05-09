@@ -217,7 +217,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Label fx:id="profileName" alignment="TOP_CENTER" prefHeight="29.0" prefWidth="133.0" text="Profile Name">
+            <Label fx:id="profileName1" alignment="TOP_CENTER" prefHeight="29.0" prefWidth="133.0" text="Profile Name">
                <font>
                   <Font size="15.0" />
                </font>
@@ -230,11 +230,14 @@
                   <Font name="Segoe Print Bold" size="25.0" />
                </font>
             </Label>
-            <VBox fx:id="friendPanel" minHeight="450.0" prefHeight="450.0" prefWidth="250.0">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="450.0" prefWidth="250.0" style="-fx-background: B5DBFF; -fx-background-color: transparent;" vbarPolicy="ALWAYS">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-            </VBox>
+               <content>
+                  <VBox fx:id="friendPanel1" style="-fx-background-color: B5DBFF;" />
+               </content>
+            </ScrollPane>
             <Button mnemonicParsing="false" onAction="#createEventBtn" onMouseEntered="#onHoverWhite" onMouseExited="#exitHoverWhite" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 12;" text="Create an Event">
                <VBox.margin>
                   <Insets bottom="10.0" top="20.0" />

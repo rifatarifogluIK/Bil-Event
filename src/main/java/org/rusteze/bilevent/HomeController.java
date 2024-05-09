@@ -50,6 +50,8 @@ public class HomeController implements SceneHandler, Initializable {
     VBox day4;
     @FXML
     VBox day5;
+    @FXML
+    VBox friendPanel;
 
     public void displayEvents() {
     //TODO
@@ -68,6 +70,7 @@ public class HomeController implements SceneHandler, Initializable {
         }
         weeklyView();
     }
+
     public void weeklyView() {
         LocalDate today = LocalDate.now();
         day1.setAlignment(Pos.TOP_CENTER);
@@ -140,6 +143,16 @@ public class HomeController implements SceneHandler, Initializable {
         dropShadow.setOffsetY(0);
         dropShadow.setColor(Color.rgb(0, 0, 0, 0));
         ((VBox)mouseEvent.getSource()).setEffect(dropShadow);
+    }
+    @Override
+    public void displayFriends() {
+        ArrayList<User> friends = HelloApplication.sessionUser.getFriends();
+
+        for(User friend : friends) {
+            UserPane userPane = new UserPane(friend);
+            friendPanel.getChildren().add(userPane);
+            VBox.setMargin(userPane, new Insets(0,0,10,0));
+        }
     }
     @Override
     public void createCommunityButtons() {
@@ -256,6 +269,7 @@ public class HomeController implements SceneHandler, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayEvents();
+        displayFriends();
         createCommunityButtons();
     }
 }

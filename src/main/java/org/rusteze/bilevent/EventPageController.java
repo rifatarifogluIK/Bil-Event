@@ -4,17 +4,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EventPageController implements Initializable {
@@ -37,6 +41,11 @@ public class EventPageController implements Initializable {
     ListView<Message> messageListView;
     @FXML
     TextField messageInputField1;
+    @FXML
+    VBox attendeePanel;
+    @FXML
+    ImageView eventPhoto;
+
     private static Event event;
     private User currentUser;
 
@@ -121,6 +130,7 @@ public class EventPageController implements Initializable {
     public void setPage() {
         refresh();
         eventName.setText(event.getName());
+        eventPhoto.setImage(event.getPhoto());
         dateLabel.setText(dateLabel.getText() + " " + event.getDate());
         organizerLabel.setText(organizerLabel.getText() + " " + event.getOrganizer());
         locationLabel.setText(locationLabel.getText() + " " + event.getLocation());
@@ -128,6 +138,20 @@ public class EventPageController implements Initializable {
         enrollBtn.setText("Enroll");
         if (HelloApplication.sessionUser.getEnrolledEvents().contains(event)) {
             enrollBtn.setText("Leave");
+        }
+        displayMembers();
+    }
+    public void displayMembers() {
+        ArrayList<User> attendees = event.getAttendees();
+        attendees.add(new User("Rıfat", "Ruhi123", "rıfat@mail.com"));
+        attendees.add(new User("Selim", "Ruhi1234", "selim@mail.com"));
+        attendees.add(new User("Berkant", "Ruhi12345", "berkant@mail.com"));
+        attendees.add(new User("Devran", "Ruhi123456", "devran@mail.com"));
+
+        for(User attendee : attendees) {
+            UserPane userPane = new UserPane(attendee);
+            attendeePanel.getChildren().add(userPane);
+            VBox.setMargin(userPane, new Insets(0,0,10,0));
         }
     }
 

@@ -19,4 +19,5 @@ public interface SceneHandler {
     public void createBtn(ActionEvent event);
     public void createEventBtn(ActionEvent event);
     public void logOutBtn(ActionEvent event);
+    public void displayFriends();
 }

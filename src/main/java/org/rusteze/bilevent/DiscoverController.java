@@ -29,6 +29,8 @@ public class DiscoverController implements SceneHandler, Initializable {
     private VBox popCommunities;
     @FXML
     private VBox communityRec;
+    @FXML
+    private VBox friendPanel;
 
     public void setPage() {
 
@@ -63,6 +65,16 @@ public class DiscoverController implements SceneHandler, Initializable {
     public void exitHoverWhite(MouseEvent mouseEvent) {
         ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
         ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+    @Override
+    public void displayFriends() {
+        ArrayList<User> friends = HelloApplication.sessionUser.getFriends();
+
+        for(User friend : friends) {
+            UserPane userPane = new UserPane(friend);
+            friendPanel.getChildren().add(userPane);
+            VBox.setMargin(userPane, new Insets(0,0,10,0));
+        }
     }
 
     @Override
@@ -162,6 +174,7 @@ public class DiscoverController implements SceneHandler, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createCommunityButtons();
+        displayFriends();
         setPage();
     }
 }

@@ -21,6 +21,8 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CreateEventController {
 
@@ -57,7 +59,10 @@ public class CreateEventController {
 
         HelloApplication.sessionUser.createEvent(name, description, location, date, image);
 
-        File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", name + "Photo.png");
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+        File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
+
         Image fxImage = imageView.getImage();
         BufferedImage bImage = SwingFXUtils.fromFXImage(fxImage, null);
         try {

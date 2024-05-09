@@ -39,6 +39,8 @@ public class SearchController implements SceneHandler, Initializable {
     private TextField organizerSearch;
     @FXML
     private DatePicker dateSearch;
+    @FXML
+    private VBox friendPanel;
 
     private class UserContainer extends SearchContainer {
         private User user;
@@ -172,7 +174,16 @@ public class SearchController implements SceneHandler, Initializable {
             }
         }
     }
+    @Override
+    public void displayFriends() {
+        ArrayList<User> friends = HelloApplication.sessionUser.getFriends();
 
+        for(User friend : friends) {
+            UserPane userPane = new UserPane(friend);
+            friendPanel.getChildren().add(userPane);
+            VBox.setMargin(userPane, new Insets(0,0,10,0));
+        }
+    }
 
     @Override
     public void createBtn(ActionEvent event) {
@@ -268,5 +279,6 @@ public class SearchController implements SceneHandler, Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createCommunityButtons();
+        displayFriends();
     }
 }
