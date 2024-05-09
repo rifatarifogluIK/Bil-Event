@@ -21,6 +21,14 @@
                <children>
                   <HBox prefHeight="85.0" prefWidth="1036.0">
                      <children>
+                        <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/Logo.PNG" />
+                           </image>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ImageView>
                         <Label fx:id="departmentLabel" text="Community Name">
                            <font>
                               <Font name="Trebuchet MS Bold" size="35.0" />
@@ -66,8 +74,11 @@
                            </HBox.margin>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </HBox>
-                  <Label fx:id="departmentLabel1" text="Current Events of Community Name">
+                  <Label fx:id="departmentLabel1" text="Current Events of">
                      <font>
                         <Font name="Trebuchet MS Bold" size="35.0" />
                      </font>
@@ -80,7 +91,7 @@
                         <HBox fx:id="eventPanel" prefHeight="400.0" prefWidth="996.0" />
                      </content>
                   </ScrollPane>
-                  <Label fx:id="departmentLabel11" text="Related Content">
+                  <Label fx:id="departmentLabel11" text="Description:">
                      <font>
                         <Font name="Trebuchet MS Bold" size="35.0" />
                      </font>

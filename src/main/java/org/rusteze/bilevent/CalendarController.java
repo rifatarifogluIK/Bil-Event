@@ -90,15 +90,7 @@ public class CalendarController implements SceneHandler, Initializable {
         String month = weekStart.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault());
         weekLabel.setText(dateOfMonday + " - " + weekStart.plusDays(6).getDayOfMonth() + " " + month);
 
-        ArrayList<Event> recommendations = new ArrayList<Event>();
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1", "aaa","V1", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1", "aaa","V1", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa","Odeon", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa","Odeon", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
+        ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
 
         for (Event e : recommendations) { //TODO HelloApplication.sessionUser.getEnrolledEvents()
 

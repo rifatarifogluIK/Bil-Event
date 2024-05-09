@@ -1,5 +1,6 @@
 package org.rusteze.bilevent;
 
+import javafx.scene.image.Image;
 import org.bson.Document;
 
 import java.io.FileNotFoundException;
@@ -9,8 +10,8 @@ public class PersonalEvent extends Event{
 
     private User organizer;
 
-    public PersonalEvent(User organizer, String name, String description, String location, LocalDate date) {
-        super(name, description, location, date);
+    public PersonalEvent(User organizer, String name, String description, String location, LocalDate date, Image image) {
+        super(name, description, location, date, image);
         this.organizer = organizer;
     }
 

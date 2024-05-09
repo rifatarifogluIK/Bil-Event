@@ -5,7 +5,7 @@ module org.rusteze.bilevent {
     requires org.mongodb.bson;
     requires org.mongodb.driver.core;
     requires java.desktop;
-
+    requires javafx.swing;
 
     opens org.rusteze.bilevent to javafx.fxml;
     exports org.rusteze.bilevent;

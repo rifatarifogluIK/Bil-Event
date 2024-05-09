@@ -50,15 +50,7 @@ public class HomeController implements SceneHandler, Initializable {
 
     public void displayEvents() {
     //TODO
-        ArrayList<Event> recommendations = new ArrayList<Event>();
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1", "aaa","V1", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " F1", "aaa","V1", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa","Odeon", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " Concert", "aaa","Odeon", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " MayFest", "aaa","MayFest", LocalDate.of(2024, 5, 6)));
+        ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
 
         for(Event e : recommendations) {
             EventPane eventPane = new EventPane(e);

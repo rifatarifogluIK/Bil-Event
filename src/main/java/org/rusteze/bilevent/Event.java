@@ -29,16 +29,19 @@ public abstract class Event implements Searchable{
     private ArrayList<String> attributes;
     private ObjectId id;
 
-    public Event(String name, String description, String location, LocalDate date) {
+    public Event(String name, String description, String location, LocalDate date, Image image) {
         this.name = name;
         this.description = description;
         this.date = date;
+        this.photo = image;
         attendees = new ArrayList<>();
         attributes = new ArrayList<>();
         admins = new ArrayList<>();
         this.location = location;
-        File file = new File("src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg");
-        Image image = new Image(file.toURI().toString());
+        if(image == null) {
+            File file = new File("src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg");
+            Image emptyImage = new Image(file.toURI().toString());
+        }
         this.photo = image;
         chatSpace = new ChatSpace();
         this.id = ObjectId.get();
