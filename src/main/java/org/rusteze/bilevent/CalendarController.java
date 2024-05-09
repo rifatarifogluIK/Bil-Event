@@ -90,9 +90,9 @@ public class CalendarController implements SceneHandler, Initializable {
         String month = weekStart.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault());
         weekLabel.setText(dateOfMonday + " - " + weekStart.plusDays(6).getDayOfMonth() + " " + month);
 
-        ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
+        ArrayList<Event> displayedEvents = HelloApplication.sessionUser.getEnrolledEvents();
 
-        for (Event e : recommendations) { //TODO HelloApplication.sessionUser.getEnrolledEvents()
+        for (Event e : displayedEvents) { //TODO HelloApplication.sessionUser.getEnrolledEvents()
 
             LocalDate eventLocalDate = e.getDate();
             int eventDate = eventLocalDate.getDayOfMonth();

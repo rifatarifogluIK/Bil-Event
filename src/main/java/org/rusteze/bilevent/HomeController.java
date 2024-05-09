@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,6 +23,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import javafx.geometry.Insets;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.DayOfWeek;
@@ -50,12 +53,17 @@ public class HomeController implements SceneHandler, Initializable {
 
     public void displayEvents() {
     //TODO
-        ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
+        ArrayList<Event> recommendations = new ArrayList<>(); //HelloApplication.sessionUser.getEventRec();
+        File file = new File("src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg");
+        Image emptyImage = new Image(file.toURI().toString());
+
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " a", "a", "a", LocalDate.now(), emptyImage));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " a", "a", "a", LocalDate.now(), emptyImage));
 
         for(Event e : recommendations) {
             EventPane eventPane = new EventPane(e);
             eventPanel.getChildren().add(eventPane);
-            HBox.setMargin(eventPane, new Insets(100, 220, 0, 0));
+            HBox.setMargin(eventPane, new Insets(100, 30, 0, 0));
             eventPanel.setAlignment(Pos.BASELINE_LEFT);
         }
         weeklyView();

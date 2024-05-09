@@ -232,9 +232,9 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <ScrollPane hbarPolicy="ALWAYS" prefHeight="400.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                  <ScrollPane hbarPolicy="ALWAYS" prefHeight="400.0" prefWidth="996.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
                      <content>
-                        <HBox fx:id="eventPanel" prefHeight="400.0" prefWidth="996.0" />
+                        <HBox fx:id="eventPanel" />
                      </content>
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" />
@@ -255,7 +255,7 @@
                               <Insets bottom="60.0" left="30.0" top="60.0" />
                            </HBox.margin>
                         </VBox>
-                        <VBox fx:id="day2" onMouseEntered="#onVBoxHover" onMouseExited="#exitVBoxHover" prefHeight="200.0" prefWidth="170.0" style="-fx-background-color: E5E5E5; -fx-background-radius: 36;">
+                        <VBox fx:id="day2" onMouseEntered="#onVBoxHover" onMouseExited="#exitVBoxHover" prefHeight="200.0" prefWidth="170.0" style="-fx-background-color: c9e4de; -fx-background-radius: 36;">
                            <HBox.margin>
                               <Insets bottom="60.0" left="30.0" top="60.0" />
                            </HBox.margin>

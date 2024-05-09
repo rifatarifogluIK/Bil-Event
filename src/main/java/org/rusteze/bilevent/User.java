@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -37,6 +38,8 @@ public class User implements Searchable{
         attendedEvents = new ArrayList<Event>();
         createdEvents = new ArrayList<Event>();
         friends = new ArrayList<User>();
+        File emptyPP = new File("src/main/resources/org/rusteze/bilevent/Images/UserIcon.png");
+        photo = new Image(emptyPP.toURI().toString());
         recommendations = new Recommendation(this);
         rating = 0;
         ratingCount = 0;
@@ -200,6 +203,10 @@ public class User implements Searchable{
     @Override
     public String toString() {
         return username;
+    }
+
+    public Image getPhoto() {
+        return photo;
     }
 
     public String getUsername() {

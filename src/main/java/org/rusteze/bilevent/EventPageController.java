@@ -142,6 +142,12 @@ public class EventPageController implements Initializable {
         ChatSpace chatSpace = event.getChatSpace();
         messageListView.setItems(chatSpace.getMessages());
         chatSpace.addMessage("Welcome to the " + event.getName() + " Chat!", "System");
+        messageInputField1.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                sendChatMessage();
+                event.consume();
+            }
+        });
     }
 
     public void sendChatMessage() {
@@ -160,12 +166,6 @@ public class EventPageController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setPage();
         setChatSpace();
-        setCurrentUser(HelloApplication.getSessionUserName());
-        messageInputField1.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ENTER) {
-                sendChatMessage();
-                event.consume();
-            }
-        });
+        setCurrentUser(HelloApplication.sessionUser);
     }
 }

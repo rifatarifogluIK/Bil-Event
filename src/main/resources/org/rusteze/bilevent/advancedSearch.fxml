@@ -80,9 +80,9 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <ScrollPane hbarPolicy="NEVER" vbarPolicy="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="557.0" prefWidth="1036.0" vbarPolicy="ALWAYS">
                      <content>
-                        <VBox fx:id="searchResults" prefHeight="557.0" prefWidth="1036.0" />
+                        <VBox fx:id="searchResults" />
                      </content>
                   </ScrollPane>
                </children>

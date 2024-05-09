@@ -31,9 +31,9 @@
                <children>
                   <BorderPane>
                      <top>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="330.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="330.0" prefWidth="1036.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
                            <content>
-                              <VBox fx:id="popCommunities" prefHeight="330.0" prefWidth="1036.0">
+                              <VBox fx:id="popCommunities">
                                  <padding>
                                     <Insets top="20.0" />
                                  </padding></VBox>
@@ -53,7 +53,7 @@
                   </BorderPane>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="330.0" prefWidth="1036.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
                      <content>
-                        <VBox fx:id="communityRec" prefHeight="330.0" prefWidth="1036.0" />
+                        <VBox fx:id="communityRec" />
                      </content>
                   </ScrollPane>
                </children>

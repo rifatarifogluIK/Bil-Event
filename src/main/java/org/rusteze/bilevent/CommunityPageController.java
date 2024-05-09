@@ -16,6 +16,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +39,8 @@ public class CommunityPageController implements Initializable {
     private Button joinBtn;
     @FXML
     private HBox eventPanel;
+    @FXML
+    private VBox memberPanel;
 
     private static Community community;
 
@@ -48,6 +51,19 @@ public class CommunityPageController implements Initializable {
             eventPanel.getChildren().add(eventPane);
             HBox.setMargin(eventPane, new Insets(100, 220, 0, 0));
             eventPanel.setAlignment(Pos.BASELINE_LEFT);
+        }
+    }
+    public void displayMembers() {
+        ArrayList<User> members = community.getMembers();
+        members.add(new User("Rıfat", "Ruhi123", "rıfat@mail.com"));
+        members.add(new User("Selim", "Ruhi1234", "selim@mail.com"));
+        members.add(new User("Berkant", "Ruhi12345", "berkant@mail.com"));
+        members.add(new User("Devran", "Ruhi123456", "devran@mail.com"));
+
+        for(User member : members) {
+            UserPane userPane = new UserPane(member);
+            memberPanel.getChildren().add(userPane);
+            VBox.setMargin(userPane, new Insets(0,0,10,0));
         }
     }
 
@@ -88,6 +104,7 @@ public class CommunityPageController implements Initializable {
             joinBtn.setText("Join");
         }
         displayEvents();
+        displayMembers();
     }
     public void joinBtn(ActionEvent event) {
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
