@@ -70,9 +70,9 @@
                      <children>
                         <Pane prefHeight="444.0" prefWidth="1036.0">
                            <children>
-                              <ListView layoutX="108.0" layoutY="14.0" prefHeight="300.0" prefWidth="600.0" style="-fx-background-radius: 5;" />
-                              <TextField layoutX="108.0" layoutY="274.0" prefHeight="40.0" prefWidth="600.0" />
-                              <Button layoutX="628.0" layoutY="274.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: royalblue;" text="Send" textFill="WHITE">
+                              <ListView fx:id="messageListView" layoutX="108.0" layoutY="14.0" prefHeight="300.0" prefWidth="600.0" style="-fx-background-radius: 5;" />
+                              <TextField fx:id="messageInputField1" layoutX="108.0" layoutY="274.0" prefHeight="40.0" prefWidth="600.0" />
+                              <Button fx:id = "sendButton" layoutX="628.0" layoutY="274.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: royalblue;" text="Send" textFill="WHITE" onAction="#sendChatMessage">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

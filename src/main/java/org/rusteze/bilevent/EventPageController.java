@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -18,7 +19,8 @@ import java.util.ResourceBundle;
 
 public class EventPageController implements Initializable {
 
-
+    @FXML
+    Button sendButton;
     @FXML
     Label eventName;
     @FXML
@@ -31,10 +33,12 @@ public class EventPageController implements Initializable {
     Label attendCount;
     @FXML
     Button enrollBtn;
-
+    @FXML
     ListView<Message> messageListView;
+    @FXML
     TextField messageInputField1;
     private static Event event;
+    private User currentUser;
 
     public void enrollBtn(ActionEvent event) {
 
@@ -140,8 +144,28 @@ public class EventPageController implements Initializable {
         chatSpace.addMessage("Welcome to the " + event.getName() + " Chat!", "System");
     }
 
+    public void sendChatMessage() {
+        String messageText = messageInputField1.getText();
+        ChatSpace chatSpace = event.getChatSpace();
+        if (!messageText.isEmpty()) {
+            chatSpace.addMessage(messageText, currentUser.getUsername());
+            messageInputField1.clear();
+        }
+    }
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setPage();
+        setChatSpace();
+        setCurrentUser(HelloApplication.getSessionUserName());
+        messageInputField1.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                sendChatMessage();
+                event.consume();
+            }
+        });
     }
 }

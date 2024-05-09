@@ -146,4 +146,8 @@ public class HelloApplication extends Application {
             }
         }
     }
+
+    public static User getSessionUserName() {
+        return sessionUser;
+    }
 }
