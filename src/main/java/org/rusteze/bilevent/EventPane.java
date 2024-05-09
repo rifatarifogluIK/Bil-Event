@@ -57,12 +57,12 @@ public class EventPane extends Pane {
     }
 
     private void eventClicked(MouseEvent mouseEvent) {
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
         try {
             EventPageController.setEvent(this.event);
             Parent root = FXMLLoader.load(getClass().getResource("eventPage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) mouseEvent.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

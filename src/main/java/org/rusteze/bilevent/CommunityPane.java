@@ -62,11 +62,11 @@ public class CommunityPane extends SearchContainer {
             } else if(response == ButtonType.OK && ((Button)event.getSource()).getText().equals("Leave")) {
                 HelloApplication.sessionUser.removeCommunity(community);
             }
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("discovercommunity.fxml"));
-                stage.setScene(new Scene(root));
-                stage.show();
+                Scene scene = ((Node) event.getSource()).getScene();
+                scene.setRoot(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -74,12 +74,13 @@ public class CommunityPane extends SearchContainer {
     }
 
     public void detailsBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             CommunityPageController.setCommunity(community);
             Parent root = FXMLLoader.load(getClass().getResource("departmentpage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

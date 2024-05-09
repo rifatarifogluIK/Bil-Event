@@ -78,13 +78,12 @@ public class CreateEventController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            
             try {
                 EventPageController.setEvent(createdEvent);
                 Parent root = FXMLLoader.load(getClass().getResource("eventpage.fxml"));
-                stage.setScene(new Scene(root));
-                stage.show();
+                Scene scene = ((Node) event.getSource()).getScene();
+                scene.setRoot(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -94,11 +93,11 @@ public class CreateEventController implements Initializable {
 
     }
     public void backBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

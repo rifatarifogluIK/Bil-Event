@@ -100,11 +100,11 @@ public class CommunityPageController implements Initializable {
         });
     }
     public void backBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
