@@ -20,11 +20,11 @@ public class UserPane extends Pane {
         this.user = user;
 
         setPrefHeight(50);
-        setPrefWidth(250);
+        setPrefWidth(200);
         Pane innerPane = new Pane();
-        innerPane.setPrefWidth(200);
+        innerPane.setPrefWidth(190);
         innerPane.setPrefHeight(50);
-        innerPane.setLayoutX(25);
+        innerPane.setLayoutX(30);
         innerPane.setStyle("-fx-background-color: #7d87ff; -fx-background-radius: 18px;");
         innerPane.setOnMouseEntered(this::onHover);
         innerPane.setOnMouseExited(this::exitHover);

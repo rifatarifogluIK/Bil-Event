@@ -94,7 +94,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" layoutX="629.0" layoutY="609.0" mnemonicParsing="false" onAction="#initializeCommunity" prefHeight="40.0" prefWidth="258.0" style="-fx-background-color: red; -fx-background-radius: 12;" text="Create" textFill="WHITE">
+            <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" layoutX="629.0" layoutY="609.0" mnemonicParsing="false" onAction="#initializeCommunity" onMouseEntered="#onHoverRed" onMouseExited="#exitHoverRed" prefHeight="40.0" prefWidth="258.0" style="-fx-background-color: red; -fx-background-radius: 12;" text="Create" textFill="WHITE">
                <font>
                   <Font name="Trebuchet MS" size="15.0" />
                </font>
@@ -102,6 +102,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label fx:id="warningMessage" layoutX="635.0" layoutY="533.0" prefHeight="21.0" prefWidth="245.0" text="You have one or more fields empty!" textFill="RED">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>

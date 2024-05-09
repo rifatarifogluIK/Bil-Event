@@ -38,11 +38,12 @@ public abstract class Event implements Searchable{
         attributes = new ArrayList<>();
         admins = new ArrayList<>();
         this.location = location;
+        this.photo = image;
         if(image == null) {
             File file = new File("src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg");
             Image emptyImage = new Image(file.toURI().toString());
+            photo = emptyImage;
         }
-        this.photo = image;
         chatSpace = new ChatSpace();
         this.id = ObjectId.get();
     }

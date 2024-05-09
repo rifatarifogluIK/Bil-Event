@@ -3,12 +3,14 @@ package org.rusteze.bilevent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,11 +22,13 @@ import javafx.embed.swing.SwingFXUtils;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
 
-public class CreateEventController {
+public class CreateEventController implements Initializable {
 
     @FXML
     TextField eventName;
@@ -36,6 +40,8 @@ public class CreateEventController {
     TextField eventLocation;
     @FXML
     ImageView imageView;
+    @FXML
+    Label warningMessage;
 
     public void uploadBtn(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -51,34 +57,41 @@ public class CreateEventController {
     }
 
     public void initializeEvent(ActionEvent event) {
-        String name = eventName.getText();
-        String description = eventDesc.getText();
-        String location = eventLocation.getText();
-        LocalDate date = eventDate.getValue();
-        Image image = imageView.getImage();
 
-        HelloApplication.sessionUser.createEvent(name, description, location, date, image);
+        if(!eventName.getText().isBlank() && !eventDesc.getText().isBlank() && !eventLocation.getText().isBlank() && eventDate.getValue() != null) {
+            String name = eventName.getText();
+            String description = eventDesc.getText();
+            String location = eventLocation.getText();
+            LocalDate date = eventDate.getValue();
+            Image image = imageView.getImage();
 
-        LocalDateTime localDateTime = LocalDateTime.now();
-        String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-        File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
+            Event createdEvent = HelloApplication.sessionUser.createEvent(name, description, location, date, image);
 
-        Image fxImage = imageView.getImage();
-        BufferedImage bImage = SwingFXUtils.fromFXImage(fxImage, null);
-        try {
-            ImageIO.write(bImage, "png", saveFile);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            LocalDateTime localDateTime = LocalDateTime.now();
+            String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
+
+            Image fxImage = imageView.getImage();
+            BufferedImage bImage = SwingFXUtils.fromFXImage(fxImage, null);
+            try {
+                ImageIO.write(bImage, "png", saveFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            try {
+                EventPageController.setEvent(createdEvent);
+                Parent root = FXMLLoader.load(getClass().getResource("eventpage.fxml"));
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            warningMessage.setVisible(true);
         }
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
     public void backBtn(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -98,5 +111,18 @@ public class CreateEventController {
     public void exitHover(MouseEvent mouseEvent) {
         ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #B5DBFF; -fx-font-family: \"Trebuchet\"; -fx-font-size: 15px; -fx-background-radius: 12px");
         ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+    public void onHoverRed(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #e00000; -fx-background-radius: 15px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.HAND);
+    }
+    public void exitHoverRed(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #ff0000; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        warningMessage.setVisible(false);
     }
 }

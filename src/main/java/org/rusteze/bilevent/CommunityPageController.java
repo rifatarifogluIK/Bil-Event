@@ -67,28 +67,6 @@ public class CommunityPageController implements Initializable {
         }
     }
 
-    public void createEventBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("createevent.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void logOutBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public void setPage() {
         departmentLabel1.setText("Current Events Of " + community.getName());
         departmentLabel.setText(community.getName());
@@ -145,6 +123,14 @@ public class CommunityPageController implements Initializable {
     }
     public void exitHoverWhite(MouseEvent mouseEvent) {
         ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+    public void onHoverRed(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #e00000; -fx-background-radius: 15px");
+        ((Button)mouseEvent.getSource()).setCursor(Cursor.HAND);
+    }
+    public void exitHoverRed(MouseEvent mouseEvent) {
+        ((Button)mouseEvent.getSource()).setStyle("-fx-background-color: #ff0000; -fx-background-radius: 12px");
         ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
     }
 

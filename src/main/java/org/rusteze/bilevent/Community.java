@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -33,6 +34,11 @@ public class Community implements Searchable{
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
         this.photo = photo;
+        if(photo == null) {
+            File file = new File("src/main/resources/org/rusteze/bilevent/Images/Logo.PNG");
+            Image emptyImage = new Image(file.toURI().toString());
+            this.photo = emptyImage;
+        }
         this.rating = 0.0;
         this.ratingCount = 0;
         this.id = ObjectId.get();

@@ -83,13 +83,14 @@ public class User implements Searchable{
         return result;
     }
 
-    public void createEvent(String name, String description, String location, LocalDate date, Image image) {
+    public Event createEvent(String name, String description, String location, LocalDate date, Image image) {
 
         Event event = new PersonalEvent(this, name, description, location, date, image);
         event.addAttendee(this);
         event.getAdmins().add(this);
         enrolledEvents.add(event);
         createdEvents.add(event);
+        return event;
     }
     public void joinCommunity(Community community) {
         community.addMember(this);
@@ -101,12 +102,13 @@ public class User implements Searchable{
         community.getAdminList().remove(this);
     }
 
-    public void createCommunity(String name, Image photo) {
+    public Community createCommunity(String name, Image photo) {
 
         Community community = new Community(name, photo);
         community.getAdminList().add(this);
         community.getMembers().add(this);
         communities.add(community);
+        return community;
     }
     /**
      *
@@ -198,6 +200,10 @@ public class User implements Searchable{
 
     public ArrayList<User> getFriends() {
         return friends;
+    }
+
+    public void setPhoto(Image photo) {
+        this.photo = photo;
     }
 
     @Override

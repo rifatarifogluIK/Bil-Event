@@ -12,6 +12,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -22,9 +25,39 @@ public class SignUpController implements Initializable{
     private Button swapToLogIn;
     @FXML
     private AnchorPane slidingPane1;
+    @FXML
+    private Label warningLabel;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField mailField;
+    @FXML
+    private PasswordField passField1;
+    @FXML
+    private PasswordField passField2;
 
     private Stage stage;
     private Parent root;
+
+    public void signUpButton(ActionEvent event) throws IOException {
+
+        if(!nameField.getText().isBlank() && !mailField.getText().isBlank() && !passField1.getText().isBlank() && !passField2.getText().isBlank()) {
+            if(passField1.getText().equals(passField2.getText())) {
+                String userName = nameField.getText();
+                String email = mailField.getText();
+                String password = passField1.getText();
+
+
+                clickAccountButton(event);
+            } else {
+                warningLabel.setText("Passwords does not match!");
+                warningLabel.setVisible(true);
+            }
+        } else {
+            warningLabel.setText("You have one or more fields empty!");
+            warningLabel.setVisible(true);
+        }
+    }
 
     @FXML
     public void clickAccountButton(ActionEvent event) throws IOException {
@@ -51,6 +84,6 @@ public class SignUpController implements Initializable{
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        warningLabel.setVisible(false);
     }
 }

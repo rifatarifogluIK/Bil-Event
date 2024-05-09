@@ -54,7 +54,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" layoutX="629.0" layoutY="609.0" mnemonicParsing="false" onAction="#initializeEvent" prefHeight="40.0" prefWidth="258.0" style="-fx-background-color: red; -fx-background-radius: 12;" text="Create" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" layoutX="630.0" layoutY="664.0" mnemonicParsing="false" onAction="#initializeEvent" onMouseEntered="#onHoverRed" onMouseExited="#exitHoverRed" prefHeight="40.0" prefWidth="258.0" style="-fx-background-color: red; -fx-background-radius: 12;" text="Create" textFill="WHITE">
                      <font>
                         <Font name="Trebuchet MS" size="15.0" />
                      </font>
@@ -72,6 +72,11 @@
                   <Label layoutX="927.0" layoutY="466.0" text="Location">
                      <font>
                         <Font name="Trebuchet MS Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="warningMessage" layoutX="637.0" layoutY="604.0" prefHeight="21.0" prefWidth="245.0" text="You have one or more fields empty!" textFill="RED">
+                     <font>
+                        <Font size="15.0" />
                      </font>
                   </Label>
                </children>
