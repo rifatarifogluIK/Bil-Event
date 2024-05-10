@@ -70,13 +70,13 @@ public class Community implements Searchable, ConvertibleToDocument{
 
     public void setAdmin(User user){
         if(members.contains(user)){
-            adminList.add(user);
+            admins.add(user);
         }
     }
 
     public void createEvent(String name, String description, String location, LocalDate date, Image image){
         Event event = new CommunityEvent(this, name, description, location, date, image);
-        adminList.forEach(admin -> event.getAdmins().add(admin));
+        admins.forEach(admin -> event.getAdmins().add(admin));
         currentEvents.add(event);
     }
 

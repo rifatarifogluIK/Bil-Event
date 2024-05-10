@@ -22,7 +22,6 @@ public class LogInController implements Initializable {
     private Button accountButton;
     @FXML
     private AnchorPane slidingPane;
-    
     private Stage stage;
     private Parent root;
 

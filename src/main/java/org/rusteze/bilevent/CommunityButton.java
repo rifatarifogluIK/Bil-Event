@@ -42,10 +42,10 @@ public class CommunityButton extends Button {
         CommunityPageController.setCommunity(((CommunityButton) event.getSource()).getCommunity());
 
         try {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = ((Node) event.getSource()).getScene();
             Parent root = FXMLLoader.load(getClass().getResource("departmentpage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            scene.setRoot(root);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

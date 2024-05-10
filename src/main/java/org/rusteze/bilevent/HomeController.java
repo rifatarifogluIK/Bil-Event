@@ -197,8 +197,9 @@ public class HomeController implements SceneHandler, Initializable {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
+            Stage stage =(Stage)((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
