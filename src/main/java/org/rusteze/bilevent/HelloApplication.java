@@ -21,11 +21,11 @@ public class HelloApplication extends Application {
 
     // Added this to test UI before implementing user authentication
     public static User sessionUser;
+    public static MongoDatabase db;
 
     @Override
     public void start(Stage stage) throws IOException{
-        String uri = "mongodb://bil:event@139.179.217.206:27017/";
-        MongoDatabase db;
+        String uri = "mongodb://bil:event@139.179.217.206:27017/?authSource=bil_event";
         ServerApi serverApi = ServerApi.builder()
                 .version(ServerApiVersion.V1)
                 .build();
@@ -33,14 +33,10 @@ public class HelloApplication extends Application {
                 .applyConnectionString(new ConnectionString(uri))
                 .serverApi(serverApi)
                 .build();
-        try (MongoClient client = MongoClients.create(settings)){
-            db = client.getDatabase("bil_event");
-        }catch (Exception e){
-            System.out.println("Can not connect");
-            return;
-        }
+        MongoClient client = MongoClients.create(settings);
+        db = client.getDatabase("bil_event");
 
-        //update(db);
+        //update();
 
         sessionUser = new User("Selim", "pass", "email");
         Community.popularCommunities.put(ObjectId.get() ,new Community("CS Department", "a", null));
@@ -66,7 +62,7 @@ public class HelloApplication extends Application {
         launch();
     }
 
-    public static void update(MongoDatabase db) throws FileNotFoundException {
+    public static void update() throws FileNotFoundException {
         MongoCollection<Document> events = db.getCollection("Event");
         MongoCollection<Document> communities = db.getCollection("Community");
         MongoCollection<Document> users = db.getCollection("User");
@@ -87,13 +83,13 @@ public class HelloApplication extends Application {
 
         for(Document doc : communityList){
             if(Community.allCommunities.get((ObjectId)doc.get("_id")) == null){
-                Community.allCommunities.put((ObjectId)doc.get("_id"), new Community(doc));
+                Community.allCommunities.put((ObjectId)doc.get("_id"), new Community().fromDocument(doc));
             }
         }
 
         for(Document doc : userList){
             if(User.allUsers.get((ObjectId)doc.get("_id")) == null){
-                User.allUsers.put((ObjectId)doc.get("_id"), new User(doc));
+                User.allUsers.put((ObjectId)doc.get("_id"), new User().fromDocument(doc));
             }
         }
 

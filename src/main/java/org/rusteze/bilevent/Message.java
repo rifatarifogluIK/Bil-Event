@@ -2,7 +2,9 @@ package org.rusteze.bilevent;
 
 import org.bson.Document;
 
-public class Message implements ConvertibleToDocument{
+import java.io.FileNotFoundException;
+
+public class Message implements ConvertibleWithDocument<Message> {
     private String text;
     private String username;
 
@@ -11,9 +13,7 @@ public class Message implements ConvertibleToDocument{
         this.username = username;
     }
 
-    public Message(Document doc){
-        this.text = (String)doc.get("text");
-        this.username = (String)doc.get("username");
+    public Message(){
     }
 
     @Override
@@ -28,5 +28,11 @@ public class Message implements ConvertibleToDocument{
                 .append("username", this.username);
 
         return doc;
+    }
+    @Override
+    public Message fromDocument(Document doc) throws FileNotFoundException {
+        this.text = (String)doc.get("text");
+        this.username = (String)doc.get("username");
+        return this;
     }
 }

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class Community implements Searchable, ConvertibleToDocument{
+public class Community implements Searchable, ConvertibleWithDocument<Community> {
 
     public static Dictionary<ObjectId, Community> allCommunities = new Hashtable<>();
     public static Dictionary<ObjectId, Community> popularCommunities = new Hashtable<>();
@@ -51,34 +51,41 @@ public class Community implements Searchable, ConvertibleToDocument{
         this.id = ObjectId.get();
     }
 
-    public Community(Document doc) throws FileNotFoundException {
-        this.name = (String)doc.get("name");
-        this.description = (String)doc.get("description");
+    public Community(){
         this.members = new ArrayList<>();
         this.admins = new ArrayList<>();
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
-        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
-        this.rating = (double)doc.get("rating");
-        this.ratingCount = (int)doc.get("ratingCount");
-        this.id = (ObjectId)doc.get("_id");
-        Searchable.allSearchables.add(this);
     }
 
     public void addMember(User user){
+        Bson filter = Filters.eq("_id", this.id);
+        Bson update = Updates.push("members", user.getId());
+        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions();
+        HelloApplication.db.getCollection("Community").findOneAndUpdate(filter, update, options);
+
         members.add(user);
     }
 
     public void setAdmin(User user){
         if(members.contains(user)){
+            Bson filter = Filters.eq("_id", this.id);
+            Bson update = Updates.push("admins", user.getId());
+            FindOneAndUpdateOptions options = new FindOneAndUpdateOptions();
+            HelloApplication.db.getCollection("Community").findOneAndUpdate(filter, update, options);
+
             admins.add(user);
         }
     }
 
     public Event createEvent(String name, String description, String location, LocalDate date, Image image){
         Event event = new CommunityEvent(this, name, description, location, date, image);
+        Document doc = event.toDocument();
+
+
         admins.forEach(admin -> event.getAdmins().add(admin));
         currentEvents.add(event);
+
         return event;
     }
 
@@ -113,6 +120,9 @@ public class Community implements Searchable, ConvertibleToDocument{
     public String getName() {
         return name;
     }
+    public String getDescription() {
+        return description;
+    }
     public ArrayList<User> getMembers() {
         return members;
     }
@@ -136,10 +146,6 @@ public class Community implements Searchable, ConvertibleToDocument{
     }
     public ObjectId getId() {
         return id;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public void setName(String name) {
@@ -178,5 +184,16 @@ public class Community implements Searchable, ConvertibleToDocument{
                 .append("pastEvents", pastEventsArr);
 
         return doc;
+    }
+    @Override
+    public Community fromDocument(Document doc) throws FileNotFoundException{
+        this.name = (String)doc.get("name");
+        this.description = (String)doc.get("description");
+        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.rating = (double)doc.get("rating");
+        this.ratingCount = (int)doc.get("ratingCount");
+        this.id = (ObjectId)doc.get("_id");
+
+        return this;
     }
 }

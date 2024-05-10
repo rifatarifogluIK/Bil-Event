@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public abstract class Event implements Searchable, ConvertibleToDocument{
+public abstract class Event implements Searchable, ConvertibleWithDocument<Event> {
 
     public static Dictionary<ObjectId, Event> allEvents = new Hashtable<>();
 
@@ -47,22 +47,12 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
         }
         chatSpace = new ChatSpace();
         this.id = ObjectId.get();
-        Searchable.allSearchables.add(this);
     }
 
-    public Event(Document doc) throws FileNotFoundException {
-        this.name = (String)doc.get("name");
-        this.description = (String)doc.get("description");
-        this.date = LocalDate.parse((String)doc.get("date"));
-        this.chatSpace = new ChatSpace(doc);
+    public Event(){
         this.attendees = new ArrayList<>();
         this.admins = new ArrayList<>();
         this.attributes = new ArrayList<>();
-        this.location = (String)doc.get("location");
-        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
-        this.rating = (double)doc.get("rating");
-        this.ratingCount = (int)doc.get("ratingCount");
-        this.id = (ObjectId)doc.get("_id");
     }
 
     public void addAttendee(User user)
@@ -76,9 +66,6 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
         }
         attendees.add(user);
     }
-    public void addAttribute(String attribute) {
-        this.attributes.add(attribute);
-    }
 
     public void removeAttendee(User user) {
         for (User u : attendees) {
@@ -88,6 +75,9 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
             }
         }
         //maybe we can make a pop-up screen to show in case there is no user with the given info.
+    }
+    public void addAttribute(String attribute) {
+        this.attributes.add(attribute);
     }
 
     public boolean isAdmin(User user)
@@ -133,6 +123,9 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
     public String getName() {
         return name;
     }
+    public String getDescription() {
+        return description;
+    }
     public Image getPhoto() {
         return photo;
     }
@@ -157,10 +150,6 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
     }
     public String getLocation() {
         return location;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     @Override
@@ -188,5 +177,19 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
                 .append("attributes", attributesArr);
 
         return doc;
+    }
+    @Override
+    public Event fromDocument(Document doc) throws FileNotFoundException {
+        this.name = (String)doc.get("name");
+        this.description = (String)doc.get("description");
+        this.date = LocalDate.parse((String)doc.get("date"));
+        this.chatSpace = new ChatSpace().fromDocument(doc);
+        this.location = (String)doc.get("location");
+        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.rating = (double)doc.get("rating");
+        this.ratingCount = (int)doc.get("ratingCount");
+        this.id = (ObjectId)doc.get("_id");
+
+        return this;
     }
 }

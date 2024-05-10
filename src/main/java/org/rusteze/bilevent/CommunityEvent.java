@@ -16,7 +16,8 @@ public class CommunityEvent extends Event{
     }
 
     public CommunityEvent(Document doc) throws FileNotFoundException {
-        super(doc);
+        super();
+        super.fromDocument(doc);
     }
 
     public Community getOrganizer() {

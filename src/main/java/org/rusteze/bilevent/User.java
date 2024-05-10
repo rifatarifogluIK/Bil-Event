@@ -1,7 +1,6 @@
 package org.rusteze.bilevent;
 
 import com.mongodb.BasicDBList;
-import com.mongodb.client.MongoDatabase;
 import javafx.scene.image.Image;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class User implements Searchable, ConvertibleToDocument{
+public class User implements Searchable, ConvertibleWithDocument<User> {
 
     public static Dictionary<ObjectId, User> allUsers = new Hashtable<>();
 
@@ -48,23 +47,14 @@ public class User implements Searchable, ConvertibleToDocument{
         rating = 0;
         ratingCount = 0;
         id = ObjectId.get();
-        Searchable.allSearchables.add(this);
     }
 
-    public User(Document doc) throws FileNotFoundException {
-        this.username = (String)doc.get("username");
-        this.password = (String)doc.get("password");
-        this.email = (String)doc.get("email");
-        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+    public User(){
         this.communities = new ArrayList<Community>();
         this.enrolledEvents = new ArrayList<Event>();
         this.attendedEvents = new ArrayList<Event>();
         this.createdEvents = new ArrayList<Event>();
         this.friends = new ArrayList<User>();
-        this.recommendations = new Recommendation(this);
-        this.rating = (double)doc.get("rating");
-        this.ratingCount = (int)doc.get("ratingCount");
-        this.id = ObjectId.get();
     }
 
     public boolean authentication() {
@@ -268,5 +258,18 @@ public class User implements Searchable, ConvertibleToDocument{
                 .append("createdEvents", createdEventsArr);
 
         return doc;
+    }
+    @Override
+    public User fromDocument(Document doc) throws FileNotFoundException {
+        this.username = (String)doc.get("username");
+        this.password = (String)doc.get("password");
+        this.email = (String)doc.get("email");
+        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.recommendations = new Recommendation(this);
+        this.rating = (double)doc.get("rating");
+        this.ratingCount = (int)doc.get("ratingCount");
+        this.id = ObjectId.get();
+
+        return this;
     }
 }
