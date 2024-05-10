@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.bson.BsonArray;
 import org.bson.Document;
 
-public class ChatSpace {
+public class ChatSpace implements ConvertibleToDocument{
     private ObservableList<Message> messages;
 
     public ChatSpace() {
@@ -27,5 +28,17 @@ public class ChatSpace {
 
     public ObservableList<Message> getMessages() {
         return messages;
+    }
+
+    @Override
+    public Document toDocument(){
+        Document doc = new Document();
+
+        BsonArray messagesArr = new BsonArray();
+        messages.forEach(e -> messagesArr.add(e.toDocument().toBsonDocument()));
+
+        doc.append("messages", messagesArr);
+
+        return doc;
     }
 }

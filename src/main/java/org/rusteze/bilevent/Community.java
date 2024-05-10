@@ -1,7 +1,12 @@
 package org.rusteze.bilevent;
 
+import com.mongodb.BasicDBList;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.Updates;
 import javafx.scene.image.Image;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.io.File;
@@ -12,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class Community implements Searchable{
+public class Community implements Searchable, ConvertibleToDocument{
 
     public static Dictionary<ObjectId, Community> allCommunities = new Hashtable<>();
     public static Dictionary<ObjectId, Community> popularCommunities = new Hashtable<>();
@@ -141,5 +146,31 @@ public class Community implements Searchable{
     @Override
     public String toString() {
         return name;
+    }
+    @Override
+    public Document toDocument(){
+        Document doc = new Document();
+
+        BasicDBList membersArr = new BasicDBList();
+        members.forEach(e -> membersArr.add(e.getId()));
+        BasicDBList adminsArr = new BasicDBList();
+        admins.forEach(e -> adminsArr.add(e.getId()));
+        BasicDBList currentEventsArr = new BasicDBList();
+        currentEvents.forEach(e -> currentEventsArr.add(e.getId()));
+        BasicDBList pastEventsArr = new BasicDBList();
+        pastEvents.forEach(e -> pastEventsArr.add(e.getId()));
+
+        doc.append("_id", this.id)
+                .append("name", this.name)
+                .append("description", this.description)
+                .append("photo", this.photo.getUrl())
+                .append("rating", this.rating)
+                .append("ratingCount", this.ratingCount)
+                .append("members", membersArr)
+                .append("admins", adminsArr)
+                .append("currentEvents", currentEventsArr)
+                .append("pastEvents", pastEventsArr);
+
+        return doc;
     }
 }

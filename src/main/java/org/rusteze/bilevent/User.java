@@ -1,16 +1,20 @@
 package org.rusteze.bilevent;
 
+import com.mongodb.BasicDBList;
+import com.mongodb.client.MongoDatabase;
 import javafx.scene.image.Image;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class User implements Searchable{
+public class User implements Searchable, ConvertibleToDocument{
 
     public static Dictionary<ObjectId, User> allUsers = new Hashtable<>();
 
@@ -234,12 +238,34 @@ public class User implements Searchable{
     public String toString() {
         return username;
     }
+    @Override
+    public Document toDocument(){
+        Document doc = new Document();
 
-    public Image getPhoto() {
-        return photo;
-    }
+        BasicDBList friendsArr = new BasicDBList();
+        friends.forEach(e -> friendsArr.add(e.getId()));
+        BasicDBList communitiesArr = new BasicDBList();
+        communities.forEach(e -> communitiesArr.add(e.getId()));
+        BasicDBList enrolledEventsArr = new BasicDBList();
+        enrolledEvents.forEach(e -> enrolledEventsArr.add(e.getId()));
+        BasicDBList attendedEventsArr = new BasicDBList();
+        attendedEvents.forEach(e -> attendedEventsArr.add(e.getId()));
+        BasicDBList createdEventsArr = new BasicDBList();
+        createdEvents.forEach(e -> createdEventsArr.add(e.getId()));
 
-    public String getUsername() {
-        return username;
+        doc.append("_id", this.id)
+                .append("username", this.username)
+                .append("password", this.password)
+                .append("email", this.email)
+                .append("photo", this.photo.getUrl())
+                .append("rating", this.rating)
+                .append("ratingCount", this.ratingCount)
+                .append("friends", friendsArr)
+                .append("communities", communitiesArr)
+                .append("enrolledEvents", enrolledEventsArr)
+                .append("attendedEvents", attendedEventsArr)
+                .append("createdEvents", createdEventsArr);
+
+        return doc;
     }
 }

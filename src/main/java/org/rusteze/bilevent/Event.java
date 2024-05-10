@@ -1,5 +1,6 @@
 package org.rusteze.bilevent;
 
+import com.mongodb.BasicDBList;
 import javafx.scene.image.Image;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public abstract class Event implements Searchable{
+public abstract class Event implements Searchable, ConvertibleToDocument{
 
     public static Dictionary<ObjectId, Event> allEvents = new Hashtable<>();
 
@@ -152,5 +153,32 @@ public abstract class Event implements Searchable{
     }
     public String getLocation() {
         return location;
+    }
+
+    @Override
+    public Document toDocument() {
+        Document doc = new Document();
+
+        BasicDBList attendeesArr = new BasicDBList();
+        attendees.forEach(e -> attendeesArr.add(e.getId()));
+        BasicDBList adminsArr = new BasicDBList();
+        admins.forEach(e -> adminsArr.add(e.getId()));
+        BasicDBList attributesArr = new BasicDBList();
+        attributes.forEach(e -> attributesArr.add(e));
+
+        doc.append("_id", this.id)
+                .append("name", this.name)
+                .append("description", this.description)
+                .append("date", this.date.toString())
+                .append("location", this.location)
+                .append("photo", this.photo.getUrl())
+                .append("rating", this.rating)
+                .append("ratingCount", this.ratingCount)
+                .append("chatSpace", this.chatSpace.toDocument())
+                .append("attendees", attendeesArr)
+                .append("admins", adminsArr)
+                .append("attributes", attributesArr);
+
+        return doc;
     }
 }
