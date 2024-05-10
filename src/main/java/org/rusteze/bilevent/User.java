@@ -46,19 +46,20 @@ public class User implements Searchable{
         id = ObjectId.get();
     }
 
-    public User(Document doc){
+    public User(Document doc) throws FileNotFoundException {
         this.username = (String)doc.get("username");
         this.password = (String)doc.get("password");
         this.email = (String)doc.get("email");
-        communities = new ArrayList<Community>();
-        enrolledEvents = new ArrayList<Event>();
-        attendedEvents = new ArrayList<Event>();
-        createdEvents = new ArrayList<Event>();
-        friends = new ArrayList<User>();
-        recommendations = new Recommendation(this);
-        rating = (double)doc.get("rating");
-        ratingCount = (int)doc.get("ratingCount");
-        id = ObjectId.get();
+        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.communities = new ArrayList<Community>();
+        this.enrolledEvents = new ArrayList<Event>();
+        this.attendedEvents = new ArrayList<Event>();
+        this.createdEvents = new ArrayList<Event>();
+        this.friends = new ArrayList<User>();
+        this.recommendations = new Recommendation(this);
+        this.rating = (double)doc.get("rating");
+        this.ratingCount = (int)doc.get("ratingCount");
+        this.id = ObjectId.get();
     }
 
     public boolean authentication() {
@@ -71,6 +72,7 @@ public class User implements Searchable{
         event.addAttendee(this);
 
     }
+
     public ArrayList<Event> getThisWeekEvents() {
         ArrayList<Event> result = new ArrayList<Event>();
         for(int i = 0; i < enrolledEvents.size(); i++) {
@@ -92,24 +94,27 @@ public class User implements Searchable{
         createdEvents.add(event);
         return event;
     }
+
     public void joinCommunity(Community community) {
         community.addMember(this);
         this.communities.add(community);
     }
+
     public void removeCommunity(Community community) {
         communities.remove(community);
         community.getMembers().remove(this);
-        community.getAdminList().remove(this);
+        community.getAdmins().remove(this);
     }
 
     public Community createCommunity(String name, String description, Image photo) {
 
         Community community = new Community(name, description, photo);
-        community.getAdminList().add(this);
+        community.getAdmins().add(this);
         community.getMembers().add(this);
         communities.add(community);
         return community;
     }
+
     /**
      *
      * @param event
@@ -133,6 +138,7 @@ public class User implements Searchable{
         }
         return left;
     }
+
     public void leaveEvent(Event event) {
         enrolledEvents.remove(event);
         event.getAttendees().remove(this);
@@ -176,6 +182,7 @@ public class User implements Searchable{
     public void addFriend(User user) {
         friends.add(user);
     }
+
     public ArrayList<Event> getEnrolledEvents() {
         return enrolledEvents;
     }
@@ -197,9 +204,26 @@ public class User implements Searchable{
     public double getRating() {
         return rating / ratingCount;
     }
-
     public ArrayList<User> getFriends() {
         return friends;
+    }
+    public Image getPhoto() {
+        return photo;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public int getRatingCount() {
+        return ratingCount;
+    }
+    public ObjectId getId() {
+        return id;
     }
 
     public void setPhoto(Image photo) {

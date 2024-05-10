@@ -20,7 +20,7 @@ public class Community implements Searchable{
     private String name;
     private String description;
     private ArrayList<User> members;
-    private ArrayList<User> adminList;
+    private ArrayList<User> admins;
     private ArrayList<Event> currentEvents;
     private ArrayList<Event> pastEvents;
     private Image photo;
@@ -32,7 +32,7 @@ public class Community implements Searchable{
         this.name = name;
         this.description = description;
         this.members = new ArrayList<>();
-        this.adminList = new ArrayList<>();
+        this.admins = new ArrayList<>();
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
         this.photo = photo;
@@ -50,7 +50,7 @@ public class Community implements Searchable{
         this.name = (String)doc.get("name");
         this.description = (String)doc.get("description");
         this.members = new ArrayList<>();
-        this.adminList = new ArrayList<>();
+        this.admins = new ArrayList<>();
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
         this.photo = new Image(new FileInputStream((String)doc.get("photo")));
@@ -100,40 +100,33 @@ public class Community implements Searchable{
     }
 
     public boolean isAdmin(User user) {
-        return adminList.contains(user);
+        return admins.contains(user);
     }
+
     public String getName() {
         return name;
     }
-
     public ArrayList<User> getMembers() {
         return members;
     }
-
-    public ArrayList<User> getAdminList() {
-        return adminList;
+    public ArrayList<User> getAdmins() {
+        return admins;
     }
-
     public ArrayList<Event> getCurrentEvents() {
         return currentEvents;
     }
-
     public ArrayList<Event> getPastEvents() {
         return pastEvents;
     }
-
     public Image getPhoto() {
         return photo;
     }
-
     public double getRating() {
         return rating;
     }
-
     public int getRatingCount() {
         return ratingCount;
     }
-
     public ObjectId getId() {
         return id;
     }
@@ -141,7 +134,6 @@ public class Community implements Searchable{
     public void setName(String name) {
         this.name = name;
     }
-
     public void setPhoto(Image photo) {
         this.photo = photo;
     }

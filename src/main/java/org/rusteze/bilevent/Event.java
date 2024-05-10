@@ -74,6 +74,7 @@ public abstract class Event implements Searchable{
         }
         attendees.add(user);
     }
+
     public void removeAttendee(User user) {
         for (User u : attendees) {
             if (u.getUsername().equals(user.getUsername())) {
@@ -101,6 +102,7 @@ public abstract class Event implements Searchable{
         LocalDate currentDate = LocalDate.now();
         return (int)ChronoUnit.DAYS.between(currentDate, plannedDate);
     }
+
     public boolean isThisWeek() {
         LocalDate currentDate = date;
         LocalDate mostRecentMonday = currentDate.with(DayOfWeek.MONDAY);
@@ -114,6 +116,7 @@ public abstract class Event implements Searchable{
         this.rating += rate;
         ratingCount++;
     }
+
     public double currentAverageRating()
     {
         double RatingWithoutRounding = rating / ratingCount;
@@ -125,15 +128,12 @@ public abstract class Event implements Searchable{
     public String getName() {
         return name;
     }
-
     public Image getPhoto() {
         return photo;
     }
-
     public ArrayList<String> getAttributes() {
         return attributes;
     }
-
     public ArrayList<User> getAdmins() {
         return admins;
     }
@@ -141,7 +141,6 @@ public abstract class Event implements Searchable{
     public ArrayList<User> getAttendees() {
         return attendees;
     }
-
     public ChatSpace getChatSpace() {
         return chatSpace;
     }
@@ -151,7 +150,6 @@ public abstract class Event implements Searchable{
     public ObjectId getId() {
         return id;
     }
-
     public String getLocation() {
         return location;
     }

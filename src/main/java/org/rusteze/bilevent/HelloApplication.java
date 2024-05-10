@@ -99,7 +99,7 @@ public class HelloApplication extends Application {
             Document doc = communities.find(new Document("_id", key)).first();
 
             ((Document)doc.get("members")).values().forEach(e -> com.getMembers().add(User.allUsers.get(e.toString())));
-            ((Document)doc.get("adminList")).values().forEach(e -> com.getAdminList().add(User.allUsers.get(e.toString())));
+            ((Document)doc.get("admins")).values().forEach(e -> com.getAdmins().add(User.allUsers.get(e.toString())));
             ((Document)doc.get("currentEvents")).values().forEach(e -> com.getCurrentEvents().add(Event.allEvents.get(e.toString())));
             ((Document)doc.get("pastEvents")).values().forEach(e -> com.getPastEvents().add(Event.allEvents.get(e.toString())));
         }
@@ -125,6 +125,7 @@ public class HelloApplication extends Application {
             ((Document)doc.get("enrolledEvents")).values().forEach(e -> user.getEnrolledEvents().add(Event.allEvents.get(e.toString())));
             ((Document)doc.get("attendedEvents")).values().forEach(e -> user.getAttendedEvents().add(Event.allEvents.get(e.toString())));
             ((Document)doc.get("createdEvents")).values().forEach(e -> user.getCreatedEvents().add(Event.allEvents.get(e.toString())));
+            ((Document)doc.get("friends")).values().forEach(e -> user.getFriends().add(User.allUsers.get(e.toString())));
         }
 
         Enumeration<Community> allCommunities = Community.allCommunities.elements();
