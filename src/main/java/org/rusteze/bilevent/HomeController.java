@@ -60,7 +60,7 @@ public class HomeController implements SceneHandler, Initializable {
         Image emptyImage = new Image(file.toURI().toString());
 
         recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " a", "a", "a", LocalDate.now(), emptyImage));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " a", "a", "a", LocalDate.now(), emptyImage));
+        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " abcd", "a", "a", LocalDate.now(), emptyImage));
 
         for(Event e : recommendations) {
             EventPane eventPane = new EventPane(e);

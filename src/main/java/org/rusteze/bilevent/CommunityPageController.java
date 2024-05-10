@@ -86,6 +86,8 @@ public class CommunityPageController implements Initializable {
     }
     public void joinBtn(ActionEvent event) {
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        confirmation.initOwner(stage);
         confirmation.setTitle("Confirmation Dialog");
         confirmation.setHeaderText("Are you sure you want to " + joinBtn.getText().toLowerCase() + " this community?");
 

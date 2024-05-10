@@ -52,6 +52,9 @@ public class EventPageController implements Initializable {
     public void enrollBtn(ActionEvent event) {
 
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        confirmation.initOwner(stage);
+
         confirmation.setTitle("Confirmation Dialog");
         confirmation.setHeaderText("Are You Sure You Want To " + enrollBtn.getText() + " This Event?");
 
