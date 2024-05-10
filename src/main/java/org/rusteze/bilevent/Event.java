@@ -47,6 +47,7 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
         }
         chatSpace = new ChatSpace();
         this.id = ObjectId.get();
+        Searchable.allSearchables.add(this);
     }
 
     public Event(Document doc) throws FileNotFoundException {

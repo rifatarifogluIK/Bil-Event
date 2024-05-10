@@ -29,6 +29,6 @@ public class PersonalEvent extends Event{
 
     @Override
     public boolean find(String key) {
-        return false;
+        return key.equals(organizer.getUsername());
     }
 }
