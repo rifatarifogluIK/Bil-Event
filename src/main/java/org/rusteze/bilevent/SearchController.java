@@ -40,6 +40,8 @@ public class SearchController implements SceneHandler, Initializable {
     @FXML
     private DatePicker dateSearch;
     @FXML
+    private ChoiceBox<String> eventLocation;
+    @FXML
     private VBox friendPanel;
 
     private class UserContainer extends SearchContainer {
@@ -153,8 +155,9 @@ public class SearchController implements SceneHandler, Initializable {
         String name = nameSearch.getText();
         String organizer = organizerSearch.getText();
         LocalDate date = dateSearch.getValue();
+        String location = eventLocation.getValue();
 
-        // TODO ArrayList<Searchable> results = Searchable.search(name, organizer, date);
+        // TODO ArrayList<Searchable> results = Searchable.search(name, organizer, location, date);
 
         ArrayList<Searchable> results = new ArrayList<Searchable>();
 
@@ -202,6 +205,7 @@ public class SearchController implements SceneHandler, Initializable {
 
 
         try {
+            CreateEventController.setCreatorCommunity(null);
             Parent root = FXMLLoader.load(getClass().getResource("createevent.fxml"));
             Scene scene = ((Node) event.getSource()).getScene();
             scene.setRoot(root);
@@ -273,6 +277,8 @@ public class SearchController implements SceneHandler, Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        eventLocation.getItems().clear();
+        eventLocation.getItems().addAll(CreateEventController.locations);
         createCommunityButtons();
         displayFriends();
     }

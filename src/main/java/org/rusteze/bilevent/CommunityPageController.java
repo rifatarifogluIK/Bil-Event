@@ -41,6 +41,8 @@ public class CommunityPageController implements Initializable {
     private HBox eventPanel;
     @FXML
     private VBox memberPanel;
+    @FXML
+    private Label communityDescription;
 
     private static Community community;
 
@@ -70,6 +72,7 @@ public class CommunityPageController implements Initializable {
     public void setPage() {
         departmentLabel1.setText("Current Events Of " + community.getName());
         departmentLabel.setText(community.getName());
+        communityDescription.setText(community.getDescription());
         photo.setImage(community.getPhoto());
 
         if(!community.isAdmin(HelloApplication.sessionUser)) {
@@ -84,6 +87,17 @@ public class CommunityPageController implements Initializable {
         displayEvents();
         displayMembers();
     }
+    public void createEventBtn(ActionEvent event) {
+        CreateEventController.setCreatorCommunity(community);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("createevent.fxml"));
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void joinBtn(ActionEvent event) {
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();

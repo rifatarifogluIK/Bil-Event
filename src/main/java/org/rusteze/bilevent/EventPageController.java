@@ -45,6 +45,8 @@ public class EventPageController implements Initializable {
     VBox attendeePanel;
     @FXML
     ImageView eventPhoto;
+    @FXML
+    Label eventDescription;
 
     private static Event event;
     private User currentUser;
@@ -116,6 +118,7 @@ public class EventPageController implements Initializable {
         organizerLabel.setText(organizerLabel.getText() + " " + event.getOrganizer());
         locationLabel.setText(locationLabel.getText() + " " + event.getLocation());
         attendCount.setText(attendCount.getText() + " " + event.getAttendees().size());
+        eventDescription.setText(event.getDescription());
         enrollBtn.setText("Enroll");
         if (HelloApplication.sessionUser.getEnrolledEvents().contains(event)) {
             enrollBtn.setText("Leave");

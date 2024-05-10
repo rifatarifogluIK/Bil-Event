@@ -75,6 +75,9 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
         }
         attendees.add(user);
     }
+    public void addAttribute(String attribute) {
+        this.attributes.add(attribute);
+    }
 
     public void removeAttendee(User user) {
         for (User u : attendees) {
@@ -153,6 +156,10 @@ public abstract class Event implements Searchable, ConvertibleToDocument{
     }
     public String getLocation() {
         return location;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override

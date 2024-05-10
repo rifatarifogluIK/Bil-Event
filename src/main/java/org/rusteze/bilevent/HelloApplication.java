@@ -3,12 +3,14 @@ package org.rusteze.bilevent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import com.mongodb.*;
 import com.mongodb.client.*;
 import org.bson.*;
 import org.bson.types.ObjectId;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -53,6 +55,9 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bil-Event");
         stage.setScene(scene);
+        File file = new File("src/main/resources/org/rusteze/bilevent/Images/Logo.PNG");
+        Image icon = new Image(file.toURI().toString());
+        stage.getIcons().add(icon);
         stage.setResizable(false);
         stage.show();
     }

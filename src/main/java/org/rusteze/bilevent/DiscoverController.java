@@ -106,6 +106,7 @@ public class DiscoverController implements SceneHandler, Initializable {
 
 
         try {
+            CreateEventController.setCreatorCommunity(null);
             Parent root = FXMLLoader.load(getClass().getResource("createevent.fxml"));
             Scene scene = ((Node) event.getSource()).getScene();
             scene.setRoot(root);

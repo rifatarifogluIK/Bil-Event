@@ -4,17 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.awt.image.BufferedImage;
@@ -37,11 +36,18 @@ public class CreateEventController implements Initializable {
     @FXML
     DatePicker eventDate;
     @FXML
-    TextField eventLocation;
+    ChoiceBox<String> eventLocation;
+
+    public static String[] locations = {"A Building", "B Building", "C Building"};
+    public static String[] attributeList = {"Sport", "Music", "Art", "Computer Science", "Games", "Festival"};
+    public static Community creatorCommunity;
+    CheckBox[] attributes;
     @FXML
     ImageView imageView;
     @FXML
     Label warningMessage;
+    @FXML
+    HBox eventAttributes;
 
     public void uploadBtn(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -55,17 +61,38 @@ public class CreateEventController implements Initializable {
             imageView.setImage(image);
         }
     }
+    public void setEventAttributes() {
+
+        attributes = new CheckBox[attributeList.length];
+        for(int i = 0; i < attributeList.length; i++) {
+            attributes[i] = new CheckBox(attributeList[i]);
+            eventAttributes.getChildren().add(attributes[i]);
+            HBox.setMargin(attributes[i], new Insets(0,8,0,0));
+        }
+    }
 
     public void initializeEvent(ActionEvent event) {
 
-        if(!eventName.getText().isBlank() && !eventDesc.getText().isBlank() && !eventLocation.getText().isBlank() && eventDate.getValue() != null) {
+        if(!eventName.getText().isBlank() && !eventDesc.getText().isBlank() && eventLocation.getValue() != null && eventDate.getValue() != null) {
+
             String name = eventName.getText();
             String description = eventDesc.getText();
-            String location = eventLocation.getText();
+            String location = eventLocation.getValue();
             LocalDate date = eventDate.getValue();
             Image image = imageView.getImage();
+            Event createdEvent;
 
-            Event createdEvent = HelloApplication.sessionUser.createEvent(name, description, location, date, image);
+            if(creatorCommunity == null) {
+                createdEvent = HelloApplication.sessionUser.createEvent(name, description, location, date, image);
+            } else {
+                createdEvent = creatorCommunity.createEvent(name,description,location,date,image);
+            }
+
+            for(CheckBox box : attributes) {
+                if(box.isSelected()) {
+                    createdEvent.addAttribute(box.getText());
+                }
+            }
 
             LocalDateTime localDateTime = LocalDateTime.now();
             String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
@@ -120,8 +147,15 @@ public class CreateEventController implements Initializable {
         ((Button)mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
     }
 
+    public static void setCreatorCommunity(Community creatorCommunity) {
+        CreateEventController.creatorCommunity = creatorCommunity;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        eventLocation.getItems().clear();
+        eventLocation.getItems().addAll(locations);
+        setEventAttributes();
         warningMessage.setVisible(false);
     }
 }

@@ -55,12 +55,7 @@ public class HomeController implements SceneHandler, Initializable {
 
     public void displayEvents() {
     //TODO
-        ArrayList<Event> recommendations = new ArrayList<>(); //HelloApplication.sessionUser.getEventRec();
-        File file = new File("src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg");
-        Image emptyImage = new Image(file.toURI().toString());
-
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " a", "a", "a", LocalDate.now(), emptyImage));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " abcd", "a", "a", LocalDate.now(), emptyImage));
+        ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
 
         for(Event e : recommendations) {
             EventPane eventPane = new EventPane(e);
@@ -184,6 +179,7 @@ public class HomeController implements SceneHandler, Initializable {
 
 
         try {
+            CreateEventController.setCreatorCommunity(null);
             Parent root = FXMLLoader.load(getClass().getResource("createevent.fxml"));
             Scene scene = ((Node) event.getSource()).getScene();
             scene.setRoot(root);

@@ -74,10 +74,11 @@ public class Community implements Searchable, ConvertibleToDocument{
         }
     }
 
-    public void createEvent(String name, String description, String location, LocalDate date, Image image){
+    public Event createEvent(String name, String description, String location, LocalDate date, Image image){
         Event event = new CommunityEvent(this, name, description, location, date, image);
         admins.forEach(admin -> event.getAdmins().add(admin));
         currentEvents.add(event);
+        return event;
     }
 
     public void handlePassedEvent(){
@@ -134,6 +135,10 @@ public class Community implements Searchable, ConvertibleToDocument{
     }
     public ObjectId getId() {
         return id;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setName(String name) {
