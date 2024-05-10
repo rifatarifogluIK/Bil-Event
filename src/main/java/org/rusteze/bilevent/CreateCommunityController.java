@@ -58,7 +58,7 @@ public class CreateCommunityController implements Initializable {
             String description = communityDesc.getText();
             Image image = imageView.getImage();
 
-            Community createdCommunity = HelloApplication.sessionUser.createCommunity(name, image);
+            Community createdCommunity = HelloApplication.sessionUser.createCommunity(name, description, image);
 
             LocalDateTime localDateTime = LocalDateTime.now();
             String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));

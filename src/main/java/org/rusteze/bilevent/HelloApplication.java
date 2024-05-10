@@ -41,13 +41,13 @@ public class HelloApplication extends Application {
         //update(db);
 
         sessionUser = new User("Selim", "pass", "email");
-        Community.popularCommunities.put(ObjectId.get() ,new Community("CS Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("EEE Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("IE Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("F1 Club", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("CS Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("EEE Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("IE Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("F1 Club", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

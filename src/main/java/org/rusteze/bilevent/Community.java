@@ -18,6 +18,7 @@ public class Community implements Searchable{
     public static Dictionary<ObjectId, Community> popularCommunities = new Hashtable<>();
 
     private String name;
+    private String description;
     private ArrayList<User> members;
     private ArrayList<User> adminList;
     private ArrayList<Event> currentEvents;
@@ -27,8 +28,9 @@ public class Community implements Searchable{
     private int ratingCount;
     private ObjectId id;
 
-    public Community(String name, Image photo) {
+    public Community(String name, String description, Image photo) {
         this.name = name;
+        this.description = description;
         this.members = new ArrayList<>();
         this.adminList = new ArrayList<>();
         this.currentEvents = new ArrayList<>();
@@ -46,6 +48,7 @@ public class Community implements Searchable{
 
     public Community(Document doc) throws FileNotFoundException {
         this.name = (String)doc.get("name");
+        this.description = (String)doc.get("description");
         this.members = new ArrayList<>();
         this.adminList = new ArrayList<>();
         this.currentEvents = new ArrayList<>();

@@ -102,9 +102,9 @@ public class User implements Searchable{
         community.getAdminList().remove(this);
     }
 
-    public Community createCommunity(String name, Image photo) {
+    public Community createCommunity(String name, String description, Image photo) {
 
-        Community community = new Community(name, photo);
+        Community community = new Community(name, description, photo);
         community.getAdminList().add(this);
         community.getMembers().add(this);
         communities.add(community);
