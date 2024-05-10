@@ -159,7 +159,7 @@ public class SearchController implements SceneHandler, Initializable {
 
         // TODO ArrayList<Searchable> results = Searchable.search(name, organizer, location, date);
 
-        ArrayList<Searchable> results = new ArrayList<Searchable>();
+        ArrayList<Searchable> results = Searchable.search(name, organizer, location, date);
 
         for (Searchable result : results) {
             if (result instanceof Event) {

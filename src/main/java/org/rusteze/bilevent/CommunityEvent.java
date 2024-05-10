@@ -29,6 +29,6 @@ public class CommunityEvent extends Event{
 
     @Override
     public boolean find(String key) {
-        return false;
+        return key.equals(community.getName());
     }
 }

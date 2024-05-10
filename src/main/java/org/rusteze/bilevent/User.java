@@ -48,6 +48,7 @@ public class User implements Searchable, ConvertibleToDocument{
         rating = 0;
         ratingCount = 0;
         id = ObjectId.get();
+        Searchable.allSearchables.add(this);
     }
 
     public User(Document doc) throws FileNotFoundException {

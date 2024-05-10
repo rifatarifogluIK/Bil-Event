@@ -62,6 +62,7 @@ public class Community implements Searchable, ConvertibleToDocument{
         this.rating = (double)doc.get("rating");
         this.ratingCount = (int)doc.get("ratingCount");
         this.id = (ObjectId)doc.get("_id");
+        Searchable.allSearchables.add(this);
     }
 
     public void addMember(User user){
