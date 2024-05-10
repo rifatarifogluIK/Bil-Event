@@ -1,5 +1,6 @@
 package org.rusteze.bilevent;
 
+import com.mongodb.BasicDBList;
 import javafx.scene.image.Image;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public abstract class Event implements Searchable{
+public abstract class Event implements Searchable, ConvertibleToDocument{
 
     public static Dictionary<ObjectId, Event> allEvents = new Hashtable<>();
 
@@ -74,6 +75,10 @@ public abstract class Event implements Searchable{
         }
         attendees.add(user);
     }
+    public void addAttribute(String attribute) {
+        this.attributes.add(attribute);
+    }
+
     public void removeAttendee(User user) {
         for (User u : attendees) {
             if (u.getUsername().equals(user.getUsername())) {
@@ -101,6 +106,7 @@ public abstract class Event implements Searchable{
         LocalDate currentDate = LocalDate.now();
         return (int)ChronoUnit.DAYS.between(currentDate, plannedDate);
     }
+
     public boolean isThisWeek() {
         LocalDate currentDate = date;
         LocalDate mostRecentMonday = currentDate.with(DayOfWeek.MONDAY);
@@ -114,6 +120,7 @@ public abstract class Event implements Searchable{
         this.rating += rate;
         ratingCount++;
     }
+
     public double currentAverageRating()
     {
         double RatingWithoutRounding = rating / ratingCount;
@@ -125,15 +132,12 @@ public abstract class Event implements Searchable{
     public String getName() {
         return name;
     }
-
     public Image getPhoto() {
         return photo;
     }
-
     public ArrayList<String> getAttributes() {
         return attributes;
     }
-
     public ArrayList<User> getAdmins() {
         return admins;
     }
@@ -141,7 +145,6 @@ public abstract class Event implements Searchable{
     public ArrayList<User> getAttendees() {
         return attendees;
     }
-
     public ChatSpace getChatSpace() {
         return chatSpace;
     }
@@ -151,8 +154,38 @@ public abstract class Event implements Searchable{
     public ObjectId getId() {
         return id;
     }
-
     public String getLocation() {
         return location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
+    public Document toDocument() {
+        Document doc = new Document();
+
+        BasicDBList attendeesArr = new BasicDBList();
+        attendees.forEach(e -> attendeesArr.add(e.getId()));
+        BasicDBList adminsArr = new BasicDBList();
+        admins.forEach(e -> adminsArr.add(e.getId()));
+        BasicDBList attributesArr = new BasicDBList();
+        attributes.forEach(e -> attributesArr.add(e));
+
+        doc.append("_id", this.id)
+                .append("name", this.name)
+                .append("description", this.description)
+                .append("date", this.date.toString())
+                .append("location", this.location)
+                .append("photo", this.photo.getUrl())
+                .append("rating", this.rating)
+                .append("ratingCount", this.ratingCount)
+                .append("chatSpace", this.chatSpace.toDocument())
+                .append("attendees", attendeesArr)
+                .append("admins", adminsArr)
+                .append("attributes", attributesArr);
+
+        return doc;
     }
 }

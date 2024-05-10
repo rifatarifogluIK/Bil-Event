@@ -3,12 +3,14 @@ package org.rusteze.bilevent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import com.mongodb.*;
 import com.mongodb.client.*;
 import org.bson.*;
 import org.bson.types.ObjectId;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
@@ -41,18 +43,22 @@ public class HelloApplication extends Application {
         //update(db);
 
         sessionUser = new User("Selim", "pass", "email");
-        Community.popularCommunities.put(ObjectId.get() ,new Community("CS Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("EEE Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("IE Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("F1 Club", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("CS Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("EEE Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("IE Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("F1 Club", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
+        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bil-Event");
         stage.setScene(scene);
+        File file = new File("src/main/resources/org/rusteze/bilevent/Images/Logo.PNG");
+        Image icon = new Image(file.toURI().toString());
+        stage.getIcons().add(icon);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -98,7 +104,7 @@ public class HelloApplication extends Application {
             Document doc = communities.find(new Document("_id", key)).first();
 
             ((Document)doc.get("members")).values().forEach(e -> com.getMembers().add(User.allUsers.get(e.toString())));
-            ((Document)doc.get("adminList")).values().forEach(e -> com.getAdminList().add(User.allUsers.get(e.toString())));
+            ((Document)doc.get("admins")).values().forEach(e -> com.getAdmins().add(User.allUsers.get(e.toString())));
             ((Document)doc.get("currentEvents")).values().forEach(e -> com.getCurrentEvents().add(Event.allEvents.get(e.toString())));
             ((Document)doc.get("pastEvents")).values().forEach(e -> com.getPastEvents().add(Event.allEvents.get(e.toString())));
         }
@@ -124,6 +130,7 @@ public class HelloApplication extends Application {
             ((Document)doc.get("enrolledEvents")).values().forEach(e -> user.getEnrolledEvents().add(Event.allEvents.get(e.toString())));
             ((Document)doc.get("attendedEvents")).values().forEach(e -> user.getAttendedEvents().add(Event.allEvents.get(e.toString())));
             ((Document)doc.get("createdEvents")).values().forEach(e -> user.getCreatedEvents().add(Event.allEvents.get(e.toString())));
+            ((Document)doc.get("friends")).values().forEach(e -> user.getFriends().add(User.allUsers.get(e.toString())));
         }
 
         Enumeration<Community> allCommunities = Community.allCommunities.elements();

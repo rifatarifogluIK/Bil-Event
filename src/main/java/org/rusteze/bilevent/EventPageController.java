@@ -45,6 +45,8 @@ public class EventPageController implements Initializable {
     VBox attendeePanel;
     @FXML
     ImageView eventPhoto;
+    @FXML
+    Label eventDescription;
 
     private static Event event;
     private User currentUser;
@@ -52,6 +54,9 @@ public class EventPageController implements Initializable {
     public void enrollBtn(ActionEvent event) {
 
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        confirmation.initOwner(stage);
+
         confirmation.setTitle("Confirmation Dialog");
         confirmation.setHeaderText("Are You Sure You Want To " + enrollBtn.getText() + " This Event?");
 
@@ -71,11 +76,11 @@ public class EventPageController implements Initializable {
     }
 
     public void backBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -113,6 +118,7 @@ public class EventPageController implements Initializable {
         organizerLabel.setText(organizerLabel.getText() + " " + event.getOrganizer());
         locationLabel.setText(locationLabel.getText() + " " + event.getLocation());
         attendCount.setText(attendCount.getText() + " " + event.getAttendees().size());
+        eventDescription.setText(event.getDescription());
         enrollBtn.setText("Enroll");
         if (HelloApplication.sessionUser.getEnrolledEvents().contains(event)) {
             enrollBtn.setText("Leave");

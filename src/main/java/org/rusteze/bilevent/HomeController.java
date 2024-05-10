@@ -55,12 +55,7 @@ public class HomeController implements SceneHandler, Initializable {
 
     public void displayEvents() {
     //TODO
-        ArrayList<Event> recommendations = new ArrayList<>(); //HelloApplication.sessionUser.getEventRec();
-        File file = new File("src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg");
-        Image emptyImage = new Image(file.toURI().toString());
-
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " a", "a", "a", LocalDate.now(), emptyImage));
-        recommendations.add(new PersonalEvent(HelloApplication.sessionUser, " a", "a", "a", LocalDate.now(), emptyImage));
+        ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
 
         for(Event e : recommendations) {
             EventPane eventPane = new EventPane(e);
@@ -169,22 +164,25 @@ public class HomeController implements SceneHandler, Initializable {
 
     @Override
     public void createBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("CreateCommunity.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public void createEventBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
         try {
+            CreateEventController.setCreatorCommunity(null);
             Parent root = FXMLLoader.load(getClass().getResource("createevent.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -192,23 +190,24 @@ public class HomeController implements SceneHandler, Initializable {
 
     @Override
     public void logOutBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("LogIn.fxml"));
+            Stage stage =(Stage)((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-
     @Override
     public void homeBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -216,11 +215,11 @@ public class HomeController implements SceneHandler, Initializable {
 
     @Override
     public void calendarBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("calendarpage.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -228,11 +227,11 @@ public class HomeController implements SceneHandler, Initializable {
 
     @Override
     public void discoverBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("discovercommunity.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -240,11 +239,11 @@ public class HomeController implements SceneHandler, Initializable {
 
     @Override
     public void searchBtn(ActionEvent event) {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         try {
             Parent root = FXMLLoader.load(getClass().getResource("advancedSearch.fxml"));
-            stage.setScene(new Scene(root));
-            stage.show();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

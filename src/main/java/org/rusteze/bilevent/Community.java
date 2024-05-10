@@ -1,7 +1,12 @@
 package org.rusteze.bilevent;
 
+import com.mongodb.BasicDBList;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.Updates;
 import javafx.scene.image.Image;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.io.File;
@@ -12,14 +17,15 @@ import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class Community implements Searchable{
+public class Community implements Searchable, ConvertibleToDocument{
 
     public static Dictionary<ObjectId, Community> allCommunities = new Hashtable<>();
     public static Dictionary<ObjectId, Community> popularCommunities = new Hashtable<>();
 
     private String name;
+    private String description;
     private ArrayList<User> members;
-    private ArrayList<User> adminList;
+    private ArrayList<User> admins;
     private ArrayList<Event> currentEvents;
     private ArrayList<Event> pastEvents;
     private Image photo;
@@ -27,10 +33,11 @@ public class Community implements Searchable{
     private int ratingCount;
     private ObjectId id;
 
-    public Community(String name, Image photo) {
+    public Community(String name, String description, Image photo) {
         this.name = name;
+        this.description = description;
         this.members = new ArrayList<>();
-        this.adminList = new ArrayList<>();
+        this.admins = new ArrayList<>();
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
         this.photo = photo;
@@ -46,8 +53,9 @@ public class Community implements Searchable{
 
     public Community(Document doc) throws FileNotFoundException {
         this.name = (String)doc.get("name");
+        this.description = (String)doc.get("description");
         this.members = new ArrayList<>();
-        this.adminList = new ArrayList<>();
+        this.admins = new ArrayList<>();
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
         this.photo = new Image(new FileInputStream((String)doc.get("photo")));
@@ -62,14 +70,15 @@ public class Community implements Searchable{
 
     public void setAdmin(User user){
         if(members.contains(user)){
-            adminList.add(user);
+            admins.add(user);
         }
     }
 
-    public void createEvent(String name, String description, String location, LocalDate date, Image image){
+    public Event createEvent(String name, String description, String location, LocalDate date, Image image){
         Event event = new CommunityEvent(this, name, description, location, date, image);
-        adminList.forEach(admin -> event.getAdmins().add(admin));
+        admins.forEach(admin -> event.getAdmins().add(admin));
         currentEvents.add(event);
+        return event;
     }
 
     public void handlePassedEvent(){
@@ -97,48 +106,44 @@ public class Community implements Searchable{
     }
 
     public boolean isAdmin(User user) {
-        return adminList.contains(user);
+        return admins.contains(user);
     }
+
     public String getName() {
         return name;
     }
-
     public ArrayList<User> getMembers() {
         return members;
     }
-
-    public ArrayList<User> getAdminList() {
-        return adminList;
+    public ArrayList<User> getAdmins() {
+        return admins;
     }
-
     public ArrayList<Event> getCurrentEvents() {
         return currentEvents;
     }
-
     public ArrayList<Event> getPastEvents() {
         return pastEvents;
     }
-
     public Image getPhoto() {
         return photo;
     }
-
     public double getRating() {
         return rating;
     }
-
     public int getRatingCount() {
         return ratingCount;
     }
-
     public ObjectId getId() {
         return id;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setName(String name) {
         this.name = name;
     }
-
     public void setPhoto(Image photo) {
         this.photo = photo;
     }
@@ -146,5 +151,31 @@ public class Community implements Searchable{
     @Override
     public String toString() {
         return name;
+    }
+    @Override
+    public Document toDocument(){
+        Document doc = new Document();
+
+        BasicDBList membersArr = new BasicDBList();
+        members.forEach(e -> membersArr.add(e.getId()));
+        BasicDBList adminsArr = new BasicDBList();
+        admins.forEach(e -> adminsArr.add(e.getId()));
+        BasicDBList currentEventsArr = new BasicDBList();
+        currentEvents.forEach(e -> currentEventsArr.add(e.getId()));
+        BasicDBList pastEventsArr = new BasicDBList();
+        pastEvents.forEach(e -> pastEventsArr.add(e.getId()));
+
+        doc.append("_id", this.id)
+                .append("name", this.name)
+                .append("description", this.description)
+                .append("photo", this.photo.getUrl())
+                .append("rating", this.rating)
+                .append("ratingCount", this.ratingCount)
+                .append("members", membersArr)
+                .append("admins", adminsArr)
+                .append("currentEvents", currentEventsArr)
+                .append("pastEvents", pastEventsArr);
+
+        return doc;
     }
 }

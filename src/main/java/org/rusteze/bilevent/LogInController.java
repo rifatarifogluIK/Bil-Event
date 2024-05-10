@@ -22,7 +22,6 @@ public class LogInController implements Initializable {
     private Button accountButton;
     @FXML
     private AnchorPane slidingPane;
-    
     private Stage stage;
     private Parent root;
 
@@ -55,6 +54,7 @@ public class LogInController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
+        stage.setFullScreen(true);
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {

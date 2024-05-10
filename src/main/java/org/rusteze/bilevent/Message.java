@@ -2,7 +2,7 @@ package org.rusteze.bilevent;
 
 import org.bson.Document;
 
-public class Message {
+public class Message implements ConvertibleToDocument{
     private String text;
     private String username;
 
@@ -19,5 +19,14 @@ public class Message {
     @Override
     public String toString() {
         return username + ": " + text; // This will be used by ListView to display messages
+    }
+    @Override
+    public Document toDocument(){
+        Document doc = new Document();
+
+        doc.append("text", this.text)
+                .append("username", this.username);
+
+        return doc;
     }
 }
