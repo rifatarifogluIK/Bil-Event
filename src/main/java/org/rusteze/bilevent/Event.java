@@ -47,6 +47,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         }
         chatSpace = new ChatSpace();
         this.id = ObjectId.get();
+        allSearchables.add(this);
     }
 
     public Event(){

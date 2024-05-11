@@ -47,6 +47,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         rating = 0;
         ratingCount = 0;
         id = ObjectId.get();
+        allSearchables.add(this);
     }
 
     public User(){

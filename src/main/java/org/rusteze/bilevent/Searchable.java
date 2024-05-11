@@ -12,18 +12,7 @@ public interface Searchable {
     public boolean find(String key);
     public static ArrayList<Searchable> search(String name, String organizer, String location, LocalDate date){
         ArrayList<Searchable> founded = new ArrayList<>();
-        if(name != null)
-        {
-            for(Searchable s: allSearchables)
-            {
-                User u = (User) s;
-                if(s.find(name))
-                {
-                    founded.add(s);
-                }
-            }
-        }
-        if(organizer != null)
+        if(!organizer.equals(""))
         {
             for(Searchable s: allSearchables)
             {
@@ -33,6 +22,17 @@ public interface Searchable {
                     founded.add(s);
                 }
 
+            }
+        }
+        if(!name.equals(""))
+        {
+            for(Searchable s: allSearchables)
+            {
+                Event event = (Event)s;
+                if( event.getName().equals(name))
+                {
+                    founded.add(event);
+                }
             }
         }
         if(location != null || date != null)

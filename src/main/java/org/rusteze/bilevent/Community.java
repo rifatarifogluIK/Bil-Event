@@ -49,6 +49,7 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
         this.rating = 0.0;
         this.ratingCount = 0;
         this.id = ObjectId.get();
+        allSearchables.add(this);
     }
 
     public Community(){
