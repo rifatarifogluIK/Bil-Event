@@ -3,6 +3,7 @@ package org.rusteze.bilevent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,9 +28,10 @@ public class LogInController implements Initializable {
     @FXML
     private TextField emailField;
     @FXML
+    private TextField passwordField;
+    @FXML
     private Label warningLabel;
     private Stage stage;
-    private Parent root;
 
     @FXML
     public void clickAccountButton(ActionEvent event) throws IOException {
@@ -37,7 +39,7 @@ public class LogInController implements Initializable {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(1));
-        
+
         transition.setToX(350);
         transition.setNode(slidingPane);
         transition.play();
@@ -49,40 +51,48 @@ public class LogInController implements Initializable {
             }
         });
     }
+
     public void endOfTransition() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
         stage.setScene(new Scene(root));
         stage.show();
     }
+
     public void logIn(ActionEvent event) {
         //TODO authentication
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        stage.setScene(new Scene(root));
-        stage.show();
-        stage.setFullScreen(true);
-    }
-    public void forgotPassword(ActionEvent event) {
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        //TODO Rather than looking if it is blank check if email is assigned to an user.
-        if(!emailField.getText().isBlank()) {
+        if (User.userWith(emailField.getText()) != null && User.userWith(emailField.getText()).getPassword().equals(passwordField.getText())) {
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             try {
-                VerificationController.setUserEmail(emailField.getText());
-                root = FXMLLoader.load(getClass().getResource("Verification.fxml"));
+                HelloApplication.sessionUser = User.userWith(emailField.getText());
+                Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+                stage.setScene(new Scene(root));
+                stage.show();
+                stage.setFullScreen(true);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            stage.setScene(new Scene(root));
-            stage.show();
+        }
+    }
+
+    public void forgotPassword(ActionEvent event) {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        //TODO Rather than looking if it is blank check if email is assigned to an user.
+        if (!emailField.getText().isBlank()) {
+            try {
+                VerificationController.setUserEmail(emailField.getText());
+                VerificationController.setUser(User.userWith(emailField.getText()));
+                Parent root = FXMLLoader.load(getClass().getResource("Verification.fxml"));
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
         } else {
             warningLabel.setVisible(true);
         }
     }
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         warningLabel.setVisible(false);

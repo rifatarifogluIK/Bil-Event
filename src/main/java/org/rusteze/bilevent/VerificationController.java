@@ -26,6 +26,7 @@ public class VerificationController implements Initializable {
     @FXML
     Label warningLabel;
     private static String sentCode;
+    private static User user;
     private static String userEmail;
 
     public void sendEmail() {
@@ -73,6 +74,7 @@ public class VerificationController implements Initializable {
         if(codeField.getText().equals(sentCode)) {
             Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
             try {
+                PasswordController.setUser(user);
                 Parent root = FXMLLoader.load(getClass().getResource("PasswordReset.fxml"));
                 stage.setScene(new Scene(root));
                 stage.show();
@@ -93,7 +95,10 @@ public class VerificationController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public static void setUser(User user) {
+        VerificationController.user = user;
     }
 
     public static void setUserEmail(String userEmail) {

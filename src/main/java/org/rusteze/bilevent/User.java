@@ -112,6 +112,9 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         communities.add(community);
         return community;
     }
+    public static User userWith(String email) {
+        return null;
+    }
 
     /**
      *
@@ -170,6 +173,10 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
 
         this.rating += rating;
         ratingCount++;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

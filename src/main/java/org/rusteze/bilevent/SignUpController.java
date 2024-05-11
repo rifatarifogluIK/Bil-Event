@@ -47,7 +47,8 @@ public class SignUpController implements Initializable{
                 String email = mailField.getText();
                 String password = passField1.getText();
 
-
+                //TODO database stuff
+                User user = new User(userName, password, email);
                 clickAccountButton(event);
             } else {
                 warningLabel.setText("Passwords does not match!");
