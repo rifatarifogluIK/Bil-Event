@@ -2,6 +2,7 @@ package org.rusteze.bilevent;
 
 import javafx.scene.image.Image;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class CommunityEvent extends Event{
     public CommunityEvent(Document doc) throws FileNotFoundException {
         super();
         super.fromDocument(doc);
+        this.community = Community.allCommunities.get((ObjectId)doc.get("community"));
     }
 
     public Community getOrganizer() {

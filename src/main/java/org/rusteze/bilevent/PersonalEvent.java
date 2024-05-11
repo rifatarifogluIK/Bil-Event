@@ -2,6 +2,7 @@ package org.rusteze.bilevent;
 
 import javafx.scene.image.Image;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
@@ -18,6 +19,7 @@ public class PersonalEvent extends Event{
     public PersonalEvent(Document doc) throws FileNotFoundException {
         super();
         super.fromDocument(doc);
+        this.organizer = User.allUsers.get((ObjectId)doc.get("organizer"));
     }
 
     public User getOrganizer() {

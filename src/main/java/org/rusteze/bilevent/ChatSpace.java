@@ -3,6 +3,7 @@ package org.rusteze.bilevent;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import com.mongodb.BasicDBList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.bson.BsonArray;
@@ -38,7 +39,7 @@ public class ChatSpace implements ConvertibleWithDocument<ChatSpace> {
     @Override
     public ChatSpace fromDocument(Document doc) throws FileNotFoundException {
         ArrayList<Message> temp = new ArrayList<>();
-        ((Document)doc.get("messages")).values().forEach(e -> {
+        ((ArrayList<Document>)doc.get("messages")).forEach(e -> {
             try {
                 temp.add(new Message().fromDocument((Document)e));
             } catch (FileNotFoundException ex) {

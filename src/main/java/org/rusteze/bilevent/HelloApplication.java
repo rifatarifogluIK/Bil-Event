@@ -36,7 +36,7 @@ public class HelloApplication extends Application {
         MongoClient client = MongoClients.create(settings);
         db = client.getDatabase("bil_event");
 
-        //update();
+        update();
 
         sessionUser = new User("Selim", "pass", "email");
         Community.popularCommunities.put(ObjectId.get() ,new Community("CS Department", "a", null));
@@ -65,7 +65,7 @@ public class HelloApplication extends Application {
     public static void update() throws FileNotFoundException {
         MongoCollection<Document> events = db.getCollection("Event");
         MongoCollection<Document> communities = db.getCollection("Community");
-        MongoCollection<Document> users = db.getCollection("User");
+        MongoCollection<Document> users = db.getCollection("Users");
 
         List<Document> eventList = events.find().into(new ArrayList<>());
         List<Document> communityList = communities.find().into(new ArrayList<>());
@@ -99,34 +99,58 @@ public class HelloApplication extends Application {
             Community com = Community.allCommunities.get(key);
             Document doc = communities.find(new Document("_id", key)).first();
 
-            ((Document)doc.get("members")).values().forEach(e -> com.getMembers().add(User.allUsers.get(e.toString())));
-            ((Document)doc.get("admins")).values().forEach(e -> com.getAdmins().add(User.allUsers.get(e.toString())));
-            ((Document)doc.get("currentEvents")).values().forEach(e -> com.getCurrentEvents().add(Event.allEvents.get(e.toString())));
-            ((Document)doc.get("pastEvents")).values().forEach(e -> com.getPastEvents().add(Event.allEvents.get(e.toString())));
+            if (doc.get("members") != null) {
+                ((ArrayList<ObjectId>)doc.get("members")).forEach(e -> com.getMembers().add(User.allUsers.get(e)));
+            }
+            if (doc.get("admins") != null) {
+                ((ArrayList<ObjectId>)doc.get("admins")).forEach(e -> com.getAdmins().add(User.allUsers.get(e)));
+            }
+            if (doc.get("currentEvents") != null) {
+                ((ArrayList<ObjectId>)doc.get("currentEvents")).forEach(e -> com.getCurrentEvents().add(Event.allEvents.get(e)));
+            }
+            if (doc.get("pastEvents") != null) {
+                ((ArrayList<ObjectId>)doc.get("pastEvents")).forEach(e -> com.getPastEvents().add(Event.allEvents.get(e)));
+            }
         }
 
-        Enumeration<ObjectId> eventKeys = Community.allCommunities.keys();
+        Enumeration<ObjectId> eventKeys = Event.allEvents.keys();
         while (eventKeys.hasMoreElements()){
             ObjectId key = eventKeys.nextElement();
             Event event = Event.allEvents.get(key);
             Document doc = events.find(new Document("_id", key)).first();
 
-            ((Document)doc.get("attendees")).values().forEach(e -> event.getAttendees().add(User.allUsers.get(e.toString())));
-            ((Document)doc.get("admins")).values().forEach(e -> event.getAdmins().add(User.allUsers.get(e.toString())));
-            ((Document)doc.get("attributes")).values().forEach(e -> event.getAttributes().add((String)e));
+            if (doc.get("attendees") != null) {
+                ((ArrayList<ObjectId>)doc.get("attendees")).forEach(e -> event.getAttendees().add(User.allUsers.get(e)));
+            }
+            if (doc.get("admins") != null) {
+                ((ArrayList<ObjectId>)doc.get("admins")).forEach(e -> event.getAdmins().add(User.allUsers.get(e)));
+            }
+            if (doc.get("attributes") != null) {
+                ((ArrayList<String>)doc.get("attributes")).forEach(e -> event.getAttributes().add(e));
+            }
         }
 
-        Enumeration<ObjectId> userKeys = Community.allCommunities.keys();
+        Enumeration<ObjectId> userKeys = User.allUsers.keys();
         while (userKeys.hasMoreElements()){
             ObjectId key = userKeys.nextElement();
             User user = User.allUsers.get(key);
-            Document doc = events.find(new Document("_id", key)).first();
+            Document doc = users.find(new Document("_id", key)).first();
 
-            ((Document)doc.get("communities")).values().forEach(e -> user.getCommunities().add(Community.allCommunities.get(e.toString())));
-            ((Document)doc.get("enrolledEvents")).values().forEach(e -> user.getEnrolledEvents().add(Event.allEvents.get(e.toString())));
-            ((Document)doc.get("attendedEvents")).values().forEach(e -> user.getAttendedEvents().add(Event.allEvents.get(e.toString())));
-            ((Document)doc.get("createdEvents")).values().forEach(e -> user.getCreatedEvents().add(Event.allEvents.get(e.toString())));
-            ((Document)doc.get("friends")).values().forEach(e -> user.getFriends().add(User.allUsers.get(e.toString())));
+            if(doc.get("communities") != null){
+                ((ArrayList<ObjectId>)doc.get("communities")).forEach(e -> user.getCommunities().add(Community.allCommunities.get(e)));
+            }
+            if(doc.get("enrolledEvents") != null){
+                ((ArrayList<ObjectId>)doc.get("enrolledEvents")).forEach(e -> user.getEnrolledEvents().add(Event.allEvents.get(e)));
+            }
+            if(doc.get("attendedEvents") != null){
+                ((ArrayList<ObjectId>)doc.get("attendedEvents")).forEach(e -> user.getAttendedEvents().add(Event.allEvents.get(e)));
+            }
+            if(doc.get("createdEvents") != null){
+                ((ArrayList<ObjectId>)doc.get("createdEvents")).forEach(e -> user.getCreatedEvents().add(Event.allEvents.get(e)));
+            }
+            if(doc.get("friends") != null){
+                ((ArrayList<ObjectId>)doc.get("friends")).forEach(e -> user.getFriends().add(User.allUsers.get(e)));
+            }
         }
 
         Enumeration<Community> allCommunities = Community.allCommunities.elements();
@@ -143,9 +167,9 @@ public class HelloApplication extends Application {
             ObjectId key = allEventsKeys.nextElement();
             Event temp = Event.allEvents.get(key);
             if(temp instanceof CommunityEvent){
-                ((CommunityEvent) temp).setCommunity(Community.allCommunities.get((String)events.find(new Document("_id", key)).first().get("community")));
+                ((CommunityEvent) temp).setCommunity(Community.allCommunities.get(events.find(new Document("_id", key)).first().get("community")));
             }else if(temp instanceof PersonalEvent){
-                ((PersonalEvent) temp).setOrganizer(User.allUsers.get((String)events.find(new Document("_id", key)).first().get("organizer")));
+                ((PersonalEvent) temp).setOrganizer(User.allUsers.get(events.find(new Document("_id", key)).first().get("organizer")));
             }
         }
     }
