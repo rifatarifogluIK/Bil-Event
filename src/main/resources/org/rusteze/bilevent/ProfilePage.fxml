@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.rusteze.bilevent.ProfileController">
+   <center>
+      <BorderPane opacity="0.9" prefHeight="300.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="85.0" prefWidth="1036.0">
+                     <children>
+                        <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/ProfilePicture.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="userName" text="User Name">
+                           <font>
+                              <Font name="Trebuchet MS Bold" size="35.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" top="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button fx:id="addFriend" mnemonicParsing="false" onAction="#addBtn" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="35.0" prefWidth="120.0" style="-fx-background-radius: 10; -fx-background-color: B5DBFF;" text="Add">
+                           <font>
+                              <Font name="Trebuchet MS Bold" size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" top="30.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="48.0" prefWidth="1036.0">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label fx:id="eventLabel" text="..'s Enrolled Events">
+                     <font>
+                        <Font name="Trebuchet MS Bold" size="35.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ScrollPane hbarPolicy="ALWAYS" prefHeight="400.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+                     <content>
+                        <HBox fx:id="eventPanel" />
+                     </content>
+                     <VBox.margin>
+                        <Insets left="20.0" right="40.0" />
+                     </VBox.margin>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </center>
+   <left>
+      <BorderPane prefHeight="816.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <top>
+            <VBox alignment="TOP_CENTER" prefHeight="685.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" prefHeight="18.0" prefWidth="244.0" text="Bil-Event">
+                     <font>
+                        <Font name="Trebuchet MS Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" right="80.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="3.0" mnemonicParsing="false" onAction="#backBtn" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: B5DBFF; -fx-background-radius: 12;" text=" Back">
+                     <font>
+                        <Font name="Trebuchet MS" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Images/BackArrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+         </top>
+         <bottom>
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@Images/Logo.PNG" />
+               </image>
+               <BorderPane.margin>
+                  <Insets bottom="10.0" />
+               </BorderPane.margin>
+            </ImageView>
+         </bottom>
+      </BorderPane>
+   </left>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="requestLabel" alignment="CENTER" prefHeight="29.0" prefWidth="300.0" text="Friend Requests">
+               <font>
+                  <Font name="Trebuchet MS Bold" size="24.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="80.0" />
+               </VBox.margin>
+            </Label>
+            <ScrollPane fx:id="requestContainer" hbarPolicy="NEVER" prefHeight="420.0" prefWidth="250.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+               <content>
+                  <VBox fx:id="requestPanel" />
+               </content>
+            </ScrollPane>
+         </children>
+         <BorderPane.margin>
+            <Insets right="40.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+</BorderPane>
