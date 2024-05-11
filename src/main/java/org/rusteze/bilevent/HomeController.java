@@ -96,25 +96,25 @@ public class HomeController implements SceneHandler, Initializable {
 
 
         for(Event event: HelloApplication.sessionUser.getThisWeekEvents()) {
-            if(event.getDate().isEqual(today)) {
+            if(event.getDate().isEqual(today) && day1.getChildren().size() <= 4) {
                 EventDisplay eventDisplay = new EventDisplay(event);
                 day1.getChildren().add(eventDisplay);
                 VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
-            } else if (event.getDate().isEqual(today.plusDays(1))) {
+            } else if (event.getDate().isEqual(today.plusDays(1)) && day2.getChildren().size() <= 4) {
                 EventDisplay eventDisplay = new EventDisplay(event);
                 day2.getChildren().add(eventDisplay);
                 VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
             }
-            else if (event.getDate().isEqual(today.plusDays(2))) {
+            else if (event.getDate().isEqual(today.plusDays(2)) && day3.getChildren().size() <= 4) {
                 EventDisplay eventDisplay = new EventDisplay(event);
                 day3.getChildren().add(eventDisplay);
                 VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
-            }else if (event.getDate().isEqual(today.plusDays(3))) {
+            }else if (event.getDate().isEqual(today.plusDays(3)) && day4.getChildren().size() <= 4) {
                 EventDisplay eventDisplay = new EventDisplay(event);
                 day4.getChildren().add(eventDisplay);
                 VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
             }
-            else if (event.getDate().isEqual(today.plusDays(4))) {
+            else if (event.getDate().isEqual(today.plusDays(4)) && day5.getChildren().size() <= 4) {
                 EventDisplay eventDisplay = new EventDisplay(event);
                 day5.getChildren().add(eventDisplay);
                 VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));

@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -22,6 +24,10 @@ public class LogInController implements Initializable {
     private Button accountButton;
     @FXML
     private AnchorPane slidingPane;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private Label warningLabel;
     private Stage stage;
     private Parent root;
 
@@ -48,17 +54,38 @@ public class LogInController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    public void logIn(ActionEvent event) throws IOException {
+    public void logIn(ActionEvent event) {
         //TODO authentication
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         stage.setScene(new Scene(root));
         stage.show();
         stage.setFullScreen(true);
     }
+    public void forgotPassword(ActionEvent event) {
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        //TODO Rather than looking if it is blank check if email is assigned to an user.
+        if(!emailField.getText().isBlank()) {
+            try {
+                VerificationController.setUserEmail(emailField.getText());
+                root = FXMLLoader.load(getClass().getResource("Verification.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            stage.setScene(new Scene(root));
+            stage.show();
+        } else {
+            warningLabel.setVisible(true);
+        }
+    }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
+        warningLabel.setVisible(false);
     }
 
 }

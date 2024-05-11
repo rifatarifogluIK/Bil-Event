@@ -192,7 +192,7 @@
                         <Font name="Segoe Print Bold" size="25.0" />
                      </font>
                   </Label>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="450.0" prefWidth="250.0" style="-fx-background: B5DBFF; -fx-background-color: transparent;" vbarPolicy="ALWAYS">
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="430.0" prefWidth="250.0" style="-fx-background: B5DBFF; -fx-background-color: transparent;" vbarPolicy="ALWAYS">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

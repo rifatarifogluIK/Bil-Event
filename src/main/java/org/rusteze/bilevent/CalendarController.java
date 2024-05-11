@@ -102,19 +102,33 @@ public class CalendarController implements SceneHandler, Initializable {
             if (eventLocalDate.isAfter(weekStart.minusDays(1)) && eventLocalDate.isBefore(weekStart.plusDays(7))) {
                 EventDisplay eventDisplay = new EventDisplay(e);
                 if (eventDate == dateOfMonday) {
-                    monday.getChildren().add(eventDisplay);
+                    if(monday.getChildren().size() <= 4) {
+                        monday.getChildren().add(eventDisplay);
+                    }
                 } else if (eventDate == dateOfMonday + 1) {
-                    tuesday.getChildren().add(eventDisplay);
+                    if(tuesday.getChildren().size() <= 4) {
+                        tuesday.getChildren().add(eventDisplay);
+                    }
                 } else if (eventDate == dateOfMonday + 2) {
-                    wednesday.getChildren().add(eventDisplay);
+                    if(wednesday.getChildren().size() <= 4) {
+                        wednesday.getChildren().add(eventDisplay);
+                    }
                 } else if (eventDate == dateOfMonday + 3) {
-                    thursday.getChildren().add(eventDisplay);
+                    if(thursday.getChildren().size() <= 4) {
+                        thursday.getChildren().add(eventDisplay);
+                    }
                 } else if (eventDate == dateOfMonday + 4) {
-                    friday.getChildren().add(eventDisplay);
+                    if(friday.getChildren().size() <= 4) {
+                        friday.getChildren().add(eventDisplay);
+                    }
                 } else if (eventDate == dateOfMonday + 5) {
-                    saturday.getChildren().add(eventDisplay);
+                    if(saturday.getChildren().size() <= 4) {
+                        saturday.getChildren().add(eventDisplay);
+                    }
                 } else if (eventDate == dateOfMonday + 6) {
-                    sunday.getChildren().add(eventDisplay);
+                    if(sunday.getChildren().size() <= 4) {
+                        sunday.getChildren().add(eventDisplay);
+                    }
                 }
                 VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
             }
