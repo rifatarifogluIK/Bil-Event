@@ -12,43 +12,38 @@ public interface Searchable {
     public boolean find(String key);
     public static ArrayList<Searchable> search(String name, String organizer, String location, LocalDate date){
         ArrayList<Searchable> founded = new ArrayList<>();
-        if(!organizer.equals(""))
-        {
-            for(Searchable s: allSearchables)
-            {
-                User organ = (User) s;
-                if(organ.find(organizer))
-                {
-                    founded.add(s);
-                }
 
+        for(Searchable s: allSearchables)
+        {
+            if(s instanceof User)
+            {
+                founded.add(s);
+            }
+            else if(s instanceof PersonalEvent && s.find(organizer))
+            {
+                founded.add(s);
+            }
+            else if(s instanceof CommunityEvent && s.find(name))
+            {
+                founded.add(s);
+            }
+            else if(s instanceof Community && s.find(name))
+            {
+                founded.add(s);
             }
         }
-        if(!name.equals(""))
-        {
-            for(Searchable s: allSearchables)
-            {
-                Event event = (Event)s;
-                if( event.getName().equals(name))
-                {
-                    founded.add(event);
-                }
-            }
-        }
-        if(location != null || date != null)
-        {
-            for(Searchable s: allSearchables)
-            {
-                Event event = (Event)s;
-                if(event instanceof PersonalEvent personalEvent)
-                {
-                    if(personalEvent.find(personalEvent.getName()))
-                        founded.add(personalEvent);
-                }
-                else if( event instanceof CommunityEvent communityEvent)
-                {
-                    if(communityEvent.find(communityEvent.getName()))
-                        founded.add(communityEvent);
+
+        if (location != null || date != null) {
+            for (Searchable s : allSearchables) {
+                if (s instanceof Event) {
+                    Event event = (Event) s;
+                    if (location != null && !location.isEmpty() && !event.getLocation().equals(location)) {
+                        continue;  // Skip if location does not match
+                    }
+                    if (date != null && !event.getDate().equals(date)) {
+                        continue;  // Skip if date does not match
+                    }
+                    founded.add(event);  // Add if location and date match
                 }
             }
         }
