@@ -57,10 +57,6 @@ public class CommunityPageController implements Initializable {
     }
     public void displayMembers() {
         ArrayList<User> members = community.getMembers();
-        members.add(new User("Rıfat", "Ruhi123", "rıfat@mail.com"));
-        members.add(new User("Selim", "Ruhi1234", "selim@mail.com"));
-        members.add(new User("Berkant", "Ruhi12345", "berkant@mail.com"));
-        members.add(new User("Devran", "Ruhi123456", "devran@mail.com"));
 
         for(User member : members) {
             UserPane userPane = new UserPane(member);

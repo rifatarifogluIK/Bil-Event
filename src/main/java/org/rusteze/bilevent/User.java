@@ -30,12 +30,14 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     private double rating;
     private int ratingCount;
     private ObjectId id;
+    private ArrayList<User> friendRequests;
 
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
 
+        friendRequests = new ArrayList<User>();
         communities = new ArrayList<Community>();
         enrolledEvents = new ArrayList<Event>();
         attendedEvents = new ArrayList<Event>();
@@ -110,6 +112,9 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         communities.add(community);
         return community;
     }
+    public static User userWith(String email) {
+        return null;
+    }
 
     /**
      *
@@ -170,6 +175,10 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         ratingCount++;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public boolean find(String key) {
         return this.username.equals(key);
@@ -220,6 +229,10 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
     public ObjectId getId() {
         return id;
+    }
+
+    public ArrayList<User> getFriendRequests() {
+        return friendRequests;
     }
 
     public void setPhoto(Image photo) {

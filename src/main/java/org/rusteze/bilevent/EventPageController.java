@@ -127,10 +127,6 @@ public class EventPageController implements Initializable {
     }
     public void displayMembers() {
         ArrayList<User> attendees = event.getAttendees();
-        attendees.add(new User("Rıfat", "Ruhi123", "rıfat@mail.com"));
-        attendees.add(new User("Selim", "Ruhi1234", "selim@mail.com"));
-        attendees.add(new User("Berkant", "Ruhi12345", "berkant@mail.com"));
-        attendees.add(new User("Devran", "Ruhi123456", "devran@mail.com"));
 
         for(User attendee : attendees) {
             UserPane userPane = new UserPane(attendee);

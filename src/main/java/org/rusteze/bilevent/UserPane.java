@@ -1,8 +1,11 @@
 package org.rusteze.bilevent;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,9 +15,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.io.IOException;
+
 public class UserPane extends Pane {
 
     private User user;
+    HBox contentBox;
 
     public UserPane(User user) {
         this.user = user;
@@ -29,7 +35,7 @@ public class UserPane extends Pane {
         innerPane.setOnMouseEntered(this::onHover);
         innerPane.setOnMouseExited(this::exitHover);
         innerPane.setOnMouseClicked(this::onClick);
-        HBox contentBox = new HBox();
+        contentBox = new HBox();
 
         Image image = user.getPhoto();
         ImageView profilePicture = new ImageView(image);
@@ -48,6 +54,15 @@ public class UserPane extends Pane {
     }
     public void onClick(MouseEvent event) {
 
+
+        try {
+            ProfileController.setUser(user);
+            Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     public void onHover(MouseEvent event) {
         ((Node) event.getSource()).setCursor(Cursor.HAND);
