@@ -1,8 +1,6 @@
 package org.rusteze.bilevent;
 
-import com.mongodb.BasicDBList;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import javafx.scene.image.Image;
 import org.bson.Document;
@@ -16,6 +14,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Community implements Searchable, ConvertibleWithDocument<Community> {
 
@@ -25,7 +25,7 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     private String name;
     private String description;
     private ArrayList<User> members;
-    private ArrayList<User> admins;
+    private User admin;
     private ArrayList<Event> currentEvents;
     private ArrayList<Event> pastEvents;
     private Image photo;
@@ -33,11 +33,11 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     private int ratingCount;
     private ObjectId id;
 
-    public Community(String name, String description, Image photo) {
+    public Community(String name, String description, Image photo, User admin) {
         this.name = name;
         this.description = description;
         this.members = new ArrayList<>();
-        this.admins = new ArrayList<>();
+        this.admin = admin;
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
         this.photo = photo;
@@ -54,59 +54,101 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
 
     public Community(){
         this.members = new ArrayList<>();
-        this.admins = new ArrayList<>();
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
     }
 
     public void addMember(User user){
-        Bson filter = Filters.eq("_id", this.id);
-        Bson update = Updates.push("members", user.getId());
-        FindOneAndUpdateOptions options = new FindOneAndUpdateOptions();
-        HelloApplication.db.getCollection("Community").findOneAndUpdate(filter, update, options);
-
         members.add(user);
+
+        //Database_Part begin
+        ObjectId newMemberId = user.getId();
+        Document query = new Document().append("_id", user.getId());
+        Bson update = Updates.addToSet("members", newMemberId);
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("Community").updateOne(query, update, options);
+        //end
     }
 
-    public void setAdmin(User user){
+    public void removeMember(User user){
         if(members.contains(user)){
-            Bson filter = Filters.eq("_id", this.id);
-            Bson update = Updates.push("admins", user.getId());
-            FindOneAndUpdateOptions options = new FindOneAndUpdateOptions();
-            HelloApplication.db.getCollection("Community").findOneAndUpdate(filter, update, options);
+            members.remove(user);
 
-            admins.add(user);
+            //Database_Part begin
+            ObjectId newMemberId = user.getId();
+            Document query = new Document().append("_id", user.getId());
+            Bson update = Updates.pull("members", newMemberId);
+            UpdateOptions options = new UpdateOptions().upsert(true);
+            HelloApplication.db.getCollection("Community").updateOne(query, update, options);
+            //end
         }
     }
 
+    public void changeAdmin(User user){
+        if(members.contains(user)){
+            this.admin = user;
+
+            //Database_Part begin
+            ObjectId newAdminId = user.getId();
+            Document query = new Document().append("_id", this.id);
+            Bson update = Updates.set("admin", newAdminId);
+            UpdateOptions options = new UpdateOptions().upsert(true);
+            HelloApplication.db.getCollection("Community").updateOne(query, update, options);
+            //end
+        }
+    }
+
+
     public Event createEvent(String name, String description, String location, LocalDate date, Image image){
         Event event = new CommunityEvent(this, name, description, location, date, image);
-        Document doc = event.toDocument();
+        Event.allEvents.put(event.getId(), event);
 
+        //Database_Part begin
+        HelloApplication.db.getCollection("Event").insertOne(event.toDocument());
+        //end
 
-        admins.forEach(admin -> event.getAdmins().add(admin));
         currentEvents.add(event);
+
+        //Database_Part begin
+        ObjectId newEventId = event.getId();
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.addToSet("currentEvents", newEventId);
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("Community").updateOne(query, update, options);
+        //end
 
         return event;
     }
 
     public void handlePassedEvent(){
-        boolean stop = false;
-
-        for(int i = 0; i < currentEvents.size() && !stop; i++){
+        for(int i = 0; i < currentEvents.size(); i++){
             Event current = currentEvents.get(i);
             if(current.getDate().isBefore(LocalDate.now())){
                 currentEvents.remove(current);
                 pastEvents.add(current);
+
+                //Database_Part begin
+                ObjectId currentId = current.getId();
+                Document query = new Document().append("_id", this.id);
+                Bson update = Updates.combine(Updates.pull("currentEvents", currentId), Updates.addToSet("pastEvents", currentId));
+                UpdateOptions options = new UpdateOptions().upsert(true);
+                HelloApplication.db.getCollection("Community").updateOne(query, update, options);
+                //end
+
                 i--;
-            }else{
-                stop = true;
             }
         }
     }
 
     public void addNewRating(int rating){
         this.rating = ((this.rating * ratingCount++) + rating) / ratingCount;
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.combine(Updates.set("rating", this.rating), Updates.set("ratingCount", this.ratingCount));
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("Community").updateOne(query, update, options);
+        //end
     }
 
     @Override
@@ -115,7 +157,7 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     }
 
     public boolean isAdmin(User user) {
-        return admins.contains(user);
+        return this.admin.getId().equals(user.getId());
     }
 
     public String getName() {
@@ -127,8 +169,8 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     public ArrayList<User> getMembers() {
         return members;
     }
-    public ArrayList<User> getAdmins() {
-        return admins;
+    public User getAdmin() {
+        return admin;
     }
     public ArrayList<Event> getCurrentEvents() {
         return currentEvents;
@@ -155,6 +197,9 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     public void setPhoto(Image photo) {
         this.photo = photo;
     }
+    public void setAdmin(User user){
+        admin = user;
+    }
 
     @Override
     public String toString() {
@@ -164,23 +209,18 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     public Document toDocument(){
         Document doc = new Document();
 
-        BasicDBList membersArr = new BasicDBList();
-        members.forEach(e -> membersArr.add(e.getId()));
-        BasicDBList adminsArr = new BasicDBList();
-        admins.forEach(e -> adminsArr.add(e.getId()));
-        BasicDBList currentEventsArr = new BasicDBList();
-        currentEvents.forEach(e -> currentEventsArr.add(e.getId()));
-        BasicDBList pastEventsArr = new BasicDBList();
-        pastEvents.forEach(e -> pastEventsArr.add(e.getId()));
+        List<ObjectId> membersArr = members.stream().map(e -> e.getId()).collect(Collectors.toList());
+        List<ObjectId> currentEventsArr = currentEvents.stream().map(e -> e.getId()).collect(Collectors.toList());
+        List<ObjectId> pastEventsArr = pastEvents.stream().map(e -> e.getId()).collect(Collectors.toList());
 
         doc.append("_id", this.id)
                 .append("name", this.name)
                 .append("description", this.description)
+                .append("admin", this.admin.getId())
                 .append("photo", this.photo.getUrl())
                 .append("rating", this.rating)
                 .append("ratingCount", this.ratingCount)
                 .append("members", membersArr)
-                .append("admins", adminsArr)
                 .append("currentEvents", currentEventsArr)
                 .append("pastEvents", pastEventsArr);
 

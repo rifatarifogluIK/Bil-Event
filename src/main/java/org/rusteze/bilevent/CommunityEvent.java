@@ -12,7 +12,7 @@ public class CommunityEvent extends Event{
     private Community community;
 
     public CommunityEvent(Community community, String name, String description, String location, LocalDate date, Image image) {
-        super(name, description, location, date, image);
+        super(name, description, location, date, image, community.getAdmin());
         this.community = community;
     }
 
@@ -26,6 +26,7 @@ public class CommunityEvent extends Event{
         return community;
     }
 
+    //Only usable from database loading
     public void setCommunity(Community community) {
         this.community = community;
     }

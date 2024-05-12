@@ -1,8 +1,11 @@
 package org.rusteze.bilevent;
 
 import com.mongodb.BasicDBList;
+import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 import javafx.scene.image.Image;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.io.File;
@@ -23,21 +26,21 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
     private ChatSpace chatSpace;
     private ArrayList<User> attendees;
     private String location;
-    private ArrayList<User> admins;
+    private User admin;
     private Image photo;
     private double rating;
     private int ratingCount;
     private ArrayList<String> attributes;
     private ObjectId id;
 
-    public Event(String name, String description, String location, LocalDate date, Image image) {
+    public Event(String name, String description, String location, LocalDate date, Image image, User admin) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.photo = image;
-        attendees = new ArrayList<>();
-        attributes = new ArrayList<>();
-        admins = new ArrayList<>();
+        this.attendees = new ArrayList<>();
+        this.attributes = new ArrayList<>();
+        this.admin = admin;
         this.location = location;
         this.photo = image;
         if(image == null) {
@@ -45,51 +48,60 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
             Image emptyImage = new Image(file.toURI().toString());
             photo = emptyImage;
         }
-        chatSpace = new ChatSpace();
+        chatSpace = new ChatSpace(this);
         this.id = ObjectId.get();
         allSearchables.add(this);
     }
 
     public Event(){
         this.attendees = new ArrayList<>();
-        this.admins = new ArrayList<>();
         this.attributes = new ArrayList<>();
     }
 
     public void addAttendee(User user)
     {
-        //in case user is already in the current attendees
-        for(User u: attendees)
-        {
-            if(u.getUsername().equals(user.getUsername()))
-                //we can make another pop screen for this part.
-                return;
+        if (!attendees.contains(user)) {
+            attendees.add(user);
+
+            //Database_Part begin
+            ObjectId newAttendeeId = user.getId();
+            Document query = new Document().append("_id", this.id);
+            Bson update = Updates.addToSet("attendees", newAttendeeId);
+            UpdateOptions options = new UpdateOptions().upsert(true);
+            HelloApplication.db.getCollection("Event").updateOne(query, update, options);
+            //end
         }
-        attendees.add(user);
     }
 
     public void removeAttendee(User user) {
-        for (User u : attendees) {
-            if (u.getUsername().equals(user.getUsername())) {
-                attendees.remove(u);
-                return;
-            }
+        if (attendees.contains(user)) {
+            attendees.remove(user);
+
+            //Database_Part begin
+            ObjectId newAttendeeId = user.getId();
+            Document query = new Document().append("_id", this.id);
+            Bson update = Updates.pull("attendees", newAttendeeId);
+            UpdateOptions options = new UpdateOptions().upsert(true);
+            HelloApplication.db.getCollection("Event").updateOne(query, update, options);
+            //end
         }
         //maybe we can make a pop-up screen to show in case there is no user with the given info.
     }
+
     public void addAttribute(String attribute) {
         this.attributes.add(attribute);
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.addToSet("attributes", attribute);
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("Event").updateOne(query, update, options);
+        //end
     }
 
     public boolean isAdmin(User user)
     {
-        for(User u: admins)
-        {
-            if(u.getUsername().equals(user.getUsername())) {
-                return true;
-            }
-        }
-        return false;
+        return this.admin.getId().equals(user.getId());
     }
 
     public int daysRemaining()
@@ -109,16 +121,14 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
 
     public void addNewRating(int rate)
     {
-        this.rating += rate;
-        ratingCount++;
-    }
+        this.rating = ((this.rating * ratingCount++) + rating) / ratingCount;
 
-    public double currentAverageRating()
-    {
-        double RatingWithoutRounding = rating / ratingCount;
-
-        //rounds the rating to 1 decimal places
-        return Math.round(RatingWithoutRounding * 10.0) / 10.0;
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.combine(Updates.set("rating", this.rating), Updates.set("ratingCount", this.ratingCount));
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("Event").updateOne(query, update, options);
+        //end
     }
 
     public String getName() {
@@ -133,8 +143,8 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
     public ArrayList<String> getAttributes() {
         return attributes;
     }
-    public ArrayList<User> getAdmins() {
-        return admins;
+    public User getAdmin() {
+        return admin;
     }
     public abstract Searchable getOrganizer();
     public ArrayList<User> getAttendees() {
@@ -152,6 +162,9 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
     public String getLocation() {
         return location;
     }
+    public void setAdmin(User admin) {
+        this.admin = admin;
+    }
 
     @Override
     public Document toDocument() {
@@ -159,8 +172,6 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
 
         BasicDBList attendeesArr = new BasicDBList();
         attendees.forEach(e -> attendeesArr.add(e.getId()));
-        BasicDBList adminsArr = new BasicDBList();
-        admins.forEach(e -> adminsArr.add(e.getId()));
         BasicDBList attributesArr = new BasicDBList();
         attributes.forEach(e -> attributesArr.add(e));
 
@@ -169,12 +180,12 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
                 .append("description", this.description)
                 .append("date", this.date.toString())
                 .append("location", this.location)
+                .append("admin", this.admin.getId())
                 .append("photo", this.photo.getUrl())
                 .append("rating", this.rating)
                 .append("ratingCount", this.ratingCount)
                 .append("chatSpace", this.chatSpace.toDocument())
                 .append("attendees", attendeesArr)
-                .append("admins", adminsArr)
                 .append("attributes", attributesArr);
 
         return doc;
@@ -184,7 +195,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         this.name = (String)doc.get("name");
         this.description = (String)doc.get("description");
         this.date = LocalDate.parse((String)doc.get("date"));
-        this.chatSpace = new ChatSpace().fromDocument(doc);
+        this.chatSpace = new ChatSpace(this).fromDocument(doc);
         this.location = (String)doc.get("location");
         this.photo = new Image(new FileInputStream((String)doc.get("photo")));
         this.rating = (double)doc.get("rating");

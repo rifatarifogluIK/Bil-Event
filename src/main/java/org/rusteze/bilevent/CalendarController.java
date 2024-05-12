@@ -94,7 +94,7 @@ public class CalendarController implements SceneHandler, Initializable {
 
         ArrayList<Event> displayedEvents = HelloApplication.sessionUser.getEnrolledEvents();
 
-        for (Event e : displayedEvents) { //TODO HelloApplication.sessionUser.getEnrolledEvents()
+        for (Event e : displayedEvents) {
 
             LocalDate eventLocalDate = e.getDate();
             int eventDate = eventLocalDate.getDayOfMonth();

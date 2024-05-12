@@ -4,21 +4,34 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import com.mongodb.BasicDBList;
+import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.bson.BsonArray;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 public class ChatSpace implements ConvertibleWithDocument<ChatSpace> {
     private ObservableList<Message> messages;
+    private Event parent;
 
-    public ChatSpace() {
+    public ChatSpace(Event parent) {
         this.messages = FXCollections.observableArrayList();
+        this.parent = parent;
     }
 
     public void addMessage(String text, String username) {
         Message newMessage = new Message(text, username);
         messages.add(newMessage);
+
+        //Database_Part begin
+        Document newMessageDoc = newMessage.toDocument();
+        Document query = new Document().append("_id", parent.getId());
+        Bson update = Updates.addToSet("messages", newMessageDoc);
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("Event").updateOne(query, update, options);
+        //end
     }
 
     public ObservableList<Message> getMessages() {

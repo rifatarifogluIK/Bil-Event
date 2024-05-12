@@ -1,8 +1,11 @@
 package org.rusteze.bilevent;
 
 import com.mongodb.BasicDBList;
+import com.mongodb.client.model.UpdateOptions;
+import com.mongodb.client.model.Updates;
 import javafx.scene.image.Image;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.io.File;
@@ -11,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 public class User implements Searchable, ConvertibleWithDocument<User> {
@@ -65,10 +69,16 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
 
     public void enrollEvent(Event event) {
-
         enrolledEvents.add(binarySearch(event), event);
-        event.addAttendee(this);
 
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.addToSet("enrolledEvents", event.getId());
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
+
+        event.addAttendee(this);
     }
 
     public ArrayList<Event> getThisWeekEvents() {
@@ -84,35 +94,82 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
 
     public Event createEvent(String name, String description, String location, LocalDate date, Image image) {
-
         Event event = new PersonalEvent(this, name, description, location, date, image);
+        Event.allEvents.put(event.getId(), event);
+
+        //Database_Part begin
+        HelloApplication.db.getCollection("Event").insertOne(event.toDocument());
+        //end
+
         event.addAttendee(this);
-        event.getAdmins().add(this);
+
         enrolledEvents.add(event);
         createdEvents.add(event);
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.combine(Updates.addToSet("enrolledEvents", event.getId()), Updates.addToSet("createdEvents", event.getId()));
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
+
         return event;
     }
 
     public void joinCommunity(Community community) {
         community.addMember(this);
         this.communities.add(community);
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.addToSet("communities", community.getId());
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
     }
 
     public void removeCommunity(Community community) {
+        if (community.isAdmin(this)){
+            Community.allCommunities.remove(community.getId());
+
+            //Database_Part begin
+                HelloApplication.db.getCollection("Community").deleteOne(new Document().append("_id", community.getId()));
+            //end
+        }else{
+            community.removeMember(this);
+        }
+
         communities.remove(community);
-        community.getMembers().remove(this);
-        community.getAdmins().remove(this);
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.pull("communities", community.getId());
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
     }
 
     public Community createCommunity(String name, String description, Image photo) {
+        Community community = new Community(name, description, photo, this);
+        Community.allCommunities.put(community.getId(), community);
 
-        Community community = new Community(name, description, photo);
-        community.getAdmins().add(this);
-        community.getMembers().add(this);
-        communities.add(community);
+        //Database_Part begin
+        HelloApplication.db.getCollection("Community").insertOne(community.toDocument());
+        //end
+
+        this.joinCommunity(community);
+
         return community;
     }
+
     public static User userWith(String email) {
+        Enumeration<User> users = allUsers.elements();
+        while (users.hasMoreElements()){
+            User temp = users.nextElement();
+            if(temp.getEmail().equals(email)){
+                return temp;
+            }
+        }
         return null;
     }
 
@@ -141,8 +198,24 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
 
     public void leaveEvent(Event event) {
+        if (event.isAdmin(this)){
+            Event.allEvents.remove(event.getId());
+
+            //Database_Part begin
+            HelloApplication.db.getCollection("Event").deleteOne(new Document().append("_id", event.getId()));
+            //end
+        }else{
+            event.removeAttendee(this);
+        }
+
         enrolledEvents.remove(event);
-        event.getAttendees().remove(this);
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.pull("enrolledEvents", event.getId());
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
     }
 
     public boolean hasEventPassed(Event event) {
@@ -154,25 +227,33 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
 
     public void handlePassedEvent() {
-        int counter = 0;
-        for(Event e : enrolledEvents) {
-            if(hasEventPassed(e)) {
-                counter++;
-            } else {
-                break;
-            }
-        }
-        for(int i = 0; i < counter; i++) {
+        for(int i = 0; i < enrolledEvents.size(); i++) {
+            Event current = enrolledEvents.get(i);
+            if(hasEventPassed(current)){
+                attendedEvents.add(current);
+                enrolledEvents.remove(current);
 
-            attendedEvents.add(enrolledEvents.getFirst());
-            enrolledEvents.removeFirst();
+                //Database_Part begin
+                Document query = new Document().append("_id", this.id);
+                Bson update = Updates.combine(Updates.pull("enrolledEvents", current.getId()), Updates.addToSet("attendedEvents", current.getId()));
+                UpdateOptions options = new UpdateOptions().upsert(true);
+                HelloApplication.db.getCollection("User").updateOne(query, update, options);
+                //end
+
+                i--;
+            }
         }
     }
 
     public void addNewRating(int rating) {
+        this.rating = ((this.rating * ratingCount++) + rating) / ratingCount;
 
-        this.rating += rating;
-        ratingCount++;
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.combine(Updates.set("rating", this.rating), Updates.set("ratingCount", this.ratingCount));
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
     }
 
     public void setPassword(String password) {
@@ -186,6 +267,13 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
 
     public void addFriend(User user) {
         friends.add(user);
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.addToSet("friends", user.getId());
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
     }
 
     public ArrayList<Event> getEnrolledEvents() {

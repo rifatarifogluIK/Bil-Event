@@ -12,7 +12,7 @@ public class PersonalEvent extends Event{
     private User organizer;
 
     public PersonalEvent(User organizer, String name, String description, String location, LocalDate date, Image image) {
-        super(name, description, location, date, image);
+        super(name, description, location, date, image, organizer);
         this.organizer = organizer;
     }
 
@@ -26,6 +26,7 @@ public class PersonalEvent extends Event{
         return organizer;
     }
 
+    //Only usable from database loading
     public void setOrganizer(User organizer) {
         this.organizer = organizer;
     }

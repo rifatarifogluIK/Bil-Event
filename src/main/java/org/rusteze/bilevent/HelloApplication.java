@@ -17,7 +17,7 @@ import java.util.*;
 
 public class HelloApplication extends Application {
 
-    public static int POPULAR_LIMIT = 5;
+    public static int POPULAR_LIMIT = 3;
 
     // Added this to test UI before implementing user authentication
     public static User sessionUser;
@@ -38,15 +38,6 @@ public class HelloApplication extends Application {
 
         update();
 
-        sessionUser = new User("Selim", "pass", "email");
-        Community.popularCommunities.put(ObjectId.get() ,new Community("CS Department", "a", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("EEE Department", "a", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("IE Department", "a", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("F1 Club", "a", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
-        Community.popularCommunities.put(ObjectId.get() ,new Community("ME Department", "a", null));
-
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bil-Event");
@@ -65,7 +56,7 @@ public class HelloApplication extends Application {
     public static void update() throws FileNotFoundException {
         MongoCollection<Document> events = db.getCollection("Event");
         MongoCollection<Document> communities = db.getCollection("Community");
-        MongoCollection<Document> users = db.getCollection("Users");
+        MongoCollection<Document> users = db.getCollection("User");
 
         List<Document> eventList = events.find().into(new ArrayList<>());
         List<Document> communityList = communities.find().into(new ArrayList<>());
@@ -102,15 +93,13 @@ public class HelloApplication extends Application {
             if (doc.get("members") != null) {
                 ((ArrayList<ObjectId>)doc.get("members")).forEach(e -> com.getMembers().add(User.allUsers.get(e)));
             }
-            if (doc.get("admins") != null) {
-                ((ArrayList<ObjectId>)doc.get("admins")).forEach(e -> com.getAdmins().add(User.allUsers.get(e)));
-            }
             if (doc.get("currentEvents") != null) {
                 ((ArrayList<ObjectId>)doc.get("currentEvents")).forEach(e -> com.getCurrentEvents().add(Event.allEvents.get(e)));
             }
             if (doc.get("pastEvents") != null) {
                 ((ArrayList<ObjectId>)doc.get("pastEvents")).forEach(e -> com.getPastEvents().add(Event.allEvents.get(e)));
             }
+            com.setAdmin(User.allUsers.get(doc.get("admin")));
         }
 
         Enumeration<ObjectId> eventKeys = Event.allEvents.keys();
@@ -122,12 +111,10 @@ public class HelloApplication extends Application {
             if (doc.get("attendees") != null) {
                 ((ArrayList<ObjectId>)doc.get("attendees")).forEach(e -> event.getAttendees().add(User.allUsers.get(e)));
             }
-            if (doc.get("admins") != null) {
-                ((ArrayList<ObjectId>)doc.get("admins")).forEach(e -> event.getAdmins().add(User.allUsers.get(e)));
-            }
             if (doc.get("attributes") != null) {
                 ((ArrayList<String>)doc.get("attributes")).forEach(e -> event.getAttributes().add(e));
             }
+            event.setAdmin(User.allUsers.get(doc.get("admin")));
         }
 
         Enumeration<ObjectId> userKeys = User.allUsers.keys();
