@@ -31,11 +31,11 @@ public interface Searchable {
 
             if(s.findOrganizer(organizer) && !found.contains(s)) {
                 found.add(s);
-            }else found.remove(s);
+            }else if(!organizer.isBlank()) found.remove(s);
 
             if(s.findName(name) && !found.contains(s)) {
                 found.add(s);
-            }else found.remove(s);
+            }else if (!name.isBlank()) found.remove(s);
         }
         return found;
 
