@@ -110,8 +110,12 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     }
 
     @Override
-    public boolean find(String key) {
-        return this.name.equals(key);
+    public boolean findName(String name) {
+        return this.name.equals(name);
+    }
+    @Override
+    public boolean findOrganizer(String organizer) {
+        return findName(organizer);
     }
 
     public boolean isAdmin(User user) {
