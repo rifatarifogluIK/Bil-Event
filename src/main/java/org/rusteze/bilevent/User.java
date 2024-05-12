@@ -261,8 +261,12 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
 
     @Override
-    public boolean find(String key) {
-        return this.username.equals(key);
+    public boolean findName(String name) {
+        return this.username.equals(name);
+    }
+    @Override
+    public boolean findOrganizer(String organizer) {
+        return findName(organizer);
     }
 
     public void addFriend(User user) {

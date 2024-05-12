@@ -9,11 +9,37 @@ import java.util.Hashtable;
 
 public interface Searchable {
     public static ArrayList<Searchable> allSearchables = new ArrayList<Searchable>();
-    public boolean find(String key);
+    public boolean findName(String name);
+    public boolean findOrganizer(String organizer);
+    public default boolean findLocation(String location){
+        return false;
+    }
+    public default boolean findDate(LocalDate date) {
+        return false;
+    }
     public static ArrayList<Searchable> search(String name, String organizer, String location, LocalDate date){
-        ArrayList<Searchable> founded = new ArrayList<>();
+        ArrayList<Searchable> found = new ArrayList<>();
 
-        for(Searchable s: allSearchables)
+        for (Searchable s: allSearchables) {
+            if(!location.isBlank() && s.findLocation(location) && !found.contains(s)) {
+                found.add(s);
+            } else found.remove(s);
+
+            if(date != null && s.findDate(date) && !found.contains(s)) {
+                found.add(s);
+            }else found.remove(s);
+
+            if(s.findOrganizer(organizer) && !found.contains(s)) {
+                found.add(s);
+            }else if(!organizer.isBlank()) found.remove(s);
+
+            if(s.findName(name) && !found.contains(s)) {
+                found.add(s);
+            }else if (!name.isBlank()) found.remove(s);
+        }
+        return found;
+
+        /*for(Searchable s: allSearchables)
         {
             if(s instanceof User)
             {
@@ -47,7 +73,6 @@ public interface Searchable {
                 }
             }
         }
-
-        return founded;
+        return founded;*/
     }
 }

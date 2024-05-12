@@ -130,6 +130,19 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         HelloApplication.db.getCollection("Event").updateOne(query, update, options);
         //end
     }
+    @Override
+    public boolean findName(String name) {
+        return this.name.equals(name);
+    }
+    @Override
+    public boolean findLocation(String location) {
+        return this.location.equals(location);
+    }
+
+    @Override
+    public boolean findDate(LocalDate date) {
+        return this.date.isEqual(date);
+    }
 
     public String getName() {
         return name;

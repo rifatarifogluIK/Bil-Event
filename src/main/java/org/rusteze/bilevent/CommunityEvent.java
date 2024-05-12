@@ -32,11 +32,9 @@ public class CommunityEvent extends Event{
     }
 
     @Override
-    public boolean find(String key) {
-        if(community != null)
-        {
-            return key.equals(community.getName());
-        }
-        return false;
+    public boolean findOrganizer(String organizer) {
+
+        return organizer.equals(community.getName());
+
     }
 }
