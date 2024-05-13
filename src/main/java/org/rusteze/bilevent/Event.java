@@ -34,6 +34,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
     private ObjectId id;
 
     public Event(String name, String description, String location, LocalDate date, Image image, User admin) {
+        this.id = ObjectId.get();
         this.name = name;
         this.description = description;
         this.date = date;
@@ -49,7 +50,6 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
             photo = emptyImage;
         }
         chatSpace = new ChatSpace(this);
-        this.id = ObjectId.get();
         allSearchables.add(this);
     }
 
@@ -205,6 +205,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
     }
     @Override
     public Event fromDocument(Document doc) throws FileNotFoundException {
+        this.id = (ObjectId)doc.get("_id");
         this.name = (String)doc.get("name");
         this.description = (String)doc.get("description");
         this.date = LocalDate.parse((String)doc.get("date"));
@@ -213,7 +214,6 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         this.photo = new Image(new FileInputStream((String)doc.get("photo")));
         this.rating = (double)doc.get("rating");
         this.ratingCount = (int)doc.get("ratingCount");
-        this.id = (ObjectId)doc.get("_id");
 
         return this;
     }
