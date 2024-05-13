@@ -62,37 +62,11 @@
                                     <Font name="Trebuchet MS Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="275.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/star.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="310.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/star.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="345.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/star.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="380.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/star.png" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="415.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Images/star.png" />
-                                 </image>
-                              </ImageView>
                               <Label fx:id="locationLabel1" layoutX="275.0" layoutY="165.0" prefHeight="21.0" prefWidth="306.0" text="Rating:">
                                  <font>
                                     <Font name="Trebuchet MS Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="460.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Submit" />
                            </children>
                         </Pane>
                      </children>

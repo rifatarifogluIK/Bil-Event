@@ -38,39 +38,44 @@ public interface Searchable {
         ArrayList<Searchable> found = new ArrayList<>();
 
         for (Searchable s : allSearchables) {
-            if (!location.isBlank() && s.findLocation(location)) {
+            boolean removed = false;
+            if (!removed && location != null && s.findLocation(location)) {
                 if (!found.contains(s)) {
                     found.add(s);
                 }
-            } else if (!location.isBlank()) {
+            } else if (location != null && s instanceof Event) {
                 found.remove(s);
+                removed = true;
             }
 
-            if (date != null && s.findDate(date)) {
+            if (!removed && date != null && s.findDate(date)) {
                 if (!found.contains(s)) {
                     found.add(s);
                 }
             } else if (date != null) {
                 found.remove(s);
+                removed = true;
             }
 
-            if (!organizer.isBlank() && s.findOrganizer(organizer)) {
+            if (!removed && !organizer.isBlank() && s.findOrganizer(organizer)) {
                 if (!found.contains(s)) {
                     found.add(s);
                 }
             } else if (!organizer.isBlank()) {
                 found.remove(s);
+                removed = true;
             }
 
-            if (!name.isBlank() && s.findName(name)) {
+            if (!removed && !name.isBlank() && s.findName(name)) {
                 if (!found.contains(s)) {
                     found.add(s);
                 }
             } else if (!name.isBlank()) {
                 found.remove(s);
+                removed = true;
             }
         }
-        return allSearchables;
+        return found;
 
         /*for(Searchable s: allSearchables)
         {

@@ -56,7 +56,7 @@ public class EventPageController implements Initializable {
     private static Event event;
     private User currentUser;
 
-    public class RatingStars{
+    public class RatingStars extends Pane{
         Image star;
         Image filledStar;
         ImageView[] ratingStars;
@@ -67,26 +67,33 @@ public class EventPageController implements Initializable {
             File filledStarFile = new File("src/main/resources/org/rusteze/bilevent/Images/filledStar.png");
             filledStar = new Image(filledStarFile.toURI().toString());
             ratingStars = new ImageView[5];
+            setPrefWidth(205);
+            setPrefHeight(30);
+            setLayoutX(275);
+            setLayoutY(200);
+            setOnMouseExited(this::exitStarHover);
+            infoPanel.getChildren().add(this);
             for(int i = 0; i < ratingStars.length; i++) {
                 ratingStars[i] = new ImageView(star);
-                infoPanel.getChildren().add(ratingStars[i]);
+                this.getChildren().add(ratingStars[i]);
                 ratingStars[i].setFitHeight(30);
                 ratingStars[i].setFitWidth(30);
-                ratingStars[i].setLayoutX(275 + (i * 35));
-                ratingStars[i].setLayoutY(200);
+                ratingStars[i].setLayoutX((i * 35));
+                ratingStars[i].setOnMouseEntered(this::starHover);
             }
         }
         public void starHover(MouseEvent mouseEvent) {
+            Image convertTo = filledStar;
            for(int i = 0; i < ratingStars.length; i++) {
-               ratingStars[i].setImage(filledStar);
+               ratingStars[i].setImage(convertTo);
                if(ratingStars[i] == mouseEvent.getSource()) {
-                   break;
+                   convertTo = star;
                }
            }
         }
         public void exitStarHover(MouseEvent mouseEvent) {
-            for(int i = 0; i < ratingStars.length; i++) {
-                ratingStars[i].setImage(star);
+            for(ImageView ratingStar: ratingStars) {
+                ratingStar.setImage(star);
             }
         }
     }
@@ -210,5 +217,6 @@ public class EventPageController implements Initializable {
         setPage();
         setChatSpace();
         setCurrentUser(HelloApplication.sessionUser);
+        RatingStars stars = new RatingStars();
     }
 }

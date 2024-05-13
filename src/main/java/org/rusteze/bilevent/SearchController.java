@@ -163,15 +163,15 @@ public class SearchController implements SceneHandler, Initializable {
             if (result instanceof Event) {
                 EventContainer eventResult = new EventContainer((Event) result);
                 searchResults.getChildren().add(eventResult);
-                VBox.setMargin(eventResult, new Insets(0, 0, 10, 0));
+                VBox.setMargin(eventResult, new Insets(0, 0, 40, 0));
             } else if (result instanceof Community) {
                 CommunityContainer communityResult = new CommunityContainer((Community) result);
                 searchResults.getChildren().add(communityResult);
-                VBox.setMargin(communityResult, new Insets(0, 0, 10, 0));
+                VBox.setMargin(communityResult, new Insets(0, 0, 40, 0));
             } else if (result instanceof User) {
                 UserContainer userResult = new UserContainer((User) result);
                 searchResults.getChildren().add(userResult);
-                VBox.setMargin(userResult, new Insets(0, 0, 10, 0));
+                VBox.setMargin(userResult, new Insets(0, 0, 40, 0));
             }
         }
     }
