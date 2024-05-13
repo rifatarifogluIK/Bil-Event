@@ -1,6 +1,7 @@
 package org.rusteze.bilevent;
 
 import com.mongodb.BasicDBList;
+import com.mongodb.client.model.InsertOneOptions;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import javafx.scene.image.Image;
@@ -70,7 +71,8 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
 
     public void enrollEvent(Event event) {
-        enrolledEvents.add(binarySearch(event), event);
+        //enrolledEvents.add(binarySearch(event), event);
+        enrolledEvents.add(event);
 
         //Database_Part begin
         Document query = new Document().append("_id", this.id);
@@ -95,7 +97,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
 
     public Event createEvent(String name, String description, String location, LocalDate date, Image image) {
-        Event event = new PersonalEvent(this, name, description, location, date, image);
+        PersonalEvent event = new PersonalEvent(this, name, description, location, date, image);
         Event.allEvents.put(event.getId(), event);
 
         //Database_Part begin
@@ -103,6 +105,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         //end
 
         event.addAttendee(this);
+        event.getChatSpace().addMessage("Welcome to the " + event.getName() + " Chat!", "System");
 
         enrolledEvents.add(event);
         createdEvents.add(event);
@@ -213,7 +216,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
 
         //Database_Part begin
         Document query = new Document().append("_id", this.id);
-        Bson update = Updates.pull("enrolledEvents", event.getId());
+        Bson update = Updates.combine(Updates.pull("enrolledEvents", event.getId()), Updates.pull("createdEvents", event.getId()));
         UpdateOptions options = new UpdateOptions().upsert(true);
         HelloApplication.db.getCollection("User").updateOne(query, update, options);
         //end
@@ -375,7 +378,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         this.recommendations = new Recommendation(this);
         this.rating = (double)doc.get("rating");
         this.ratingCount = (int)doc.get("ratingCount");
-        this.id = ObjectId.get();
+        this.id = (ObjectId)doc.get("_id");
 
         return this;
     }

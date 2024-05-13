@@ -7,7 +7,7 @@ import org.bson.types.ObjectId;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 
-public class PersonalEvent extends Event{
+public class PersonalEvent extends Event {
 
     private User organizer;
 
@@ -36,5 +36,16 @@ public class PersonalEvent extends Event{
 
         return organizer.equals(this.organizer.getUsername());
 
+    }
+
+    @Override
+    public Document toDocument() {
+        return super.toDocument().append("organizer", this.getId()).append("isPersonal", true);
+    }
+    @Override
+    public Event fromDocument(Document doc) throws FileNotFoundException {
+        super.fromDocument(doc);
+        this.organizer = User.allUsers.get(doc.get("organizer"));
+        return this;
     }
 }

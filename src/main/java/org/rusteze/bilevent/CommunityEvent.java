@@ -37,4 +37,15 @@ public class CommunityEvent extends Event{
         return organizer.equals(community.getName());
 
     }
+
+    @Override
+    public Document toDocument() {
+        return super.toDocument().append("community", this.getId()).append("isPersonal", false);
+    }
+    @Override
+    public Event fromDocument(Document doc) throws FileNotFoundException {
+        super.fromDocument(doc);
+        this.community = Community.allCommunities.get(doc.get("community"));
+        return this;
+    }
 }
