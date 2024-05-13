@@ -62,6 +62,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         this.attendedEvents = new ArrayList<Event>();
         this.createdEvents = new ArrayList<Event>();
         this.friends = new ArrayList<User>();
+        this.friendRequests = new ArrayList<User>();
     }
 
     public boolean authentication() {

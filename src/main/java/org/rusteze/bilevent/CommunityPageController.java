@@ -51,7 +51,7 @@ public class CommunityPageController implements Initializable {
         for(Event e : currentEvents) {
             EventPane eventPane = new EventPane(e);
             eventPanel.getChildren().add(eventPane);
-            HBox.setMargin(eventPane, new Insets(100, 220, 0, 0));
+            HBox.setMargin(eventPane, new Insets(100, 30, 0, 0));
             eventPanel.setAlignment(Pos.BASELINE_LEFT);
         }
     }

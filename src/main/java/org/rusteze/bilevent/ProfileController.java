@@ -37,7 +37,7 @@ public class ProfileController implements Initializable {
     @FXML
     Button addFriend;
     @FXML
-    HBox requestPanel;
+    VBox requestPanel;
     @FXML
     Label requestLabel;
     @FXML
@@ -98,13 +98,14 @@ public class ProfileController implements Initializable {
 
         if(addFriend.getText().equals("Add")) {
             user.getFriendRequests().add(HelloApplication.sessionUser);
-
+            setPage();
         } else if (addFriend.getText().equals("Remove")) {
             HelloApplication.sessionUser.getFriends().remove(user);
             user.getFriends().remove(HelloApplication.sessionUser);
-
+            setPage();
         } else if(addFriend.getText().equals("Pending")) {
             user.getFriendRequests().remove(HelloApplication.sessionUser);
+            setPage();
         }
     }
     public void onHover(MouseEvent mouseEvent) {
@@ -117,6 +118,7 @@ public class ProfileController implements Initializable {
     }
     public void displayRequests() {
         ArrayList<User> requests = user.getFriendRequests();
+        requestPanel.getChildren().clear();
 
         for(User request : requests) {
             RequestPane userPane = new RequestPane(request);
@@ -126,11 +128,12 @@ public class ProfileController implements Initializable {
     }
 
     public void displayEvents() {
+        eventPanel.getChildren().clear();
         ArrayList<Event> currentEvents = user.getEnrolledEvents();
         for(Event e : currentEvents) {
             EventPane eventPane = new EventPane(e);
             eventPanel.getChildren().add(eventPane);
-            HBox.setMargin(eventPane, new Insets(100, 220, 0, 0));
+            HBox.setMargin(eventPane, new Insets(100, 30, 0, 0));
             eventPanel.setAlignment(Pos.BASELINE_LEFT);
         }
     }
