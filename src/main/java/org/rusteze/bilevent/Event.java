@@ -50,6 +50,8 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
             photo = emptyImage;
         }
         chatSpace = new ChatSpace(this);
+        chatSpace.addMessage("Welcome to the " + this.getName() + " Chat!", "System");
+        this.id = ObjectId.get();
         allSearchables.add(this);
     }
 

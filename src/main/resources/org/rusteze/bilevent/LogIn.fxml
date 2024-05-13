@@ -54,7 +54,7 @@
                               <Image url="@Images/Logo.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="swapToLogIn" layoutX="72.0" layoutY="409.0" mnemonicParsing="false" onAction="#clickAccountButton" prefHeight="41.0" prefWidth="219.0" style="-fx-background-color: white; -fx-background-radius: 24px;" text="Create an account" textFill="ROYALBLUE" />
+                        <Button fx:id="swapToLogIn" layoutX="72.0" layoutY="409.0" mnemonicParsing="false" onAction="#clickAccountButton" onMouseEntered="#onHoverWhite" onMouseExited="#exitHoverWhite" prefHeight="41.0" prefWidth="219.0" style="-fx-background-color: white; -fx-background-radius: 24px;" text="Create an account" textFill="ROYALBLUE" />
                      </children>
                   </AnchorPane>
                </children>

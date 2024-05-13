@@ -23,11 +23,11 @@ public interface Searchable {
         for (Searchable s: allSearchables) {
             if(!location.isBlank() && s.findLocation(location) && !found.contains(s)) {
                 found.add(s);
-            } else found.remove(s);
+            } else if(!location.isBlank()) found.remove(s);
 
             if(date != null && s.findDate(date) && !found.contains(s)) {
                 found.add(s);
-            }else found.remove(s);
+            }else if(date != null) found.remove(s);
 
             if(s.findOrganizer(organizer) && !found.contains(s)) {
                 found.add(s);

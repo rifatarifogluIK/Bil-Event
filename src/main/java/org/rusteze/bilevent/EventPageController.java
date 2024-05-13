@@ -10,12 +10,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -47,9 +50,46 @@ public class EventPageController implements Initializable {
     ImageView eventPhoto;
     @FXML
     Label eventDescription;
+    @FXML
+    Pane infoPanel;
 
     private static Event event;
     private User currentUser;
+
+    public class RatingStars{
+        Image star;
+        Image filledStar;
+        ImageView[] ratingStars;
+
+        public RatingStars() {
+            File starFile = new File("src/main/resources/org/rusteze/bilevent/Images/star.png");
+            star = new Image(starFile.toURI().toString());
+            File filledStarFile = new File("src/main/resources/org/rusteze/bilevent/Images/filledStar.png");
+            filledStar = new Image(filledStarFile.toURI().toString());
+            ratingStars = new ImageView[5];
+            for(int i = 0; i < ratingStars.length; i++) {
+                ratingStars[i] = new ImageView(star);
+                infoPanel.getChildren().add(ratingStars[i]);
+                ratingStars[i].setFitHeight(30);
+                ratingStars[i].setFitWidth(30);
+                ratingStars[i].setLayoutX(275 + (i * 35));
+                ratingStars[i].setLayoutY(200);
+            }
+        }
+        public void starHover(MouseEvent mouseEvent) {
+           for(int i = 0; i < ratingStars.length; i++) {
+               ratingStars[i].setImage(filledStar);
+               if(ratingStars[i] == mouseEvent.getSource()) {
+                   break;
+               }
+           }
+        }
+        public void exitStarHover(MouseEvent mouseEvent) {
+            for(int i = 0; i < ratingStars.length; i++) {
+                ratingStars[i].setImage(star);
+            }
+        }
+    }
 
     public void enrollBtn(ActionEvent event) {
 
@@ -145,7 +185,6 @@ public class EventPageController implements Initializable {
     public void setChatSpace() {
         ChatSpace chatSpace = event.getChatSpace();
         messageListView.setItems(chatSpace.getMessages());
-        chatSpace.addMessage("Welcome to the " + event.getName() + " Chat!", "System");
         messageInputField1.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 sendChatMessage();
