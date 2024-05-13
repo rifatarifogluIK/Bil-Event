@@ -9,35 +9,56 @@ import java.util.Hashtable;
 
 public interface Searchable {
     public static ArrayList<Searchable> allSearchables = new ArrayList<Searchable>();
+
     public boolean findName(String name);
+
     public boolean findOrganizer(String organizer);
-    public default boolean findLocation(String location){
+
+    public default boolean findLocation(String location) {
         return false;
     }
+
     public default boolean findDate(LocalDate date) {
         return false;
     }
-    public static ArrayList<Searchable> search(String name, String organizer, String location, LocalDate date){
+
+    public static ArrayList<Searchable> search(String name, String organizer, String location, LocalDate date) {
         ArrayList<Searchable> found = new ArrayList<>();
 
-        for (Searchable s: allSearchables) {
-            if(!location.isBlank() && s.findLocation(location) && !found.contains(s)) {
-                found.add(s);
-            } else if(!location.isBlank()) found.remove(s);
+        for (Searchable s : allSearchables) {
+            if (!location.isBlank() && s.findLocation(location)) {
+                if (!found.contains(s)) {
+                    found.add(s);
+                }
+            } else if (!location.isBlank()) {
+                found.remove(s);
+            }
 
-            if(date != null && s.findDate(date) && !found.contains(s)) {
-                found.add(s);
-            }else if(date != null) found.remove(s);
+            if (date != null && s.findDate(date)) {
+                if (!found.contains(s)) {
+                    found.add(s);
+                }
+            } else if (date != null) {
+                found.remove(s);
+            }
 
-            if(s.findOrganizer(organizer) && !found.contains(s)) {
-                found.add(s);
-            }else if(!organizer.isBlank()) found.remove(s);
+            if (!organizer.isBlank() && s.findOrganizer(organizer)) {
+                if (!found.contains(s)) {
+                    found.add(s);
+                }
+            } else if (!organizer.isBlank()) {
+                found.remove(s);
+            }
 
-            if(s.findName(name) && !found.contains(s)) {
-                found.add(s);
-            }else if (!name.isBlank()) found.remove(s);
+            if (!name.isBlank() && s.findName(name)) {
+                if (!found.contains(s)) {
+                    found.add(s);
+                }
+            } else if (!name.isBlank()) {
+                found.remove(s);
+            }
         }
-        return found;
+        return allSearchables;
 
         /*for(Searchable s: allSearchables)
         {

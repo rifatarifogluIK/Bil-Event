@@ -157,8 +157,6 @@ public class SearchController implements SceneHandler, Initializable {
         LocalDate date = dateSearch.getValue();
         String location = eventLocation.getValue();
 
-        // TODO ArrayList<Searchable> results = Searchable.search(name, organizer, location, date);
-
         ArrayList<Searchable> results = Searchable.search(name, organizer, location, date);
 
         for (Searchable result : results) {
