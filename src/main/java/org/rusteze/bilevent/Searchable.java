@@ -5,6 +5,7 @@ import org.bson.types.ObjectId;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Enumeration;
 import java.util.Hashtable;
 
 public interface Searchable {
@@ -21,8 +22,19 @@ public interface Searchable {
     public default boolean findDate(LocalDate date) {
         return false;
     }
+    public static ArrayList<Searchable> search(String name, String organizer, String location, LocalDate date){
+        allSearchables.clear();
 
-    public static ArrayList<Searchable> search(String name, String organizer, String location, LocalDate date) {
+        Enumeration<Event> events = Event.allEvents.elements();
+        while (events.hasMoreElements()){
+            allSearchables.add(events.nextElement());
+        }
+
+        Enumeration<Community> communities = Community.allCommunities.elements();
+        while (communities.hasMoreElements()){
+            allSearchables.add(communities.nextElement());
+        }
+
         ArrayList<Searchable> found = new ArrayList<>();
 
         for (Searchable s : allSearchables) {
