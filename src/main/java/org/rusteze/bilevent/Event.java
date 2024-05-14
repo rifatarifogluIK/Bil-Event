@@ -210,7 +210,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
                 .append("photo", this.imageName)
                 .append("rating", this.rating)
                 .append("ratingCount", this.ratingCount)
-                .append("chatSpace", this.chatSpace.toDocument())
+                .append("messages", this.chatSpace.toDocument().get("messages"))
                 .append("attendees", attendeesArr)
                 .append("attributes", attributesArr);
 

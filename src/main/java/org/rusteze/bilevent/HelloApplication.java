@@ -45,13 +45,12 @@ public class HelloApplication extends Application {
             public void actionPerformed(ActionEvent e) {
                 try {
                     update();
-                    System.out.println("deneme");
                 } catch (FileNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }
             }
         };
-        Timer timer = new Timer(10000, actionListener);
+        Timer timer = new Timer(3000, actionListener);
         timer.start();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
