@@ -29,7 +29,7 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     private ArrayList<Event> currentEvents;
     private ArrayList<Event> pastEvents;
     private Image photo;
-    private String imageURI;
+    private String imageName;
     private double rating;
     private int ratingCount;
     private ObjectId id;
@@ -43,8 +43,9 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
         this.pastEvents = new ArrayList<>();
         this.photo = photo;
         if(photo == null) {
-            String imagePath = "src/main/resources/org/rusteze/bilevent/Images/Logo.PNG";
-            Image emptyImage = new Image(getClass().getResourceAsStream(imagePath));
+            imageName = "Logo.PNG";
+            File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
+            Image emptyImage = new Image(file.toURI().toString());
             this.photo = emptyImage;
         }
         this.rating = 0.0;
@@ -196,6 +197,9 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     public ObjectId getId() {
         return id;
     }
+    public String getImageName() {
+        return imageName;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -206,13 +210,8 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     public void setAdmin(User user){
         admin = user;
     }
-
-    public String getImageURI() {
-        return imageURI;
-    }
-
-    public void setImageURI(String imageURI) {
-        this.imageURI = imageURI;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     @Override

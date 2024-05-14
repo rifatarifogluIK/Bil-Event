@@ -63,7 +63,7 @@ public class CreateCommunityController implements Initializable {
             LocalDateTime localDateTime = LocalDateTime.now();
             String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
 
-            createdCommunity.setImageURI("src/main/resources/org/rusteze/bilevent/ImageDB/" + HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
+            createdCommunity.setImageName(HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
             File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
 
             Image fxImage = imageView.getImage();

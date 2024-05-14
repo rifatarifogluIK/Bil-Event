@@ -28,7 +28,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
     private String location;
     private User admin;
     private Image photo;
-    private String imageURI;
+    private String imageName;
     private double rating;
     private int ratingCount;
     private ArrayList<String> attributes;
@@ -46,8 +46,9 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         this.location = location;
         this.photo = image;
         if(image == null) {
-            String imagePath = "src/main/resources/org/rusteze/bilevent/Images/emptyEvent.jpg";
-            Image emptyImage = new Image(getClass().getResourceAsStream(imagePath));
+            imageName = "emptyEvent.jpg";
+            File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
+            Image emptyImage = new Image(file.toURI().toString());
             photo = emptyImage;
         }
         chatSpace = new ChatSpace(this);
@@ -184,12 +185,12 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         return rating;
     }
 
-    public void setImageURI(String imageURI) {
-        this.imageURI = imageURI;
+    public void setImageName(String imageURI) {
+        this.imageName = imageURI;
     }
 
-    public String getImageURI() {
-        return imageURI;
+    public String getImageName() {
+        return imageName;
     }
 
     @Override
