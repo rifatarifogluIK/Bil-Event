@@ -43,14 +43,11 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
         this.pastEvents = new ArrayList<>();
         if(imageName == null) {
             imageName = "Logo.PNG";
-            File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
-            Image emptyImage = new Image(file.toURI().toString());
-            this.photo = emptyImage;
         } else {
             this.imageName = imageName;
-            File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
-            this.photo = new Image(file.toURI().toString());
         }
+        File file = new File("src/main/resources/org/rusteze/bilevent/ImageDB/" + imageName);
+        this.photo = new Image(file.toURI().toString());
         this.rating = 0.0;
         this.ratingCount = 0;
         this.id = ObjectId.get();

@@ -45,14 +45,11 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         this.location = location;
         if(imageName == null) {
             imageName = "emptyEvent.jpg";
-            File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
-            Image emptyImage = new Image(file.toURI().toString());
-            photo = emptyImage;
         } else{
             this.imageName = imageName;
-            File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
-            this.photo = new Image(file.toURI().toString());
         }
+        File file = new File("src/main/resources/org/rusteze/bilevent/ImageDB/" + imageName);
+        photo = new Image(file.toURI().toString());
         chatSpace = new ChatSpace(this);
         allSearchables.add(this);
     }
