@@ -31,7 +31,7 @@
                <children>
                   <BorderPane>
                      <top>
-                        <ScrollPane hbarPolicy="NEVER" prefHeight="330.0" prefWidth="1036.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="700.0" prefWidth="1036.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
                            <content>
                               <VBox fx:id="popCommunities">
                                  <padding>
@@ -40,22 +40,7 @@
                            </content>
                         </ScrollPane>
                      </top>
-                     <center>
-                        <Label text="Communities You May Like" BorderPane.alignment="TOP_LEFT">
-                           <font>
-                              <Font name="Trebuchet MS Bold" size="25.0" />
-                           </font>
-                           <BorderPane.margin>
-                              <Insets bottom="20.0" left="20.0" />
-                           </BorderPane.margin>
-                        </Label>
-                     </center>
                   </BorderPane>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="330.0" prefWidth="1036.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
-                     <content>
-                        <VBox fx:id="communityRec" />
-                     </content>
-                  </ScrollPane>
                </children>
             </VBox>
          </center>

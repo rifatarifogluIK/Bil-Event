@@ -99,8 +99,6 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         for(int i = 0; i < enrolledEvents.size(); i++) {
             if(enrolledEvents.get(i).isThisWeek()) {
                 result.add(enrolledEvents.get(i));
-            } else {
-                return result;
             }
         }
         return result;
@@ -185,30 +183,6 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
             }
         }
         return null;
-    }
-
-    /**
-     *
-     * @param event
-     * @return the index of the event in the enrolled arraylist sorted by the days remaining.
-     */
-    private int binarySearch(Event event) {
-
-        int left = 0;
-        int right = enrolledEvents.size() - 1;
-        int middle = (left + right) / 2;
-
-        while (left <= right) {
-
-            middle = (left + right) / 2;
-            if (enrolledEvents.get(middle).daysRemaining() < event.daysRemaining()) {
-                left = middle + 1;
-            } else if (enrolledEvents.get(middle).daysRemaining() > event.daysRemaining()) {
-                right = middle - 1;
-            }
-
-        }
-        return left;
     }
 
     public void leaveEvent(Event event) {
@@ -308,9 +282,6 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
     public ArrayList<Event> getEventRec() {
         return recommendations.getEventRec();
-    }
-    public ArrayList<Community> getCommunityRec() {
-        return recommendations.getCommunityRec();
     }
     public double getRating() {
         return rating / ratingCount;

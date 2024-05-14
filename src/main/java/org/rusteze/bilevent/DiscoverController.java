@@ -30,8 +30,6 @@ public class DiscoverController implements SceneHandler, Initializable {
     @FXML
     private VBox popCommunities;
     @FXML
-    private VBox communityRec;
-    @FXML
     private VBox friendPanel;
     @FXML
     Label profileName;
@@ -39,19 +37,12 @@ public class DiscoverController implements SceneHandler, Initializable {
     ImageView profilePicture;
 
     public void setPage() {
-
-        ArrayList<Community> communityRec = HelloApplication.sessionUser.getCommunityRec();
-
+        
         Enumeration<Community> popular = Community.popularCommunities.elements();
         while (popular.hasMoreElements()) {
             Community community = popular.nextElement();
             CommunityPane communityPane = new CommunityPane(community);
             popCommunities.getChildren().add(communityPane);
-            VBox.setMargin(communityPane, new Insets(0, 0, 40, 0));
-        }
-        for(Community community : communityRec) {
-            CommunityPane communityPane = new CommunityPane(community);
-            this.communityRec.getChildren().add(communityPane);
             VBox.setMargin(communityPane, new Insets(0, 0, 40, 0));
         }
         profileName.setText(HelloApplication.sessionUser.getUsername());
