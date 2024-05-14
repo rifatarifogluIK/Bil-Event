@@ -50,8 +50,10 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         attendedEvents = new ArrayList<Event>();
         createdEvents = new ArrayList<Event>();
         friends = new ArrayList<User>();
-        File emptyPP = new File("src/main/resources/org/rusteze/bilevent/Images/UserIcon.png");
-        photo = new Image(emptyPP.toURI().toString());
+
+        String imagePath = "src/main/resources/org/rusteze/bilevent/Images/UserIcon.png";
+        Image emptyImage = new Image(getClass().getResourceAsStream(imagePath));
+        this.photo = emptyImage;
         recommendations = new Recommendation(this);
         rating = 0;
         ratingCount = 0;

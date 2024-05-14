@@ -96,6 +96,7 @@ public class CreateEventController implements Initializable {
 
             LocalDateTime localDateTime = LocalDateTime.now();
             String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            createdEvent.setImageURI("src/main/resources/org/rusteze/bilevent/ImageDB/" + HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
             File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
 
             Image fxImage = imageView.getImage();
