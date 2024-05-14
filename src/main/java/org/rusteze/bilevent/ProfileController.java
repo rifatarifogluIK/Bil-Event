@@ -133,8 +133,8 @@ public class ProfileController implements Initializable {
             contentBox.getChildren().add(reject);
         }
         public void accept(MouseEvent event) {
-            HelloApplication.sessionUser.addFriend(this.user);
             this.user.addFriend(HelloApplication.sessionUser);
+            HelloApplication.sessionUser.addFriend(this.user);
         }
         public void reject(MouseEvent event) {
             HelloApplication.sessionUser.getFriendRequests().remove(this.user);

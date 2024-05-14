@@ -19,7 +19,11 @@ import java.io.IOException;
 
 public class UserPane extends Pane {
 
+<<<<<<< Updated upstream
     public User user;
+=======
+    User user;
+>>>>>>> Stashed changes
     HBox contentBox;
 
     public UserPane(User user) {
