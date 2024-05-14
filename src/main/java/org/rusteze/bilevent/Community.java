@@ -63,7 +63,7 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
 
         //Database_Part begin
         ObjectId newMemberId = user.getId();
-        Document query = new Document().append("_id", user.getId());
+        Document query = new Document().append("_id", this.getId());
         Bson update = Updates.addToSet("members", newMemberId);
         UpdateOptions options = new UpdateOptions().upsert(true);
         HelloApplication.db.getCollection("Community").updateOne(query, update, options);
@@ -108,6 +108,7 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
         //end
 
         currentEvents.add(event);
+        event.getChatSpace().addMessage("Welcome to the " + event.getName() + " Chat!", "System");
 
         //Database_Part begin
         ObjectId newEventId = event.getId();
