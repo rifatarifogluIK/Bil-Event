@@ -230,7 +230,7 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
                 .append("name", this.name)
                 .append("description", this.description)
                 .append("admin", this.admin.getId())
-                .append("photo", this.photo.getUrl())
+                .append("photo", this.imageName)
                 .append("rating", this.rating)
                 .append("ratingCount", this.ratingCount)
                 .append("members", membersArr)
@@ -243,7 +243,8 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     public Community fromDocument(Document doc) throws FileNotFoundException{
         this.name = (String)doc.get("name");
         this.description = (String)doc.get("description");
-        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.imageName = (String)doc.get("photo");
+        this.photo = new Image(new FileInputStream("src/main/resources/org/rusteze/bilevent/ImageDB/" + imageName));
         this.rating = (double)doc.get("rating");
         this.ratingCount = (int)doc.get("ratingCount");
         this.id = (ObjectId)doc.get("_id");

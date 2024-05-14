@@ -208,7 +208,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
                 .append("date", this.date.toString())
                 .append("location", this.location)
                 .append("admin", this.admin.getId())
-                .append("photo", this.photo.getUrl())
+                .append("photo", this.imageName)
                 .append("rating", this.rating)
                 .append("ratingCount", this.ratingCount)
                 .append("chatSpace", this.chatSpace.toDocument())
@@ -225,7 +225,8 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         this.date = LocalDate.parse((String)doc.get("date"));
         this.chatSpace = new ChatSpace(this).fromDocument(doc);
         this.location = (String)doc.get("location");
-        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.imageName = (String)doc.get("photo");
+        this.photo = new Image(new FileInputStream("src/main/resources/org/rusteze/bilevent/ImageDB/" + this.imageName));
         this.rating = (double)doc.get("rating");
         this.ratingCount = (int)doc.get("ratingCount");
 
