@@ -344,6 +344,13 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
     public void setImageName(String imageName) {
         this.imageName = imageName;
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.set("photo", this.imageName);
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
     }
 
     @Override
