@@ -51,6 +51,11 @@ public class SignUpController implements Initializable{
 
                 //TODO database stuff
                 User user = new User(userName, password, email);
+
+                //Database_Part begin
+                HelloApplication.db.getCollection("User").insertOne(user.toDocument());
+                //end
+
                 clickAccountButton(event);
             } else {
                 warningLabel.setText("Passwords does not match!");
