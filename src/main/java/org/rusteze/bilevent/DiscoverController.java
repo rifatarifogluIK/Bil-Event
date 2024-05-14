@@ -37,7 +37,7 @@ public class DiscoverController implements SceneHandler, Initializable {
     ImageView profilePicture;
 
     public void setPage() {
-        
+
         Enumeration<Community> popular = Community.popularCommunities.elements();
         while (popular.hasMoreElements()) {
             Community community = popular.nextElement();
