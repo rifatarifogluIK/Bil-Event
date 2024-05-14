@@ -35,12 +35,14 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     private int ratingCount;
     private ObjectId id;
     private ArrayList<User> friendRequests;
+    private ArrayList<Event> ratedEvents;
 
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
 
+        ratedEvents = new ArrayList<Event>();
         friendRequests = new ArrayList<User>();
         communities = new ArrayList<Community>();
         enrolledEvents = new ArrayList<Event>();
@@ -63,6 +65,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         this.createdEvents = new ArrayList<Event>();
         this.friends = new ArrayList<User>();
         this.friendRequests = new ArrayList<User>();
+        ratedEvents = new ArrayList<Event>();
     }
 
     public boolean authentication() {
@@ -322,6 +325,10 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     }
     public ObjectId getId() {
         return id;
+    }
+
+    public ArrayList<Event> getRatedEvents() {
+        return ratedEvents;
     }
 
     public ArrayList<User> getFriendRequests() {

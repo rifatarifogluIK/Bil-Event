@@ -180,6 +180,10 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         this.admin = admin;
     }
 
+    public double getRating() {
+        return rating;
+    }
+
     @Override
     public Document toDocument() {
         Document doc = new Document();

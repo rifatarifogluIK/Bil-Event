@@ -52,6 +52,8 @@ public class EventPageController implements Initializable {
     Label eventDescription;
     @FXML
     Pane infoPanel;
+    @FXML
+    Label ratingLabel;
 
     private static Event event;
     private User currentUser;
@@ -60,8 +62,12 @@ public class EventPageController implements Initializable {
         Image star;
         Image filledStar;
         ImageView[] ratingStars;
+        boolean clicked;
+        int selectedRating;
 
         public RatingStars() {
+            this.clicked = false;
+            this.selectedRating = 0;
             File starFile = new File("src/main/resources/org/rusteze/bilevent/Images/star.png");
             star = new Image(starFile.toURI().toString());
             File filledStarFile = new File("src/main/resources/org/rusteze/bilevent/Images/filledStar.png");
@@ -80,20 +86,60 @@ public class EventPageController implements Initializable {
                 ratingStars[i].setFitWidth(30);
                 ratingStars[i].setLayoutX((i * 35));
                 ratingStars[i].setOnMouseEntered(this::starHover);
+                ratingStars[i].setOnMouseExited(this::exitHover);
+                ratingStars[i].setOnMouseClicked(this::onClick);
+            }
+        }
+        public void onClick(MouseEvent event) {
+            clicked = true;
+            Image convertTo = filledStar;
+            for(int i = 0; i < ratingStars.length; i++) {
+                ratingStars[i].setImage(convertTo);
+                if(ratingStars[i] == event.getSource()) {
+                    selectedRating = (i + 1);
+                    convertTo = star;
+                }
+            }
+            Button submit = new Button("Submit");
+            this.getChildren().add(submit);
+            submit.setOnAction(this::onSubmit);
+            submit.setLayoutX(190);
+            submit.setLayoutY(2);
+            submit.setPrefWidth(60);
+            submit.setPrefHeight(30);
+        }
+        public void onSubmit(ActionEvent event) {
+            EventPageController.getEvent().addNewRating(selectedRating);
+            HelloApplication.sessionUser.getRatedEvents().add(EventPageController.getEvent());
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("eventPage.fxml"));
+                Scene scene = ((Node) event.getSource()).getScene();
+                scene.setRoot(root);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
         public void starHover(MouseEvent mouseEvent) {
-            Image convertTo = filledStar;
-           for(int i = 0; i < ratingStars.length; i++) {
-               ratingStars[i].setImage(convertTo);
-               if(ratingStars[i] == mouseEvent.getSource()) {
-                   convertTo = star;
-               }
-           }
+            setCursor(Cursor.HAND);
+            if(!clicked) {
+                Image convertTo = filledStar;
+                for (int i = 0; i < ratingStars.length; i++) {
+                    ratingStars[i].setImage(convertTo);
+                    if (ratingStars[i] == mouseEvent.getSource()) {
+                        convertTo = star;
+                    }
+                }
+            }
+        }
+        public void exitHover(MouseEvent mouseEvent) {
+            setCursor(Cursor.DEFAULT);
         }
         public void exitStarHover(MouseEvent mouseEvent) {
-            for(ImageView ratingStar: ratingStars) {
-                ratingStar.setImage(star);
+            if(!clicked) {
+                for (ImageView ratingStar : ratingStars) {
+                    ratingStar.setImage(star);
+                }
             }
         }
     }
@@ -165,6 +211,7 @@ public class EventPageController implements Initializable {
         organizerLabel.setText(organizerLabel.getText() + " " + event.getOrganizer());
         locationLabel.setText(locationLabel.getText() + " " + event.getLocation());
         attendCount.setText(attendCount.getText() + " " + event.getAttendees().size());
+        ratingLabel.setText("Rating: " + event.getRating());
         eventDescription.setText(event.getDescription());
         enrollBtn.setText("Enroll");
         if (HelloApplication.sessionUser.getEnrolledEvents().contains(event)) {
@@ -212,11 +259,17 @@ public class EventPageController implements Initializable {
         this.currentUser = user;
     }
 
+    public static Event getEvent() {
+        return event;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setPage();
         setChatSpace();
         setCurrentUser(HelloApplication.sessionUser);
-        RatingStars stars = new RatingStars();
+        if(!HelloApplication.sessionUser.getRatedEvents().contains(event)) {
+            RatingStars stars = new RatingStars();
+        }
     }
 }
