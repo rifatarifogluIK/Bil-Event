@@ -165,7 +165,7 @@
                   <Insets top="-60.0" />
                </BorderPane.margin>
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#profileBtn" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/ProfilePhoto.png" />
                      </image>
@@ -179,7 +179,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <Label fx:id="profileName" alignment="TOP_CENTER" prefHeight="29.0" prefWidth="133.0" text="Profile Name">
+                  <Label fx:id="profileName" alignment="TOP_CENTER" onMouseClicked="#profileBtn" prefHeight="29.0" prefWidth="133.0" text="Profile Name">
                      <font>
                         <Font size="15.0" />
                      </font>

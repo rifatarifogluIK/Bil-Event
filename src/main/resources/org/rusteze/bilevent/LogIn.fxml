@@ -26,7 +26,7 @@
                         <Image url="@Images/UserIcon.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="warningLabel" layoutX="47.0" layoutY="439.0" text="Please Enter Your E-Mail to Reset Your Password" textFill="RED" />
+                  <Label fx:id="warningLabel" alignment="CENTER" layoutY="439.0" prefHeight="17.0" prefWidth="350.0" text="Please Enter Your E-Mail to Reset Your Password!" textFill="RED" />
                </children>
             </AnchorPane>
          </right>

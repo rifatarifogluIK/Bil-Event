@@ -52,6 +52,10 @@ public class HomeController implements SceneHandler, Initializable {
     VBox day5;
     @FXML
     VBox friendPanel;
+    @FXML
+    Label profileName;
+    @FXML
+    ImageView profilePicture;
 
     public void displayEvents() {
     //TODO
@@ -212,6 +216,18 @@ public class HomeController implements SceneHandler, Initializable {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void profileBtn(MouseEvent event) {
+        try {
+            ProfileController.setUser(HelloApplication.sessionUser);
+            Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void calendarBtn(ActionEvent event) {
@@ -270,5 +286,7 @@ public class HomeController implements SceneHandler, Initializable {
         displayEvents();
         displayFriends();
         createCommunityButtons();
+        profileName.setText(HelloApplication.sessionUser.getUsername());
+        profilePicture.setImage(HelloApplication.sessionUser.getPhoto());
     }
 }

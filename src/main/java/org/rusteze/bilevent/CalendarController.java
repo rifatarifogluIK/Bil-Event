@@ -56,6 +56,10 @@ public class CalendarController implements SceneHandler, Initializable {
     VBox sunday;
     @FXML
     VBox friendPanel;
+    @FXML
+    Label profileName;
+    @FXML
+    ImageView profilePicture;
     LocalDate weekStart;
 
 
@@ -133,6 +137,8 @@ public class CalendarController implements SceneHandler, Initializable {
                 VBox.setMargin(eventDisplay, new Insets(5, 0, 0, 0));
             }
         }
+        profileName.setText(HelloApplication.sessionUser.getUsername());
+        profilePicture.setImage(HelloApplication.sessionUser.getPhoto());
     }
     public void onVBoxHover(MouseEvent mouseEvent) {
         DropShadow dropShadow = new DropShadow();
@@ -274,6 +280,18 @@ public class CalendarController implements SceneHandler, Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("advancedSearch.fxml"));
             Scene scene = ((Node) event.getSource()).getScene();
             scene.setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public void profileBtn(MouseEvent event) {
+        try {
+            ProfileController.setUser(HelloApplication.sessionUser);
+            Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

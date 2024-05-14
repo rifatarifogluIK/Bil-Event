@@ -11,6 +11,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -31,6 +33,10 @@ public class DiscoverController implements SceneHandler, Initializable {
     private VBox communityRec;
     @FXML
     private VBox friendPanel;
+    @FXML
+    Label profileName;
+    @FXML
+    ImageView profilePicture;
 
     public void setPage() {
 
@@ -48,6 +54,8 @@ public class DiscoverController implements SceneHandler, Initializable {
             this.communityRec.getChildren().add(communityPane);
             VBox.setMargin(communityPane, new Insets(0, 0, 40, 0));
         }
+        profileName.setText(HelloApplication.sessionUser.getUsername());
+        profilePicture.setImage(HelloApplication.sessionUser.getPhoto());
     }
 
     public void onHover(MouseEvent mouseEvent) {
@@ -171,6 +179,18 @@ public class DiscoverController implements SceneHandler, Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("advancedSearch.fxml"));
             Scene scene = ((Node) event.getSource()).getScene();
             scene.setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public void profileBtn(MouseEvent event) {
+        try {
+            ProfileController.setUser(HelloApplication.sessionUser);
+            Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -73,6 +73,9 @@ public class LogInController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        } else {
+            warningLabel.setText("Wrong Username or Password!");
+            warningLabel.setVisible(true);
         }
     }
 
@@ -91,6 +94,7 @@ public class LogInController implements Initializable {
             }
 
         } else {
+            warningLabel.setText("Please Enter Your E-Mail to Reset Your Password!");
             warningLabel.setVisible(true);
         }
     }

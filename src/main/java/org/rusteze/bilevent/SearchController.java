@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -43,6 +44,10 @@ public class SearchController implements SceneHandler, Initializable {
     private ChoiceBox<String> eventLocation;
     @FXML
     private VBox friendPanel;
+    @FXML
+    Label profileName;
+    @FXML
+    ImageView profilePicture;
 
     private class UserContainer extends SearchContainer {
         private User user;
@@ -62,7 +67,7 @@ public class SearchController implements SceneHandler, Initializable {
         public EventContainer(Event event) {
             this.event = event;
             nameLabel.setText(event.getName());
-            nameLabel.setPrefWidth(200);
+            nameLabel.setPrefWidth(350);
             button2.setText("Details");
             button2.setOnAction(this::detailsBtn);
             innerPane.setStyle("-fx-background-color: #B5DBFF; -fx-background-radius: 8px");
@@ -76,7 +81,7 @@ public class SearchController implements SceneHandler, Initializable {
             dateLabel.setFont(Font.font("Trebuchet MS", FontWeight.BOLD,20));
             organizerLabel.setFont(Font.font("Trebuchet MS", FontWeight.BOLD, 20));
             buttonPanel.getChildren().add(infoBox);
-            infoBox.setPrefWidth(500);
+            infoBox.setPrefWidth(450);
         }
 
         public void detailsBtn(ActionEvent event) {
@@ -272,11 +277,25 @@ public class SearchController implements SceneHandler, Initializable {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    public void profileBtn(MouseEvent event) {
+        try {
+            ProfileController.setUser(HelloApplication.sessionUser);
+            Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         eventLocation.getItems().clear();
         eventLocation.getItems().addAll(CreateEventController.locations);
+        profileName.setText(HelloApplication.sessionUser.getUsername());
+        profilePicture.setImage(HelloApplication.sessionUser.getPhoto());
         createCommunityButtons();
         displayFriends();
     }
