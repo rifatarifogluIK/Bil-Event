@@ -52,22 +52,36 @@ public class ProfileController implements Initializable {
     ImageView photo;
 
     public void onHoverPhoto(MouseEvent mouseEvent) {
-        promptLabel.setVisible(true);
+        if(HelloApplication.sessionUser == user) {
+            promptLabel.setVisible(true);
+        }
     }
     public void exitHoverPhoto(MouseEvent mouseEvent) {
-        promptLabel.setVisible(false);
+        if(HelloApplication.sessionUser == user) {
+            promptLabel.setVisible(false);
+        }
     }
     public void onPhotoClick(MouseEvent mouseEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
-        );
+        if(HelloApplication.sessionUser == user) {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+            );
 
-        File selectedFile = fileChooser.showOpenDialog(((Node)mouseEvent.getSource()).getScene().getWindow());
-        if (selectedFile != null) {
-            Image image = new Image(selectedFile.toURI().toString());
-            user.setPhoto(image);
+            File selectedFile = fileChooser.showOpenDialog(((Node) mouseEvent.getSource()).getScene().getWindow());
+            if (selectedFile != null) {
+                Image image = new Image(selectedFile.toURI().toString());
+                user.setPhoto(image);
+            }
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
+                Scene scene = ((Node) mouseEvent.getSource()).getScene();
+                scene.setRoot(root);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+
     }
     public void submitBtn() {
         File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", user.getImageName());
@@ -116,6 +130,7 @@ public class ProfileController implements Initializable {
         eventLabel.setText(user.getUsername() + "'s Enrolled Events");
         addFriend.setText("Add");
         promptLabel.setVisible(false);
+        photo.setImage(user.getPhoto());
 
         if(user == HelloApplication.sessionUser) {
             addFriend.setVisible(false);
@@ -192,6 +207,7 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        requestPanel.getChildren().clear();
         setPage();
     }
 }

@@ -81,6 +81,7 @@ public class CommunityPageController implements Initializable {
             joinBtn.setText("Join");
         }
         displayEvents();
+        memberPanel.getChildren().clear();
         displayMembers();
     }
     public void createEventBtn(ActionEvent event) {
@@ -152,6 +153,7 @@ public class CommunityPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         setPage();
     }
 }

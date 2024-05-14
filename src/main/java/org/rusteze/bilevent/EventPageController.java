@@ -217,6 +217,7 @@ public class EventPageController implements Initializable {
         if (HelloApplication.sessionUser.getEnrolledEvents().contains(event)) {
             enrollBtn.setText("Leave");
         }
+        attendeePanel.getChildren().clear();
         displayMembers();
     }
     public void displayMembers() {
