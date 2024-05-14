@@ -382,7 +382,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
                 .append("username", this.username)
                 .append("password", this.password)
                 .append("email", this.email)
-                .append("photo", this.photo.getUrl())
+                .append("photo", this.imageName)
                 .append("rating", this.rating)
                 .append("ratingCount", this.ratingCount)
                 .append("friends", friendsArr)
@@ -398,7 +398,8 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         this.username = (String)doc.get("username");
         this.password = (String)doc.get("password");
         this.email = (String)doc.get("email");
-        this.photo = new Image(new FileInputStream((String)doc.get("photo")));
+        this.imageName = (String)doc.get("photo");
+        this.photo = new Image(new FileInputStream("src/main/resources/org/rusteze/bilevent/ImageDB/" + imageName));
         this.recommendations = new Recommendation(this);
         this.rating = (double)doc.get("rating");
         this.ratingCount = (int)doc.get("ratingCount");
