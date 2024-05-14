@@ -39,19 +39,19 @@ public class HelloApplication extends Application {
         MongoClient client = MongoClients.create(settings);
         db = client.getDatabase("bil_event");
 
-
-        ActionListener actionListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    update();
-                } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        };
-        Timer timer = new Timer(3000, actionListener);
-        timer.start();
+        update();
+//        ActionListener actionListener = new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                try {
+//                    update();
+//                } catch (FileNotFoundException ex) {
+//                    throw new RuntimeException(ex);
+//                }
+//            }
+//        };
+//        Timer timer = new Timer(3000, actionListener);
+//        timer.start();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -182,6 +182,13 @@ public class HelloApplication extends Application {
                 ((PersonalEvent) temp).setOrganizer(User.allUsers.get(events.find(new Document("_id", key)).first().get("organizer")));
             }
         }
+
+        Enumeration<User> allUsers = User.allUsers.elements();
+        while(allUsers.hasMoreElements()){
+            User temp = allUsers.nextElement();
+            temp.setRecommendations(new Recommendation(temp));
+        }
+
         if(userId != null) {
             sessionUser = User.allUsers.get(userId);
         }

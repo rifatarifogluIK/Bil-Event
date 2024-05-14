@@ -40,7 +40,7 @@ public class CommunityEvent extends Event{
 
     @Override
     public Document toDocument() {
-        return super.toDocument().append("community", this.getId()).append("isPersonal", false);
+        return super.toDocument().append("community", community.getId()).append("isPersonal", false);
     }
     @Override
     public Event fromDocument(Document doc) throws FileNotFoundException {

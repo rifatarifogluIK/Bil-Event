@@ -44,7 +44,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         this.admin = admin;
         this.location = location;
         if(imageName == null) {
-            imageName = "emptyEvent.jpg";
+            this.imageName = "emptyEvent.jpg";
         } else{
             this.imageName = imageName;
         }
@@ -75,18 +75,14 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
     }
 
     public void removeAttendee(User user) {
-        if (attendees.contains(user)) {
-            attendees.remove(user);
-
-            //Database_Part begin
-            ObjectId newAttendeeId = user.getId();
-            Document query = new Document().append("_id", this.id);
-            Bson update = Updates.pull("attendees", newAttendeeId);
-            UpdateOptions options = new UpdateOptions().upsert(true);
-            HelloApplication.db.getCollection("Event").updateOne(query, update, options);
-            //end
-        }
-        //maybe we can make a pop-up screen to show in case there is no user with the given info.
+        attendees.remove(user);
+        //Database_Part begin
+        ObjectId newAttendeeId = user.getId();
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.pull("attendees", newAttendeeId);
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("Event").updateOne(query, update, options);
+        //end
     }
 
     public void addAttribute(String attribute) {

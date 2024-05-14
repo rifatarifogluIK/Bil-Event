@@ -52,14 +52,12 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         createdEvents = new ArrayList<Event>();
         friends = new ArrayList<User>();
         if(imageName == null) {
-            imageName = "UserIcon.png";
+            this.imageName = "UserIcon.png";
         } else{
             this.imageName = imageName;
         }
         File emptyPP = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
         photo = new Image(emptyPP.toURI().toString());
-        
-        recommendations = new Recommendation(this);
         rating = 0;
         ratingCount = 0;
         id = ObjectId.get();
@@ -246,6 +244,13 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
 
     public void setPassword(String password) {
         this.password = password;
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.set("password", password);
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
     }
 
     @Override
@@ -263,6 +268,17 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         //Database_Part begin
         Document query = new Document().append("_id", this.id);
         Bson update = Updates.addToSet("friends", user.getId());
+        UpdateOptions options = new UpdateOptions().upsert(true);
+        HelloApplication.db.getCollection("User").updateOne(query, update, options);
+        //end
+    }
+
+    public void removeFriend(User user){
+        friends.remove(user);
+
+        //Database_Part begin
+        Document query = new Document().append("_id", this.id);
+        Bson update = Updates.pull("friends", user.getId());
         UpdateOptions options = new UpdateOptions().upsert(true);
         HelloApplication.db.getCollection("User").updateOne(query, update, options);
         //end
@@ -328,6 +344,9 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         UpdateOptions options = new UpdateOptions().upsert(true);
         HelloApplication.db.getCollection("User").updateOne(query, update, options);
         //end
+    }
+    public void setRecommendations(Recommendation recommendations) {
+        this.recommendations = recommendations;
     }
 
     @Override

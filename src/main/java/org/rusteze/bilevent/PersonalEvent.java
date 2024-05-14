@@ -40,7 +40,7 @@ public class PersonalEvent extends Event {
 
     @Override
     public Document toDocument() {
-        return super.toDocument().append("organizer", this.getId()).append("isPersonal", true);
+        return super.toDocument().append("organizer", organizer.getId()).append("isPersonal", true);
     }
     @Override
     public Event fromDocument(Document doc) throws FileNotFoundException {

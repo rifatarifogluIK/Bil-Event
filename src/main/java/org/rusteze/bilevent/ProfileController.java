@@ -133,11 +133,11 @@ public class ProfileController implements Initializable {
             contentBox.getChildren().add(reject);
         }
         public void accept(MouseEvent event) {
-            HelloApplication.sessionUser.addFriend(user);
-            user.addFriend(HelloApplication.sessionUser);
+            HelloApplication.sessionUser.addFriend(this.user);
+            this.user.addFriend(HelloApplication.sessionUser);
         }
         public void reject(MouseEvent event) {
-            HelloApplication.sessionUser.getFriendRequests().remove(user);
+            HelloApplication.sessionUser.getFriendRequests().remove(this.user);
         }
     }
 
@@ -170,8 +170,8 @@ public class ProfileController implements Initializable {
             user.getFriendRequests().add(HelloApplication.sessionUser);
             setPage();
         } else if (addFriend.getText().equals("Remove")) {
-            HelloApplication.sessionUser.getFriends().remove(user);
-            user.getFriends().remove(HelloApplication.sessionUser);
+            HelloApplication.sessionUser.removeFriend(user);
+            user.removeFriend(HelloApplication.sessionUser);
             setPage();
         } else if(addFriend.getText().equals("Pending")) {
             user.getFriendRequests().remove(HelloApplication.sessionUser);

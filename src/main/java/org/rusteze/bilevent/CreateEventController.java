@@ -38,7 +38,7 @@ public class CreateEventController implements Initializable {
     @FXML
     ChoiceBox<String> eventLocation;
 
-    public static String[] locations = {"A Building", "B Building", "C Building", "V1", "Odeon", "MayFest", "EE-102"};
+    public static String[] locations = {"V1", "Odeon", "MayFest", "EE", "Dorm Gym", "Main Dorms", "Ankuva", "Cyberpark"};
     public static String[] attributeList = {"Sport", "Music", "Art", "Computer Science", "Game", "Festival"};
     public static Community creatorCommunity;
     CheckBox[] attributes;

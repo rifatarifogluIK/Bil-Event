@@ -213,9 +213,11 @@ public class EventPageController implements Initializable {
         attendCount.setText(attendCount.getText() + " " + event.getAttendees().size());
         ratingLabel.setText("Rating: " + event.getRating());
         eventDescription.setText(event.getDescription());
-        enrollBtn.setText("Enroll");
+
         if (HelloApplication.sessionUser.getEnrolledEvents().contains(event)) {
             enrollBtn.setText("Leave");
+        }else {
+            enrollBtn.setText("Enroll");
         }
         attendeePanel.getChildren().clear();
         displayMembers();

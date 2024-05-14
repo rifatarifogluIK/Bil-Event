@@ -19,7 +19,7 @@ import java.io.IOException;
 
 public class UserPane extends Pane {
 
-    private User user;
+    public User user;
     HBox contentBox;
 
     public UserPane(User user) {

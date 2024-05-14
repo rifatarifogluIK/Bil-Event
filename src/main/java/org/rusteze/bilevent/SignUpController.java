@@ -49,8 +49,8 @@ public class SignUpController implements Initializable{
                 String email = mailField.getText();
                 String password = passField1.getText();
 
-                //TODO database stuff
                 User user = new User(userName, password, email, null);
+                User.allUsers.put(user.getId(), user);
 
                 //Database_Part begin
                 HelloApplication.db.getCollection("User").insertOne(user.toDocument());
