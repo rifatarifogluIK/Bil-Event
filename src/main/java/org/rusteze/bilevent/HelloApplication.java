@@ -10,6 +10,9 @@ import com.mongodb.client.*;
 import org.bson.*;
 import org.bson.types.ObjectId;
 
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -36,7 +39,20 @@ public class HelloApplication extends Application {
         MongoClient client = MongoClients.create(settings);
         db = client.getDatabase("bil_event");
 
-        update();
+
+        ActionListener actionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    update();
+                    System.out.println("deneme");
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        };
+        Timer timer = new Timer(10000, actionListener);
+        timer.start();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("LogIn.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -54,6 +70,14 @@ public class HelloApplication extends Application {
     }
 
     public static void update() throws FileNotFoundException {
+        ObjectId userId = null;
+        if(sessionUser != null) {
+            userId = sessionUser.getId();
+        }
+        User.allUsers = new Hashtable<>();
+        Event.allEvents = new Hashtable<>();
+        Community.allCommunities = new Hashtable<>();
+        Community.popularCommunities = new Hashtable<>();
         MongoCollection<Document> events = db.getCollection("Event");
         MongoCollection<Document> communities = db.getCollection("Community");
         MongoCollection<Document> users = db.getCollection("User");
@@ -158,6 +182,9 @@ public class HelloApplication extends Application {
             }else if(temp instanceof PersonalEvent){
                 ((PersonalEvent) temp).setOrganizer(User.allUsers.get(events.find(new Document("_id", key)).first().get("organizer")));
             }
+        }
+        if(userId != null) {
+            sessionUser = User.allUsers.get(userId);
         }
     }
 
