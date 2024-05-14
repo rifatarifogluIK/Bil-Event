@@ -26,6 +26,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -72,6 +74,20 @@ public class ProfileController implements Initializable {
             if (selectedFile != null) {
                 Image image = new Image(selectedFile.toURI().toString());
                 user.setPhoto(image);
+            }
+
+            LocalDateTime localDateTime = LocalDateTime.now();
+            String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            String imageName = HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png";
+            user.setImageName(imageName);
+            File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", user.getImageName());
+
+            Image fxImage = user.getPhoto();
+            BufferedImage bImage = SwingFXUtils.fromFXImage(fxImage, null);
+            try {
+                ImageIO.write(bImage, "png", saveFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));

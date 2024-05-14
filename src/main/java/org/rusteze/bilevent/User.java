@@ -39,7 +39,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     private ArrayList<User> friendRequests;
     private ArrayList<Event> ratedEvents;
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, String imageName) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -51,8 +51,14 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         attendedEvents = new ArrayList<Event>();
         createdEvents = new ArrayList<Event>();
         friends = new ArrayList<User>();
-        File emptyPP = new File("src/main/resources/org/rusteze/bilevent/Images/UserIcon.png");
+        if(imageName == null) {
+            imageName = "UserIcon.png";
+        } else{
+            this.imageName = imageName;
+        }
+        File emptyPP = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
         photo = new Image(emptyPP.toURI().toString());
+        
         recommendations = new Recommendation(this);
         rating = 0;
         ratingCount = 0;

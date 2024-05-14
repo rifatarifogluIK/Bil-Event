@@ -50,7 +50,7 @@ public class SignUpController implements Initializable{
                 String password = passField1.getText();
 
                 //TODO database stuff
-                User user = new User(userName, password, email);
+                User user = new User(userName, password, email, null);
 
                 //Database_Part begin
                 HelloApplication.db.getCollection("User").insertOne(user.toDocument());
