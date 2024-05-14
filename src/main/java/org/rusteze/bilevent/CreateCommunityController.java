@@ -37,6 +37,7 @@ public class CreateCommunityController implements Initializable {
     ImageView imageView;
     @FXML
     Label warningMessage;
+    private static String imageName = "Logo.PNG";
 
     public void uploadBtn(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -46,6 +47,9 @@ public class CreateCommunityController implements Initializable {
 
         File selectedFile = fileChooser.showOpenDialog(((Node) event.getSource()).getScene().getWindow());
         if (selectedFile != null) {
+            LocalDateTime localDateTime = LocalDateTime.now();
+            String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            imageName = HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png";
             Image image = new Image(selectedFile.toURI().toString());
             imageView.setImage(image);
         }
@@ -58,13 +62,12 @@ public class CreateCommunityController implements Initializable {
             String description = communityDesc.getText();
             Image image = imageView.getImage();
 
-            Community createdCommunity = HelloApplication.sessionUser.createCommunity(name, description, image);
+            Community createdCommunity = HelloApplication.sessionUser.createCommunity(name, description, CreateCommunityController.imageName);
 
             LocalDateTime localDateTime = LocalDateTime.now();
             String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
 
-            createdCommunity.setImageName(HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
-            File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
+            File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", imageName);
 
             Image fxImage = imageView.getImage();
             BufferedImage bImage = SwingFXUtils.fromFXImage(fxImage, null);

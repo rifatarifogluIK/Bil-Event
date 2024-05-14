@@ -20,7 +20,7 @@
                <children>
                   <HBox prefHeight="85.0" prefWidth="1036.0">
                      <children>
-                        <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="photo" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#onPhotoClick" onMouseEntered="#onHoverPhoto" onMouseExited="#exitHoverPhoto" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/ProfilePicture.png" />
                            </image>
@@ -53,6 +53,16 @@
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
+                     <children>
+                        <Label fx:id="promptLabel" text="Click to Change ">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
                   </HBox>
                   <Label fx:id="eventLabel" text="..'s Enrolled Events">
                      <font>

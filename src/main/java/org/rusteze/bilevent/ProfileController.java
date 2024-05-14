@@ -1,5 +1,6 @@
 package org.rusteze.bilevent;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +46,40 @@ public class ProfileController implements Initializable {
     Label requestLabel;
     @FXML
     ScrollPane requestContainer;
+    @FXML
+    Label promptLabel;
+    @FXML
+    ImageView photo;
+
+    public void onHoverPhoto(MouseEvent mouseEvent) {
+        promptLabel.setVisible(true);
+    }
+    public void exitHoverPhoto(MouseEvent mouseEvent) {
+        promptLabel.setVisible(false);
+    }
+    public void onPhotoClick(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(((Node)mouseEvent.getSource()).getScene().getWindow());
+        if (selectedFile != null) {
+            Image image = new Image(selectedFile.toURI().toString());
+            user.setPhoto(image);
+        }
+    }
+    public void submitBtn() {
+        File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", user.getImageName());
+
+        Image fxImage = photo.getImage();
+        BufferedImage bImage = SwingFXUtils.fromFXImage(fxImage, null);
+        try {
+            ImageIO.write(bImage, "png", saveFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public class RequestPane extends UserPane{
 
@@ -77,6 +115,7 @@ public class ProfileController implements Initializable {
         userName.setText(user.getUsername());
         eventLabel.setText(user.getUsername() + "'s Enrolled Events");
         addFriend.setText("Add");
+        promptLabel.setVisible(false);
 
         if(user == HelloApplication.sessionUser) {
             addFriend.setVisible(false);

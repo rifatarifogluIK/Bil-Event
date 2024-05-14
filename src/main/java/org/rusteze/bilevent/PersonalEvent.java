@@ -11,8 +11,8 @@ public class PersonalEvent extends Event {
 
     private User organizer;
 
-    public PersonalEvent(User organizer, String name, String description, String location, LocalDate date, Image image) {
-        super(name, description, location, date, image, organizer);
+    public PersonalEvent(User organizer, String name, String description, String location, LocalDate date, String imageName) {
+        super(name, description, location, date, imageName, organizer);
         this.organizer = organizer;
     }
 

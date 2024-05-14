@@ -11,8 +11,8 @@ public class CommunityEvent extends Event{
 
     private Community community;
 
-    public CommunityEvent(Community community, String name, String description, String location, LocalDate date, Image image) {
-        super(name, description, location, date, image, community.getAdmin());
+    public CommunityEvent(Community community, String name, String description, String location, LocalDate date, String imageName) {
+        super(name, description, location, date, imageName, community.getAdmin());
         this.community = community;
     }
 

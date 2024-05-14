@@ -48,6 +48,7 @@ public class CreateEventController implements Initializable {
     Label warningMessage;
     @FXML
     HBox eventAttributes;
+    private static String imageName = "emptyEvent.jpg";
 
     public void uploadBtn(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -57,6 +58,10 @@ public class CreateEventController implements Initializable {
 
         File selectedFile = fileChooser.showOpenDialog(((Node)event.getSource()).getScene().getWindow());
         if (selectedFile != null) {
+            LocalDateTime localDateTime = LocalDateTime.now();
+            String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            imageName = HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png";
+
             Image image = new Image(selectedFile.toURI().toString());
             imageView.setImage(image);
         }
@@ -83,9 +88,9 @@ public class CreateEventController implements Initializable {
             Event createdEvent;
 
             if(creatorCommunity == null) {
-                createdEvent = HelloApplication.sessionUser.createEvent(name, description, location, date, image);
+                createdEvent = HelloApplication.sessionUser.createEvent(name, description, location, date, CreateEventController.imageName);
             } else {
-                createdEvent = creatorCommunity.createEvent(name,description,location,date,image);
+                createdEvent = creatorCommunity.createEvent(name,description,location,date, CreateEventController.imageName);
             }
 
             for(CheckBox box : attributes) {
@@ -94,11 +99,7 @@ public class CreateEventController implements Initializable {
                 }
             }
 
-            LocalDateTime localDateTime = LocalDateTime.now();
-            String formattedDateTime = localDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
-
-            createdEvent.setImageName(HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
-            File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", HelloApplication.sessionUser.getUsername() + "_" + formattedDateTime + ".png");
+            File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", imageName);
 
             Image fxImage = imageView.getImage();
             BufferedImage bImage = SwingFXUtils.fromFXImage(fxImage, null);

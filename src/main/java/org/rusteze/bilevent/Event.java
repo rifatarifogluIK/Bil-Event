@@ -34,22 +34,24 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
     private ArrayList<String> attributes;
     private ObjectId id;
 
-    public Event(String name, String description, String location, LocalDate date, Image image, User admin) {
+    public Event(String name, String description, String location, LocalDate date, String imageName, User admin) {
         this.id = ObjectId.get();
         this.name = name;
         this.description = description;
         this.date = date;
-        this.photo = image;
         this.attendees = new ArrayList<>();
         this.attributes = new ArrayList<>();
         this.admin = admin;
         this.location = location;
-        this.photo = image;
-        if(image == null) {
+        if(imageName == null) {
             imageName = "emptyEvent.jpg";
             File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
             Image emptyImage = new Image(file.toURI().toString());
             photo = emptyImage;
+        } else{
+            this.imageName = imageName;
+            File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
+            this.photo = new Image(file.toURI().toString());
         }
         chatSpace = new ChatSpace(this);
         allSearchables.add(this);
@@ -121,7 +123,7 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         return (today >= dateOfMonday && today < dateOfMonday + 7);
     }
 
-    public void addNewRating(int rate)
+    public void addNewRating(int rating)
     {
         this.rating = ((this.rating * ratingCount++) + rating) / ratingCount;
 

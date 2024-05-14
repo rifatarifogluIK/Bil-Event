@@ -34,19 +34,22 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     private int ratingCount;
     private ObjectId id;
 
-    public Community(String name, String description, Image photo, User admin) {
+    public Community(String name, String description, String imageName, User admin) {
         this.name = name;
         this.description = description;
         this.members = new ArrayList<>();
         this.admin = admin;
         this.currentEvents = new ArrayList<>();
         this.pastEvents = new ArrayList<>();
-        this.photo = photo;
-        if(photo == null) {
+        if(imageName == null) {
             imageName = "Logo.PNG";
             File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
             Image emptyImage = new Image(file.toURI().toString());
             this.photo = emptyImage;
+        } else {
+            this.imageName = imageName;
+            File file = new File("src/main/resources/org/rusteze/bilevent/Images/" + imageName);
+            this.photo = new Image(file.toURI().toString());
         }
         this.rating = 0.0;
         this.ratingCount = 0;
@@ -101,8 +104,8 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
     }
 
 
-    public Event createEvent(String name, String description, String location, LocalDate date, Image image){
-        Event event = new CommunityEvent(this, name, description, location, date, image);
+    public Event createEvent(String name, String description, String location, LocalDate date, String imageName){
+        Event event = new CommunityEvent(this, name, description, location, date, imageName);
         Event.allEvents.put(event.getId(), event);
 
         //Database_Part begin

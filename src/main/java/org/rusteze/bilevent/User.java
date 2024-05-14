@@ -26,6 +26,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     private String password;
     private String email;
     private Image photo;
+    private String imageName;
     private ArrayList<User> friends;
     private ArrayList<Community> communities;
     private ArrayList<Event> enrolledEvents;
@@ -99,8 +100,8 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         return result;
     }
 
-    public Event createEvent(String name, String description, String location, LocalDate date, Image image) {
-        PersonalEvent event = new PersonalEvent(this, name, description, location, date, image);
+    public Event createEvent(String name, String description, String location, LocalDate date, String imageName) {
+        PersonalEvent event = new PersonalEvent(this, name, description, location, date, imageName);
         Event.allEvents.put(event.getId(), event);
 
         //Database_Part begin
@@ -156,8 +157,8 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         //end
     }
 
-    public Community createCommunity(String name, String description, Image photo) {
-        Community community = new Community(name, description, photo, this);
+    public Community createCommunity(String name, String description, String imageName) {
+        Community community = new Community(name, description, imageName, this);
         Community.allCommunities.put(community.getId(), community);
 
         //Database_Part begin
@@ -329,17 +330,20 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     public ObjectId getId() {
         return id;
     }
-
+    public String getImageName() {
+        return imageName;
+    }
     public ArrayList<Event> getRatedEvents() {
         return ratedEvents;
     }
-
     public ArrayList<User> getFriendRequests() {
         return friendRequests;
     }
-
     public void setPhoto(Image photo) {
         this.photo = photo;
+    }
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 
     @Override
