@@ -108,7 +108,7 @@ public class CreateEventController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            
+            createdEvent.setPhoto(fxImage);
             try {
                 EventPageController.setEvent(createdEvent);
                 Parent root = FXMLLoader.load(getClass().getResource("eventpage.fxml"));

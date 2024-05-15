@@ -184,6 +184,10 @@ public abstract class Event implements Searchable, ConvertibleWithDocument<Event
         this.imageName = imageURI;
     }
 
+    public void setPhoto(Image photo) {
+        this.photo = photo;
+    }
+
     public String getImageName() {
         return imageName;
     }

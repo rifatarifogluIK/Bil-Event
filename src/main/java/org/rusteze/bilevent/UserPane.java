@@ -55,7 +55,6 @@ public class UserPane extends Pane {
     }
     public void onClick(MouseEvent event) {
 
-
         try {
             ProfileController.setUser(user);
             Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));

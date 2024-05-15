@@ -76,7 +76,7 @@ public class CreateCommunityController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
+            createdCommunity.setPhoto(fxImage);
             try {
                 CommunityPageController.setCommunity(createdCommunity);
                 Parent root = FXMLLoader.load(getClass().getResource("departmentpage.fxml"));

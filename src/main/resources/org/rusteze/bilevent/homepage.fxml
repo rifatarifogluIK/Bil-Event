@@ -165,7 +165,7 @@
                   <Insets top="-60.0" />
                </BorderPane.margin>
                <children>
-                  <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#profileBtn" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#profileBtn" onMouseEntered="#onVBoxHover" onMouseExited="#exitVBoxHover" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/ProfilePhoto.png" />
                      </image>

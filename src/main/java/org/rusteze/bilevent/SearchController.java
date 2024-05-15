@@ -12,10 +12,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
@@ -57,8 +59,20 @@ public class SearchController implements SceneHandler, Initializable {
             nameLabel.setText(user.getUsername());
             nameLabel.setPrefWidth(800);
             button2.setText("Profile");
+            button2.setOnAction(this::detailsBtn);
             innerPane.setStyle("-fx-background-color: #FFEE93; -fx-background-radius: 8px");
             buttonPanel.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+        }
+
+        public void detailsBtn(ActionEvent event) {
+            try {
+                ProfileController.setUser(user);
+                Parent root = FXMLLoader.load(getClass().getResource("ProfilePage.fxml"));
+                Scene scene = ((Node) event.getSource()).getScene();
+                scene.setRoot(root);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
@@ -154,6 +168,23 @@ public class SearchController implements SceneHandler, Initializable {
     public void exitHoverWhite(MouseEvent mouseEvent) {
         ((Button) mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
         ((Button) mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
+    }
+    public void onVBoxHover(MouseEvent mouseEvent) {
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20);
+        dropShadow.setOffsetX(0);
+        dropShadow.setOffsetY(0);
+        dropShadow.setColor(Color.rgb(0, 0, 0, 1));
+        ((Node)mouseEvent.getSource()).setEffect(dropShadow);
+    }
+    public void exitVBoxHover(MouseEvent mouseEvent) {
+
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(20);
+        dropShadow.setOffsetX(0);
+        dropShadow.setOffsetY(0);
+        dropShadow.setColor(Color.rgb(0, 0, 0, 0));
+        ((Node)mouseEvent.getSource()).setEffect(dropShadow);
     }
 
     public void showResults(ActionEvent event) {

@@ -132,8 +132,8 @@ public class HomeController implements SceneHandler, Initializable {
         dropShadow.setRadius(20);
         dropShadow.setOffsetX(0);
         dropShadow.setOffsetY(0);
-        dropShadow.setColor(Color.rgb(0, 0, 0, 0.5));
-        ((VBox)mouseEvent.getSource()).setEffect(dropShadow);
+        dropShadow.setColor(Color.rgb(0, 0, 0, 1));
+        ((Node)mouseEvent.getSource()).setEffect(dropShadow);
     }
     public void exitVBoxHover(MouseEvent mouseEvent) {
 
@@ -142,7 +142,7 @@ public class HomeController implements SceneHandler, Initializable {
         dropShadow.setOffsetX(0);
         dropShadow.setOffsetY(0);
         dropShadow.setColor(Color.rgb(0, 0, 0, 0));
-        ((VBox)mouseEvent.getSource()).setEffect(dropShadow);
+        ((Node)mouseEvent.getSource()).setEffect(dropShadow);
     }
     @Override
     public void displayFriends() {
