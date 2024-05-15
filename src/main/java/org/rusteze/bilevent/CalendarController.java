@@ -106,31 +106,31 @@ public class CalendarController implements SceneHandler, Initializable {
             if (eventLocalDate.isAfter(weekStart.minusDays(1)) && eventLocalDate.isBefore(weekStart.plusDays(7))) {
                 EventDisplay eventDisplay = new EventDisplay(e);
                 if (eventDate == dateOfMonday) {
-                    if(monday.getChildren().size() <= 4) {
+                    if(monday.getChildren().size() <= 6) {
                         monday.getChildren().add(eventDisplay);
                     }
                 } else if (eventDate == dateOfMonday + 1) {
-                    if(tuesday.getChildren().size() <= 4) {
+                    if(tuesday.getChildren().size() <= 6) {
                         tuesday.getChildren().add(eventDisplay);
                     }
                 } else if (eventDate == dateOfMonday + 2) {
-                    if(wednesday.getChildren().size() <= 4) {
+                    if(wednesday.getChildren().size() <= 6) {
                         wednesday.getChildren().add(eventDisplay);
                     }
                 } else if (eventDate == dateOfMonday + 3) {
-                    if(thursday.getChildren().size() <= 4) {
+                    if(thursday.getChildren().size() <= 6) {
                         thursday.getChildren().add(eventDisplay);
                     }
                 } else if (eventDate == dateOfMonday + 4) {
-                    if(friday.getChildren().size() <= 4) {
+                    if(friday.getChildren().size() <= 6) {
                         friday.getChildren().add(eventDisplay);
                     }
                 } else if (eventDate == dateOfMonday + 5) {
-                    if(saturday.getChildren().size() <= 4) {
+                    if(saturday.getChildren().size() <= 6) {
                         saturday.getChildren().add(eventDisplay);
                     }
                 } else if (eventDate == dateOfMonday + 6) {
-                    if(sunday.getChildren().size() <= 4) {
+                    if(sunday.getChildren().size() <= 6) {
                         sunday.getChildren().add(eventDisplay);
                     }
                 }

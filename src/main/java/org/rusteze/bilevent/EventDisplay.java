@@ -26,8 +26,7 @@ public class EventDisplay extends Pane {
         image.setFitWidth(20);
         image.setFitHeight(20);
         Label eventName = new Label(event.getName());
-        eventName.setFont(Font.font("Trebuchet MS", 15));
-        eventName.setStyle("-fx-font-weight: bold;");
+        eventName.setFont(Font.font("Trebuchet MS", 13));
         innerContainer.getChildren().add(image);
         innerContainer.getChildren().add(eventName);
         getChildren().add(innerContainer);

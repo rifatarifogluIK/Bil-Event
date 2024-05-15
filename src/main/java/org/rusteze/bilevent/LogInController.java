@@ -61,7 +61,7 @@ public class LogInController implements Initializable {
     }
 
     public void logIn(ActionEvent event) {
-        //TODO authentication
+
         if (User.userWith(emailField.getText()) != null && User.userWith(emailField.getText()).getPassword().equals(passwordField.getText())) {
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             try {
@@ -81,8 +81,8 @@ public class LogInController implements Initializable {
 
     public void forgotPassword(ActionEvent event) {
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        //TODO Rather than looking if it is blank check if email is assigned to an user.
-        if (!emailField.getText().isBlank()) {
+
+        if (!emailField.getText().isBlank() && User.userWith(emailField.getText()) != null) {
             try {
                 VerificationController.setUserEmail(emailField.getText());
                 VerificationController.setUser(User.userWith(emailField.getText()));
@@ -94,7 +94,7 @@ public class LogInController implements Initializable {
             }
 
         } else {
-            warningLabel.setText("Please Enter Your E-Mail to Reset Your Password!");
+            warningLabel.setText("Please Enter Your a valid E-Mail to Reset Your Password!");
             warningLabel.setVisible(true);
         }
     }
