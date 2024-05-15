@@ -30,6 +30,11 @@ public interface Searchable {
             allSearchables.add(events.nextElement());
         }
 
+        Enumeration<User> users = User.allUsers.elements();
+        while (users.hasMoreElements()){
+            allSearchables.add(users.nextElement());
+        }
+
         Enumeration<Community> communities = Community.allCommunities.elements();
         while (communities.hasMoreElements()){
             allSearchables.add(communities.nextElement());

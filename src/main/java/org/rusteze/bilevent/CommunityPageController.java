@@ -66,6 +66,7 @@ public class CommunityPageController implements Initializable {
     }
 
     public void setPage() {
+        eventPanel.getChildren().clear();
         departmentLabel1.setText("Current Events Of " + community.getName());
         departmentLabel.setText(community.getName());
         communityDescription.setText(community.getDescription());

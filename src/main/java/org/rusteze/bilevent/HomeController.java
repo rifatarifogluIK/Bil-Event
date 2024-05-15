@@ -58,7 +58,8 @@ public class HomeController implements SceneHandler, Initializable {
     ImageView profilePicture;
 
     public void displayEvents() {
-    //TODO
+
+        eventPanel.getChildren().clear();
         ArrayList<Event> recommendations = HelloApplication.sessionUser.getEventRec();
 
         for(Event e : recommendations) {

@@ -145,6 +145,7 @@ public class ProfileController implements Initializable {
     }
 
     public void setPage() {
+        eventPanel.getChildren().clear();
         userName.setText(user.getUsername());
         eventLabel.setText(user.getUsername() + "'s Enrolled Events");
         addFriend.setText("Add");
