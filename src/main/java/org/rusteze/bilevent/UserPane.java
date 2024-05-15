@@ -44,6 +44,7 @@ public class UserPane extends Pane {
 
         Label userName = new Label(user.getUsername());
         userName.setFont(Font.font("Trebuchet MS", FontWeight.BOLD,14));
+        userName.setPrefWidth(70);
         contentBox.getChildren().add(profilePicture);
         contentBox.getChildren().add(userName);
         HBox.setMargin(profilePicture, new Insets(10,10,0,10));

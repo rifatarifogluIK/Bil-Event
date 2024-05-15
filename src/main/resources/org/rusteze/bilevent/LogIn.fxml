@@ -19,7 +19,7 @@
                <children>
                   <TextField fx:id="emailField" layoutX="100.0" layoutY="222.0" promptText="E-Mail" style="-fx-background-color: transparent; -fx-border-color: royalblue; -fx-border-width: 0px 0px 2px 0px;" />
                   <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="266.0" prefHeight="27.0" prefWidth="150.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: royalblue; -fx-border-width: 0px 0px 2px 0px;" />
-                  <Button layoutX="100.0" layoutY="322.0" mnemonicParsing="false" onAction="#logIn" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: royalblue; -fx-background-radius: 12px;" text="Log In" textFill="WHITE" />
+                  <Button layoutX="100.0" layoutY="322.0" mnemonicParsing="false" onAction="#logIn" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="28.0" prefWidth="150.0" style="-fx-background-color: royalblue; -fx-background-radius: 12px;" text="Log In" textFill="WHITE" />
                   <Hyperlink layoutX="81.0" layoutY="383.0" onAction="#forgotPassword" text="Forgot your password? Click here!" />
                   <ImageView fitHeight="123.0" fitWidth="110.0" layoutX="120.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -35,16 +35,16 @@
                <children>
                   <AnchorPane prefHeight="500.0" prefWidth="350.0">
                      <children>
-                        <TextField layoutX="100.0" layoutY="214.0" promptText="Username" style="-fx-background-radius: 12px; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
-                        <PasswordField layoutX="100.0" layoutY="250.0" promptText="E-Mail" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
-                        <PasswordField layoutX="101.0" layoutY="288.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
+                        <TextField fx:id="nameField" layoutX="100.0" layoutY="200.0" promptText="Username" style="-fx-background-radius: 12px; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
+                        <TextField fx:id="mailField" layoutX="100.0" layoutY="240.0" promptText="E-Mail" style="-fx-background-radius: 12px; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
+                        <PasswordField fx:id="passField1" layoutX="101.0" layoutY="285.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
+                        <PasswordField fx:id="passField2" layoutX="100.0" layoutY="330.0" promptText="Verify Your Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
                         <Button layoutX="101.0" layoutY="381.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: royalblue; -fx-background-radius: 12px;" text="Sign Up" textFill="WHITE" />
                         <ImageView fitHeight="118.0" fitWidth="111.0" layoutX="120.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@Images/SignUpIcon.png" />
                            </image>
                         </ImageView>
-                        <PasswordField layoutX="100.0" layoutY="331.0" promptText="Verify Your Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="slidingPane" prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: royalblue;">

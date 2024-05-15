@@ -17,16 +17,16 @@
          <left>
             <AnchorPane prefHeight="500.0" prefWidth="350.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="nameField" layoutX="100.0" layoutY="214.0" promptText="Username" style="-fx-background-radius: 12px; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
-                  <PasswordField fx:id="mailField" layoutX="100.0" layoutY="250.0" promptText="E-Mail" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
-                  <PasswordField fx:id="passField1" layoutX="101.0" layoutY="288.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
-                  <Button layoutX="101.0" layoutY="381.0" mnemonicParsing="false" onAction="#signUpButton" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: royalblue; -fx-background-radius: 12px;" text="Sign Up" textFill="WHITE" />
+                  <TextField fx:id="nameField" layoutX="100.0" layoutY="200.0" promptText="Username" style="-fx-background-radius: 12px; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
+                  <TextField fx:id="mailField" layoutX="100.0" layoutY="240.0" promptText="E-Mail" style="-fx-background-radius: 12px; -fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
+                  <PasswordField fx:id="passField1" layoutX="101.0" layoutY="285.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
+                  <PasswordField fx:id="passField2" layoutX="100.0" layoutY="330.0" promptText="Verify Your Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
+                  <Button layoutX="101.0" layoutY="381.0" mnemonicParsing="false" onAction="#signUpButton" onMouseEntered="#onHover" onMouseExited="#exitHover" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: royalblue; -fx-background-radius: 12px;" text="Sign Up" textFill="WHITE" />
                   <ImageView fitHeight="118.0" fitWidth="111.0" layoutX="120.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Images/SignUpIcon.png" />
                      </image>
                   </ImageView>
-                  <PasswordField fx:id="passField2" layoutX="100.0" layoutY="331.0" promptText="Verify Your Password" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: royalblue;" />
                   <Label fx:id="warningLabel" alignment="CENTER" layoutX="1.0" layoutY="425.0" prefHeight="17.0" prefWidth="350.0" text="Passwords does not match!" textFill="RED" />
                </children>
             </AnchorPane>

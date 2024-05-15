@@ -101,6 +101,9 @@ public class EventPageController implements Initializable {
                 }
             }
             Button submit = new Button("Submit");
+            submit.setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 18px");
+            submit.setOnMouseEntered(this::onHoverWhite);
+            submit.setOnMouseExited(this::exitHoverWhite);
             this.getChildren().add(submit);
             submit.setOnAction(this::onSubmit);
             submit.setLayoutX(190);
@@ -141,6 +144,15 @@ public class EventPageController implements Initializable {
                     ratingStar.setImage(star);
                 }
             }
+        }
+        public void onHoverWhite(MouseEvent mouseEvent) {
+            ((Button) mouseEvent.getSource()).setStyle("-fx-background-color: #dfdfdf; -fx-background-radius: 12px");
+            ((Button) mouseEvent.getSource()).setCursor(Cursor.HAND);
+        }
+
+        public void exitHoverWhite(MouseEvent mouseEvent) {
+            ((Button) mouseEvent.getSource()).setStyle("-fx-background-color: #FFFFFF; -fx-background-radius: 12px");
+            ((Button) mouseEvent.getSource()).setCursor(Cursor.DEFAULT);
         }
     }
 
