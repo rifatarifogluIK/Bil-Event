@@ -33,7 +33,7 @@ public class Recommendation {
             }
         }
 
-        int[] enrolledCalculation = new int[CreateEventController.attributeList.length];
+        double[] enrolledCalculation = new double[CreateEventController.attributeList.length];
         boolean[][] allCalculation = new boolean[enrollableEvents.size()][];
 
         for(int i = 0; i < enrollableEvents.size(); i++){
@@ -55,7 +55,7 @@ public class Recommendation {
         }
 
         for(int i = 0; i < CreateEventController.attributeList.length; i++){
-            enrolledCalculation[i] /= user.getAttendedEvents().size() + user.getEnrolledEvents().size();
+            enrolledCalculation[i] /= user.getAttendedEvents().size() + user.getEnrolledEvents().size() + 0.0;
         }
 
         for(int i = 0; i < allCalculation.length; i++){
@@ -76,18 +76,14 @@ public class Recommendation {
         return calculation;
     }
 
-    public boolean isAcceptable(boolean[] event, int[] calculation){
-        boolean result = true;
+    public boolean isAcceptable(boolean[] event, double[] calculation){
 
         for(int i = 0; i < calculation.length; i++){
-            if(event[i] && calculation[i] < 0.3){
-                result = false;
-            }else if (!event[i] && calculation[i] > 0.3) {
-                result = false;
+            if(event[i] && calculation[i] > 0.3){
+                return true;
             }
         }
-
-        return result;
+        return false;
     }
 
     public User getUser() {
