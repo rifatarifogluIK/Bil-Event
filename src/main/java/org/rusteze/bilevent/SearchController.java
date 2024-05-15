@@ -55,6 +55,7 @@ public class SearchController implements SceneHandler, Initializable {
         public UserContainer(User user) {
             this.user = user;
             nameLabel.setText(user.getUsername());
+            nameLabel.setPrefWidth(800);
             button2.setText("Profile");
             innerPane.setStyle("-fx-background-color: #FFEE93; -fx-background-radius: 8px");
             buttonPanel.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
@@ -104,6 +105,7 @@ public class SearchController implements SceneHandler, Initializable {
         public CommunityContainer(Community community) {
             this.community = community;
             nameLabel.setText(community.getName());
+            nameLabel.setPrefWidth(800);
             button2.setText("Details");
             button2.setOnAction(this::detailsBtn);
             buttonPanel.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);

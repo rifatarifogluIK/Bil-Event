@@ -20,7 +20,7 @@ import java.util.*;
 
 public class HelloApplication extends Application {
 
-    public static int POPULAR_LIMIT = 3;
+    public static int POPULAR_LIMIT = 1;
 
     // Added this to test UI before implementing user authentication
     public static User sessionUser;
