@@ -19,6 +19,7 @@ public class Recommendation {
     }
 
     public void recommend(){
+        eventRec.clear();
         if(user.getAttendedEvents().size() + user.getEnrolledEvents().size() == 0){
             return;
         }

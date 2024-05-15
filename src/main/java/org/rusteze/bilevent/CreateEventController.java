@@ -98,7 +98,7 @@ public class CreateEventController implements Initializable {
                     createdEvent.addAttribute(box.getText());
                 }
             }
-
+            HelloApplication.sessionUser.getRecommendations().recommend();
             File saveFile = new File("src/main/resources/org/rusteze/bilevent/ImageDB", imageName);
 
             Image fxImage = imageView.getImage();

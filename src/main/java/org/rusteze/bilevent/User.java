@@ -90,6 +90,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         //end
 
         event.addAttendee(this);
+        recommendations.recommend();
     }
 
     public ArrayList<Event> getThisWeekEvents() {
@@ -122,7 +123,6 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         UpdateOptions options = new UpdateOptions().upsert(true);
         HelloApplication.db.getCollection("User").updateOne(query, update, options);
         //end
-
         return event;
     }
 
@@ -202,6 +202,7 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
         UpdateOptions options = new UpdateOptions().upsert(true);
         HelloApplication.db.getCollection("User").updateOne(query, update, options);
         //end
+        recommendations.recommend();
     }
 
     public boolean hasEventPassed(Event event) {
@@ -332,6 +333,11 @@ public class User implements Searchable, ConvertibleWithDocument<User> {
     public ArrayList<User> getFriendRequests() {
         return friendRequests;
     }
+
+    public Recommendation getRecommendations() {
+        return recommendations;
+    }
+
     public void setPhoto(Image photo) {
         this.photo = photo;
     }
