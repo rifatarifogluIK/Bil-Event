@@ -245,8 +245,8 @@ public class Community implements Searchable, ConvertibleWithDocument<Community>
         this.description = (String)doc.get("description");
         this.imageName = (String)doc.get("photo");
         this.photo = new Image(new FileInputStream("src/main/resources/org/rusteze/bilevent/ImageDB/" + imageName));
-        this.rating = (double)doc.get("rating");
-        this.ratingCount = (int)doc.get("ratingCount");
+        //this.rating = (double)doc.get("rating");
+        //this.ratingCount = (int)doc.get("ratingCount");
         this.id = (ObjectId)doc.get("_id");
 
         return this;
